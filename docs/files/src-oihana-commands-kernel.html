@@ -5,7 +5,7 @@
             <title>Oihana Php Commands</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="./">
+    <base href="../">
     <link rel="icon" href="images/favicon.ico"/>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
@@ -93,57 +93,37 @@
 </aside>
 
             <div class="phpdocumentor-column -nine phpdocumentor-content">
-                                    <section class="phpdocumentor-section">
+                                <section>
+                                        <ul class="phpdocumentor-breadcrumbs">
+    </ul>
 
-<a href="https://github.com/BcommeBois/oihana-php-commands" class="phpdocumentor-title__link">
-    <img src="assets/images/oihana-php-commands-logo-inline-512x160.png" alt="Oihana PHP Files" style="width: 256px; height: 80px;"/>
-</a>
+    <article class="phpdocumentor-element -file">
+        <h2 class="phpdocumentor-content__title">Kernel.php</h2>
 
-</br>
-
-<h3>🔗 Project on GitHub</h3>
-<p>View the full source code and contribute on GitHub:</p>
-<p>
-    <a href="https://github.com/BcommeBois/oihana-php-commands" target="_blank">
-        https://github.com/BcommeBois/oihana-php-commands
-    </a>
-</p>
-
-<h3>📦 Installation</h3>
-<p>This library requires <a href="https://php.net/releases/" target="_blank">PHP 8.4+</a> and is installed via <a href="https://getcomposer.org/" target="_blank">Composer</a>:</p>
-<pre class="language-bash prettyprint">composer require oihana/php-commands</pre>
-
-<h3>📄 License</h3>
-<p>This project is licensed under the <strong><a href="https://www.mozilla.org/en-US/MPL/2.0/" target="_blank">Mozilla Public License 2.0 (MPL-2.0)</a></strong>.</p>
-
-<h3>👤 About the Author</h3>
-<ul>
-    <li><strong>Name:</strong> Marc ALCARAZ (aka <em>eKameleon</em>)</li>
-    <li><strong>Website:</strong> <a href="https://www.ooop.fr" target="_blank">www.ooop.fr</a></li>
-    <li><strong>Email:</strong> <a href="mailto:marc@ooop.fr">marc@ooop.fr</a></li>
-</ul>
+        
+        
+        
+        
 
 
-
+        
 <h3 id="toc">
     Table of Contents
-    <a href="namespaces/default.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="files/src-oihana-commands-kernel.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
 
-<h4 id="namespaces">
-    Namespaces
-    <a href="namespaces/default.html#namespaces" class="headerlink"><i class="fas fa-link"></i></a>
-
-</h4>
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/oihana.html"><abbr title="\oihana">oihana</abbr></a></dt>
-    </dl>
 
 
+    <h4 id="toc-classes">
+        Classes
+        <a href="files/src-oihana-commands-kernel.html#toc-classes" class="headerlink"><i class="fas fa-link"></i></a>
 
-
+    </h4>
+    <dl class="phpdocumentor-table-of-contents">
+                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/oihana-commands-Kernel.html"><abbr title="\oihana\commands\Kernel">Kernel</abbr></a></dt><dd>Kernel command class representing a Symfony Console command
+integrated with dependency injection and extended with multiple traits.</dd>    </dl>
 
 
 
@@ -153,9 +133,123 @@
 
 
 
+        
 
+        
+        <div class="phpdocumentor-modal" id="source-view">
+    <div class="phpdocumentor-modal-bg" data-exit-button></div>
+    <div class="phpdocumentor-modal-container">
+        <div class="phpdocumentor-modal-content">
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/oihana/commands/Kernel.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+        </div>
+        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
+    </div>
+</div>
 
-</section>
+    <script type="text/javascript">
+        (function () {
+            function loadExternalCodeSnippet(el, url, line) {
+                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
+                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
+                    const language = 'php';
+
+                    const code = document.createElement('code');
+                    code.className = 'language-' + language;
+                    pre.textContent = '';
+                    pre.setAttribute('data-line', line)
+                    code.textContent = 'Loading…';
+                    pre.appendChild(code);
+
+                    var xhr = new XMLHttpRequest();
+
+                    xhr.open('GET', src, true);
+
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState !== 4) {
+                            return;
+                        }
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+                            Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
+                            return;
+                        }
+
+                        if (xhr.status === 404) {
+                            code.textContent = '✖ Error: File could not be found';
+                            return;
+                        }
+
+                        if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                            return;
+                        }
+
+                        code.textContent = '✖ Error: An unknown error occurred';
+                    };
+
+                    xhr.send(null);
+                });
+            }
+
+            const modalButtons = document.querySelectorAll("[data-modal]");
+            const openedAsLocalFile = window.location.protocol === 'file:';
+            if (modalButtons.length > 0 && openedAsLocalFile) {
+                console.warn(
+                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
+                    'browsers block XHR requests when a page is opened this way'
+                );
+            }
+
+            modalButtons.forEach(function (trigger) {
+                if (openedAsLocalFile) {
+                    trigger.setAttribute("hidden", "hidden");
+                }
+
+                trigger.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const modal = document.getElementById(trigger.dataset.modal);
+                    if (!modal) {
+                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
+                        return;
+                    }
+                    modal.classList.add("phpdocumentor-modal__open");
+
+                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
+                    const exits = modal.querySelectorAll("[data-exit-button]");
+                    exits.forEach(function (exit) {
+                        exit.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            modal.classList.remove("phpdocumentor-modal__open");
+                        });
+                    });
+                });
+            });
+        })();
+    </script>
+
+    </article>
+                                </section>
+                <section class="phpdocumentor-on-this-page__sidebar">
+                            
+    <section class="phpdocumentor-on-this-page__content">
+        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+
+        <ul class="phpdocumentor-list -clean">
+            <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                                                                                        <li><a href="files/src-oihana-commands-kernel.html#toc-classes">Classes</a></li>
+                                                                                                                    </ul>
+            </li>
+
+            
+                    </ul>
+    </section>
+
+                </section>
                             </div>
             <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
     <section class="phpdocumentor-search-results__dialog">
@@ -169,7 +263,7 @@
     </section>
 </section>
         </div>
-        <a href="index.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="files/src-oihana-commands-kernel.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

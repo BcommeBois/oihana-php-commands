@@ -30,7 +30,11 @@
         },
         "files":
         [
-        
+            "src/oihana/commands/helpers/assertDomain.php" ,
+            "src/oihana/commands/helpers/clearConsole.php" ,
+            "src/oihana/commands/helpers/domainExists.php" ,
+            "src/oihana/commands/helpers/makeCommand.php" ,
+            "src/oihana/commands/helpers/silent.php"
         ]
     },
     "require": {
@@ -39,7 +43,11 @@
         "oihana/php-system": "dev-main",
         "oihana/php-files": "dev-main",
         "oihana/php-schema": "dev-main",
-        "oihana/php-standards": "dev-main"
+        "oihana/php-standards": "dev-main",
+        "symfony/console": "^7.3",
+        "symfony/lock": "^7.3",
+        "symfony/string": "^7.3",
+        "symfony/uid": "^7.3"
     },
     "scripts": {
         "doc": "rm -rf docs && mkdir docs && cp -r assets docs/assets && ./vendor/bin/phpdoc -c phpdoc.xml -v" ,
