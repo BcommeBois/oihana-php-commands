@@ -9,7 +9,7 @@ namespace oihana\commands\helpers;
  * @return bool True if DNS records exist for the domain, false otherwise.
  *
  * @example
- * ```
+ * ```php
  * $domain = 'example.com';
  *
  * if ( domainExists( $domain ) )
