@@ -18,7 +18,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "oihana\\core\\" : "tests/oihana/commands"
+            "oihana\\commands\\" : "tests/oihana/commands"
         }
     },
     "autoload" :

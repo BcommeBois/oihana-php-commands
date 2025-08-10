@@ -123,7 +123,6 @@ class Kernel extends Command implements LoggerInterface
         return $this ;
     }
 
-
     /**
      * Initializes the command description.
      *
