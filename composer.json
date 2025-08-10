@@ -1,0 +1,59 @@
+{
+    "name" : "oihana/php-commands" ,
+    "type" : "library" ,
+    "description" : "The Oihana PHP Commands library" ,
+    "keywords" : [ "php" , "commands" , "console" ] ,
+    "homepage" : "https://github.com/BcommeBois/oihana-php-commands" ,
+    "license" : [ "MPL-2.0" ] ,
+    "authors" : [
+        {
+            "name" : "Marc Alcaraz" ,
+            "email" : "marc@ooop.fr" ,
+            "homepage" : "https://www.ooop.fr" ,
+            "role" : "Project Founder, Lead Developer."
+        }
+    ],
+    "support": {
+        "email": "marc@ooop.fr"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "oihana\\core\\" : "tests/oihana/commands"
+        }
+    },
+    "autoload" :
+    {
+        "psr-4" :
+        {
+            "oihana\\commands\\": "src/oihana/commands"
+            
+        },
+        "files":
+        [
+        
+        ]
+    },
+    "require": {
+        "php": ">=8.4",
+        "oihana/php-core": "dev-main",
+        "oihana/php-system": "dev-main",
+        "oihana/php-files": "dev-main",
+        "oihana/php-schema": "dev-main",
+        "oihana/php-standards": "dev-main"
+    },
+    "scripts": {
+        "doc": "rm -rf docs && mkdir docs && cp -r assets docs/assets && ./vendor/bin/phpdoc -c phpdoc.xml -v" ,
+        "test": "./vendor/bin/phpunit"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12",
+        "nunomaduro/collision": "^8.8",
+        "mikey179/vfsstream": "^1.6",
+        "phpdocumentor/shim": "^3.8"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpdocumentor/shim": true
+        }
+    }
+}
