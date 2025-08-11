@@ -3,6 +3,8 @@
 namespace oihana\commands\options;
 
 use oihana\options\Option;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
 
 /**
  * The enumeration of the global command options.
@@ -20,4 +22,31 @@ class CommandOption extends Option
     public const string NGINX   = 'nginx'    ;
     public const string SUDO    = 'sudo'     ;
     public const string OWNER   = 'owner'    ;
+
+    /**
+     * Configures the options of the current command.
+     *
+     * @param Command $command  The command reference to configure.
+     * @param bool    $hasClear Indicates if the clear option is configured.
+     *
+     * @return void
+     */
+    public static function configure
+    (
+        Command $command ,
+        bool    $hasClear = true
+    )
+    : void
+    {
+        if( $hasClear )
+        {
+            $command->addOption
+            (
+                name        : self::CLEAR ,
+                shortcut    : 'c' ,
+                mode        : InputOption::VALUE_NONE ,
+                description :  'Clear the console.'
+            ) ;
+        }
+    }
 }
