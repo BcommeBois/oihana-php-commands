@@ -84,11 +84,11 @@ class Kernel extends Command implements LoggerInterface
     public ?string $action = null ;
 
     /**
-     * List of possible actions this command can perform.
+     * Optional white-list of possible actions that this command can perform.
      *
-     * @var array<int, string>
+     * @var null|array<int, string>
      */
-    public array $actions = [] ;
+    public ?array $actions = null ;
 
     /**
      * Number of items to process per batch.
