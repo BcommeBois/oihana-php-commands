@@ -29,14 +29,14 @@ class CommandOption extends Option
      * @param Command $command  The command reference to configure.
      * @param bool    $hasClear Indicates if the clear option is configured.
      *
-     * @return void
+     * @return Command
      */
     public static function configure
     (
         Command $command ,
         bool    $hasClear = true
     )
-    : void
+    : Command
     {
         if( $hasClear )
         {
@@ -48,5 +48,6 @@ class CommandOption extends Option
                 description :  'Clear the console.'
             ) ;
         }
+        return $command ;
     }
 }
