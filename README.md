@@ -49,38 +49,44 @@ Perfect for:
 
 ## 🔌 Plugins
 
+Discover the available plugins in the Oihana PHP Commands library. Each plugin extends CLI capabilities to easily manage different services.
+
 ### 🧠 Oihana PHP MemCached
 
 The available plugins of the Oihana PHP Commands library are :
 
-| 🔌 | Plugin                                                                     | Description                                   | 
-|----|----------------------------------------------------------------------------|-----------------------------------------------|
-| 🧠 | [Oihana PHP MemCached](https://github.com/BcommeBois/oihana-php-memcached) | Managing Memcached in-memory key-value store. |
-| 🤖 | [Oihana PHP Robots](https://github.com/BcommeBois/oihana-php-robots)       | Create and remove a **robots.txt** file.      |  
+| 🔌 | Plugin                                                                     | Description                                                   | 
+|----|----------------------------------------------------------------------------|---------------------------------------------------------------|
+| 🧠 | [Oihana PHP MemCached](https://github.com/BcommeBois/oihana-php-memcached) | CLI commands to manage Memcached in-memory key-value caching. |
+| 🤖 | [Oihana PHP Robots](https://github.com/BcommeBois/oihana-php-robots)       | Simple CLI tool to create or remove a robots.txt file.        |  
 
 ---
 
-### 🧠 Oihana PHP MemCached
-
-This plugin provides CLI commands to control Memcached directly, using the PHP [Memcached extension](https://www.php.net/manual/en/book.memcached.php).
+### 🧠 [Oihana PHP MemCached](https://github.com/BcommeBois/oihana-php-memcached)
 
 <a href="https://github.com/BcommeBois/oihana-php-memcached">
     <img src="https://raw.githubusercontent.com/BcommeBois/oihana-php-memcached/main/assets/images/oihana-php-memcached-logo-inline-512x160.png" width="256px" height="80px"/>
 </a>
 
-Memcached is an in-memory key–value store that accelerates dynamic web applications by caching data in RAM, reducing database load and latency.
+A CLI plugin to control Memcached using the official [Memcached extension](https://www.php.net/manual/en/book.memcached.php) PHP extension.  
+Memcached is an in-memory caching system that speeds up your applications by reducing database load.
+
+🔗 [View repository](https://github.com/BcommeBois/oihana-php-memcached)
 
 ---
 
-### 🤖 Oihana PHP Robots
-
-A simple CLI tool to create or remove a **robots.txt** file for your website.
+### 🤖 [Oihana PHP Robots](https://github.com/BcommeBois/oihana-php-robots)
 
 <a href="https://github.com/BcommeBois/oihana-php-robots">
     <img src="https://raw.githubusercontent.com/BcommeBois/oihana-php-robots/main/assets/images/oihana-php-robots-logo-inline-512x160.png" width="256px" height="80px"/>
 </a>
 
+A simple CLI tool to easily create or remove a **robots.txt** file for your website.
+
+🔗 [View repository](https://github.com/BcommeBois/oihana-php-robots)
+
 ---
+
 ## ✅ Running Unit Tests
 
 To run all tests:
