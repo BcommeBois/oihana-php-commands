@@ -51,11 +51,9 @@ Perfect for:
 
 Discover the available plugins in the Oihana PHP Commands library. Each plugin extends CLI capabilities to easily manage different services.
 
-### 🧠 Oihana PHP MemCached
+**Available plugins:** 
 
-The available plugins of the Oihana PHP Commands library are :
-
-| 🔌 | Plugin                                                                     | Description                                                           | 
+| 🔌 | Plugins                                                                    | Description                                                           | 
 |----|----------------------------------------------------------------------------|-----------------------------------------------------------------------|
 | 🧠 | [Oihana PHP MemCached](https://github.com/BcommeBois/oihana-php-memcached) | Manage Memcached in-memory key-value caching.                         |
 | 🔏 | [Oihana PHP Certbot](https://github.com/BcommeBois/oihana-php-certbot)     | Create, modify, and manage Let’s Encrypt certificates through Certbot |
