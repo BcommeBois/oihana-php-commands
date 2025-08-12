@@ -2,7 +2,9 @@
 
 ![Oihana Php Core](https://raw.githubusercontent.com/BcommeBois/oihana-php-commands/main/assets/images/oihana-php-commands-logo-inline-512x160.png)
 
-An open-source PHP framework designed to create advanced command-line applications. Built on top of the Oihana PHP ecosystem, it provides ready-to-use tools to manage and automate common server and web application tasks.
+An open-source PHP framework designed to create advanced command-line applications. 
+
+Built on top of the **Oihana PHP** ecosystem, it provides ready-to-use tools to manage and automate common server and web application tasks.
 
 ## 📚 Documentation
 
