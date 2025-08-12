@@ -58,9 +58,9 @@ The available plugins of the Oihana PHP Commands library are :
 | 🔌 | Plugin                                                                     | Description                                                           | 
 |----|----------------------------------------------------------------------------|-----------------------------------------------------------------------|
 | 🧠 | [Oihana PHP MemCached](https://github.com/BcommeBois/oihana-php-memcached) | Manage Memcached in-memory key-value caching.                         |
-| 🔏 | [Oihana PHP Nginx](https://github.com/BcommeBois/oihana-php-certbot)       | Create, modify, and manage Let’s Encrypt certificates through Certbot |
-| 🤖 | [Oihana PHP Robots](https://github.com/BcommeBois/oihana-php-robots)       | Simple CLI tool to create or remove a robots.txt file.                |  
+| 🔏 | [Oihana PHP Certbot](https://github.com/BcommeBois/oihana-php-certbot)     | Create, modify, and manage Let’s Encrypt certificates through Certbot |
 | 🌐 | [Oihana PHP Nginx](https://github.com/BcommeBois/oihana-php-nginx)         | Create, modify, and control NGINX configurations and commands         |
+| 🤖 | [Oihana PHP Robots](https://github.com/BcommeBois/oihana-php-robots)       | Simple CLI tool to create or remove a robots.txt file.                |  
 
 ---
 
