@@ -126,15 +126,19 @@ trait FileTrait
             }
         }
 
-        $content  = escapeshellarg( (string) $content ) ;
-        $filePath = escapeshellarg( $filePath ) ;
-        $status   = $this->system
+        $tmpFile = tempnam( sys_get_temp_dir() , 'oihana_php_make_file' ) ;
+
+        file_put_contents( $tmpFile , $content ) ;
+
+        $tmpFileEscaped  = escapeshellarg($tmpFile);
+        $filePathEscaped = escapeshellarg($filePath);
+
+        $status = $this->system
         (
-            command  : "tee $filePath > /dev/null" ,
+            command  : "mv $tmpFileEscaped $filePathEscaped" ,
             options  : $options ,
             silent   : true ,
             verbose  : $verbose ,
-            previous : "echo $content" ,
             sudo     : $sudo ,
             dryRun   : $dryRun
         ) ;

@@ -608,7 +608,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\oihana\\commands\\Kernel\u003A\u003A\u0024actions",
             "name": "actions",
-            "summary": "List\u0020of\u0020possible\u0020actions\u0020this\u0020command\u0020can\u0020perform.",
+            "summary": "Optional\u0020white\u002Dlist\u0020of\u0020possible\u0020actions\u0020that\u0020this\u0020command\u0020can\u0020perform.",
             "url": "classes/oihana-commands-Kernel.html#property_actions"
         },                {
             "fqsen": "\\oihana\\commands\\Kernel\u003A\u003A\u0024batchSize",
@@ -731,6 +731,11 @@ Search.appendIndex(
             "summary": "The\u0020enumeration\u0020of\u0020the\u0020global\u0020command\u0020options.",
             "url": "classes/oihana-commands-options-CommandOption.html"
         },                {
+            "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003Aconfigure\u0028\u0029",
+            "name": "configure",
+            "summary": "Configures\u0020the\u0020options\u0020of\u0020the\u0020current\u0020command.",
+            "url": "classes/oihana-commands-options-CommandOption.html#method_configure"
+        },                {
             "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003ACERTBOT",
             "name": "CERTBOT",
             "summary": "",
@@ -826,16 +831,6 @@ Search.appendIndex(
             "summary": "The\u0020enumeration\u0020of\u0020the\u0020global\u0020server\u0020options.",
             "url": "classes/oihana-commands-options-ServerOption.html"
         },                {
-            "fqsen": "\\oihana\\commands\\options\\ServerOption\u003A\u003ACERTBOT",
-            "name": "CERTBOT",
-            "summary": "",
-            "url": "classes/oihana-commands-options-ServerOption.html#constant_CERTBOT"
-        },                {
-            "fqsen": "\\oihana\\commands\\options\\ServerOption\u003A\u003ADIR",
-            "name": "DIR",
-            "summary": "",
-            "url": "classes/oihana-commands-options-ServerOption.html#constant_DIR"
-        },                {
             "fqsen": "\\oihana\\commands\\options\\ServerOption\u003A\u003ADOMAIN",
             "name": "DOMAIN",
             "summary": "",
@@ -845,11 +840,6 @@ Search.appendIndex(
             "name": "HTDOCS",
             "summary": "",
             "url": "classes/oihana-commands-options-ServerOption.html#constant_HTDOCS"
-        },                {
-            "fqsen": "\\oihana\\commands\\options\\ServerOption\u003A\u003ANGINX",
-            "name": "NGINX",
-            "summary": "",
-            "url": "classes/oihana-commands-options-ServerOption.html#constant_NGINX"
         },                {
             "fqsen": "\\oihana\\commands\\options\\ServerOption\u003A\u003APHP",
             "name": "PHP",
