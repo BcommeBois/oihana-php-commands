@@ -41,6 +41,13 @@ Perfect for:
 - Deployment pipelines
 - Local and production environment setup
 
+## Plugins
+
+### Oihana PHP Robots
+
+A PHP library to create and manage robots.txt files, built on top of the oihana-php-commands library.
+<p><img href="https://raw.githubusercontent.com/BcommeBois/oihana-php-memcached/main/assets/images/oihana-php-memcached-logo-inline-512x160.png" width="256px" height="80px"/></p>
+
 ## ✅ Running Unit Tests
 
 To run all tests:
