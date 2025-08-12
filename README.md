@@ -4,6 +4,10 @@
 
 An open-source PHP framework designed to create advanced command-line applications. 
 
+[![Latest Version](https://img.shields.io/packagist/v/oihana/php-commands.svg?style=flat-square)](https://packagist.org/packages/oihana/php-commands)  
+[![Total Downloads](https://img.shields.io/packagist/dt/oihana/php-commands.svg?style=flat-square)](https://packagist.org/packages/oihana/php-commands)  
+[![License](https://img.shields.io/packagist/l/oihana/php-commands.svg?style=flat-square)](LICENSE)
+
 Built on top of the **Oihana PHP** ecosystem, it provides ready-to-use tools to manage and automate common server and web application tasks.
 
 ## 📚 Documentation

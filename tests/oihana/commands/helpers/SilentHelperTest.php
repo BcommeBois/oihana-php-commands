@@ -37,7 +37,7 @@ final class SilentHelperTest extends TestCase
     }
 
     #[Test]
-    public function testSilentTrueAppendsRedirectDependingOnOS(): void
+    public function testSilentTrueAppendsRedirectDependingOnOperatingSystem(): void
     {
         $cmd = 'ls -la';
         $result = silent($cmd, true);
