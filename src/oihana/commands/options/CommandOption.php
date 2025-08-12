@@ -15,11 +15,9 @@ use Symfony\Component\Console\Input\InputOption;
  */
 class CommandOption extends Option
 {
-    public const string CERTBOT = 'certbot'  ;
     public const string CLEAR   = 'clear'    ;
     public const string CONFIG  = 'config'   ;
     public const string DIR     = 'dir'      ;
-    public const string NGINX   = 'nginx'    ;
     public const string SUDO    = 'sudo'     ;
     public const string OWNER   = 'owner'    ;
 

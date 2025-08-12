@@ -18,12 +18,6 @@ class CommandOptions extends Options
     public const string COMMAND = 'command' ;
 
     /**
-     * Indicates if the command use certbot.
-     * @var ?bool
-     */
-    public ?bool $certbot = true ;
-
-    /**
      * Indicates if the command clear the terminal when is launched.
      * @var bool
      */
@@ -40,12 +34,6 @@ class CommandOptions extends Options
      * @var ?string
      */
     public ?string $dir = '' ;
-
-    /**
-     * Indicates if the command use nginx.
-     * @var ?bool
-     */
-    public ?bool $nginx = true ;
 
     /**
      * Whether to prefix the command with `sudo`.

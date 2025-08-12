@@ -31,11 +31,6 @@ class CommandParam
     public const string ACTIONS = 'actions' ;
 
     /**
-     * The 'certbot' parameter.
-     */
-    public const string CERTBOT = 'certbot' ;
-
-    /**
      * The 'command' parameter.
      */
     public const string COMMAND = 'command' ;
@@ -89,11 +84,6 @@ class CommandParam
      * The 'mysqlRoot' parameter.
      */
     public const string MYSQL_ROOT = 'mysqlRoot' ;
-
-    /**
-     * The 'nginx' parameter.
-     */
-    public const string NGINX = 'nginx' ;
 
     /**
      * The 'server' parameter.
