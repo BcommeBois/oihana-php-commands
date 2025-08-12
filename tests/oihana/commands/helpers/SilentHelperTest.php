@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace oihana\commands\helpers;
+namespace tests\oihana\commands\helpers;
 
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
+use function oihana\commands\helpers\silent;
 
 final class SilentHelperTest extends TestCase
 {

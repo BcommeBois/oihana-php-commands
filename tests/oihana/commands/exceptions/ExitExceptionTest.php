@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace oihana\commands\exceptions;
+namespace tests\oihana\commands\exceptions;
 
+use oihana\commands\exceptions\ExitException;
 use oihana\enums\Char;
 use oihana\exceptions\ExceptionTrait;
 use PHPUnit\Framework\TestCase;

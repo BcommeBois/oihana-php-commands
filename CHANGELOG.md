@@ -41,6 +41,7 @@ Symfony Console integration with a Kernel base command and PSR-3 logging.
   - assertDomain() 
   - clearConsole() 
   - domainExists() 
+  - escapeForPrintf() 
   - makeCommand() 
   - silent() for non-interactive mode
  

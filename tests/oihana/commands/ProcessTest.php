@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace oihana\commands;
+namespace tests\oihana\commands;
 
+use oihana\commands\Process;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 

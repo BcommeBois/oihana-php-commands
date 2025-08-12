@@ -8,6 +8,7 @@ use oihana\commands\enums\ExitCode;
 use oihana\commands\options\CommandOptions;
 use oihana\files\exceptions\FileException;
 
+use function oihana\commands\helpers\escapeForPrintf;
 use function oihana\files\assertFile;
 
 /**
@@ -126,9 +127,8 @@ trait FileTrait
             }
         }
 
-        $escapedContent  = $this->escapeForPrintf( $content ) ;
+        $escapedContent  = escapeForPrintf( $content ) ;
         $filePathEscaped = escapeshellarg($filePath);
-
 
         $status = $this->system
         (
@@ -147,15 +147,5 @@ trait FileTrait
         }
 
         return ExitCode::SUCCESS;
-    }
-
-    /**
-     * Échappe une chaîne pour l'utiliser dans printf '%s' '...'
-     * Gère les apostrophes et caractères spéciaux.
-     */
-    protected function escapeForPrintf(string $content): string
-    {
-        $escaped = str_replace("'", "'\\''", $content);
-        return "'$escaped'";
     }
 }

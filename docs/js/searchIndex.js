@@ -126,11 +126,6 @@ Search.appendIndex(
             "summary": "The\u0020\u0027actions\u0027\u0020parameter.",
             "url": "classes/oihana-commands-enums-CommandParam.html#constant_ACTIONS"
         },                {
-            "fqsen": "\\oihana\\commands\\enums\\CommandParam\u003A\u003ACERTBOT",
-            "name": "CERTBOT",
-            "summary": "The\u0020\u0027certbot\u0027\u0020parameter.",
-            "url": "classes/oihana-commands-enums-CommandParam.html#constant_CERTBOT"
-        },                {
             "fqsen": "\\oihana\\commands\\enums\\CommandParam\u003A\u003ACOMMAND",
             "name": "COMMAND",
             "summary": "The\u0020\u0027command\u0027\u0020parameter.",
@@ -185,11 +180,6 @@ Search.appendIndex(
             "name": "MYSQL_ROOT",
             "summary": "The\u0020\u0027mysqlRoot\u0027\u0020parameter.",
             "url": "classes/oihana-commands-enums-CommandParam.html#constant_MYSQL_ROOT"
-        },                {
-            "fqsen": "\\oihana\\commands\\enums\\CommandParam\u003A\u003ANGINX",
-            "name": "NGINX",
-            "summary": "The\u0020\u0027nginx\u0027\u0020parameter.",
-            "url": "classes/oihana-commands-enums-CommandParam.html#constant_NGINX"
         },                {
             "fqsen": "\\oihana\\commands\\enums\\CommandParam\u003A\u003ASERVER",
             "name": "SERVER",
@@ -556,6 +546,11 @@ Search.appendIndex(
             "summary": "Checks\u0020whether\u0020the\u0020given\u0020domain\u0020has\u0020valid\u0020DNS\u0020records\u0020\u0028A,\u0020AAAA,\u0020or\u0020CNAME\u0029.",
             "url": "namespaces/oihana-commands-helpers.html#function_domainExists"
         },                {
+            "fqsen": "\\oihana\\commands\\helpers\\escapeForPrintf\u0028\u0029",
+            "name": "escapeForPrintf",
+            "summary": "Escapes\u0020a\u0020string\u0020to\u0020be\u0020safely\u0020used\u0020inside\u0020a\u0020shell\u0020command\u0020with\u0020printf\u0020\u0027\u0025s\u0027\u0020\u0027...\u0027.",
+            "url": "namespaces/oihana-commands-helpers.html#function_escapeForPrintf"
+        },                {
             "fqsen": "\\oihana\\commands\\helpers\\makeCommand\u0028\u0029",
             "name": "makeCommand",
             "summary": "Generates\u0020a\u0020complete\u0020shell\u0020command\u0020string,\u0020optionally\u0020including\u0020a\u0020pipeline.",
@@ -736,11 +731,6 @@ Search.appendIndex(
             "summary": "Configures\u0020the\u0020options\u0020of\u0020the\u0020current\u0020command.",
             "url": "classes/oihana-commands-options-CommandOption.html#method_configure"
         },                {
-            "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003ACERTBOT",
-            "name": "CERTBOT",
-            "summary": "",
-            "url": "classes/oihana-commands-options-CommandOption.html#constant_CERTBOT"
-        },                {
             "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003ACLEAR",
             "name": "CLEAR",
             "summary": "",
@@ -755,11 +745,6 @@ Search.appendIndex(
             "name": "DIR",
             "summary": "",
             "url": "classes/oihana-commands-options-CommandOption.html#constant_DIR"
-        },                {
-            "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003ANGINX",
-            "name": "NGINX",
-            "summary": "",
-            "url": "classes/oihana-commands-options-CommandOption.html#constant_NGINX"
         },                {
             "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003ASUDO",
             "name": "SUDO",
@@ -791,11 +776,6 @@ Search.appendIndex(
             "summary": "The\u0020\u0027command\u0027\u0020parameter.",
             "url": "classes/oihana-commands-options-CommandOptions.html#constant_COMMAND"
         },                {
-            "fqsen": "\\oihana\\commands\\options\\CommandOptions\u003A\u003A\u0024certbot",
-            "name": "certbot",
-            "summary": "Indicates\u0020if\u0020the\u0020command\u0020use\u0020certbot.",
-            "url": "classes/oihana-commands-options-CommandOptions.html#property_certbot"
-        },                {
             "fqsen": "\\oihana\\commands\\options\\CommandOptions\u003A\u003A\u0024clear",
             "name": "clear",
             "summary": "Indicates\u0020if\u0020the\u0020command\u0020clear\u0020the\u0020terminal\u0020when\u0020is\u0020launched.",
@@ -810,11 +790,6 @@ Search.appendIndex(
             "name": "dir",
             "summary": "The\u0020path\u0020of\u0020the\u0020command\u0020directory.",
             "url": "classes/oihana-commands-options-CommandOptions.html#property_dir"
-        },                {
-            "fqsen": "\\oihana\\commands\\options\\CommandOptions\u003A\u003A\u0024nginx",
-            "name": "nginx",
-            "summary": "Indicates\u0020if\u0020the\u0020command\u0020use\u0020nginx.",
-            "url": "classes/oihana-commands-options-CommandOptions.html#property_nginx"
         },                {
             "fqsen": "\\oihana\\commands\\options\\CommandOptions\u003A\u003A\u0024sudo",
             "name": "sudo",

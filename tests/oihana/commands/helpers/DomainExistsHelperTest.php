@@ -2,19 +2,20 @@
 
 declare(strict_types=1);
 
-namespace oihana\commands\helpers;
+namespace tests\oihana\commands\helpers;
 
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
+use function oihana\commands\helpers\domainExists;
 
 final class DomainExistsHelperTest extends TestCase
 {
     #[Test]
     public function testInvalidDomainReturnsFalse(): void
     {
-        $this->assertFalse(domainExists('invalid_domain'));
-        $this->assertFalse(domainExists('')); // empty not URL-valid
-        $this->assertFalse(domainExists('-.example.com')); // hyphen start invalid URL when prefixed with http://
+        $this->assertFalse( domainExists('invalid_domain'));
+        $this->assertFalse( domainExists('')); // empty not URL-valid
+        $this->assertFalse( domainExists('-.example.com')); // hyphen start invalid URL when prefixed with http://
     }
 
     #[Test]

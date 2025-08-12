@@ -147,6 +147,13 @@
 <dd>Checks whether the given domain has valid DNS records (A, AAAA, or CNAME).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/oihana-commands-helpers.html#function_escapeForPrintf">escapeForPrintf()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Escapes a string to be safely used inside a shell command with printf &#039;%s&#039; &#039;...&#039;.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
     <a class="" href="namespaces/oihana-commands-helpers.html#function_makeCommand">makeCommand()</a>
     <span>
                                 &nbsp;: string    </span>
@@ -464,6 +471,99 @@ else
         <span class="phpdocumentor-signature__response_type">bool</span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>True if DNS records exist for the domain, false otherwise.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_escapeForPrintf">
+        escapeForPrintf()
+        <a href="namespaces/oihana-commands-helpers.html#function_escapeForPrintf" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/helpers/escapeForPrintf.php"><a href="files/src-oihana-commands-helpers-escapeforprintf.html"><abbr title="src/oihana/commands/helpers/escapeForPrintf.php">escapeForPrintf.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">34</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Escapes a string to be safely used inside a shell command with printf &#039;%s&#039; &#039;...&#039;.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">escapeForPrintf</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$content</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+        <section class="phpdocumentor-description"><p>This function escapes single quotes in the input string by replacing each
+<code class="prettyprint">'</code> with <code class="prettyprint">'\''</code>, so the string can be safely enclosed in single quotes
+without breaking the shell syntax.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$content</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The input string to escape.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="namespaces/oihana-commands-helpers.html#function_escapeForPrintf#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">author</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>Marc Alcaraz (ekameleon)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">since</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.0.0</span>
+                                                                                
+                                             
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">example</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><pre class="prettyprint"><code class="language-php">use function oihana\commands\helpers\escapeForPrintf;
+
+$input = &quot;It's a test string with 'single quotes'&quot;;
+$escaped = escapeForPrintf($input);
+// Result:  'It'\''s a test string with '\''single quotes'\'''
+
+// Example usage in a shell command:
+$cmd = &quot;printf '%s' $escaped&quot;;
+echo $cmd;
+// Outputs: printf '%s' 'It'\''s a test string with '\''single quotes'\'''
+</code></pre>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The escaped string enclosed in single quotes, safe for shell printf.</p>
 </section>
 
             </section>
@@ -850,6 +950,7 @@ echo $cmd;
                                                     <li class=""><a href="namespaces/oihana-commands-helpers.html#function_assertDomain">assertDomain()</a></li>
                                                     <li class=""><a href="namespaces/oihana-commands-helpers.html#function_clearConsole">clearConsole()</a></li>
                                                     <li class=""><a href="namespaces/oihana-commands-helpers.html#function_domainExists">domainExists()</a></li>
+                                                    <li class=""><a href="namespaces/oihana-commands-helpers.html#function_escapeForPrintf">escapeForPrintf()</a></li>
                                                     <li class=""><a href="namespaces/oihana-commands-helpers.html#function_makeCommand">makeCommand()</a></li>
                                                     <li class=""><a href="namespaces/oihana-commands-helpers.html#function_silent">silent()</a></li>
                                             </ul>
