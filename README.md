@@ -49,10 +49,10 @@ Perfect for:
 
 The available plugins of the Oihana PHP Commands library are :
 
-| 🔌 | Plugin               | Description                                   | 
-|----|----------------------|-----------------------------------------------|
-| 🧠 | Oihana PHP MemCached | Managing Memcached in-memory key-value store. |
-| 🤖 | Oihana PHP Robots    | Create and remove a **robots.txt** file.      |  
+| 🔌 | Plugin                                                                     | Description                                   | 
+|----|----------------------------------------------------------------------------|-----------------------------------------------|
+| 🧠 | [Oihana PHP MemCached](https://github.com/BcommeBois/oihana-php-memcached) | Managing Memcached in-memory key-value store. |
+| 🤖 | [Oihana PHP Robots](https://github.com/BcommeBois/oihana-php-robots)       | Create and remove a **robots.txt** file.      |  
 
 ---
 
@@ -60,7 +60,7 @@ The available plugins of the Oihana PHP Commands library are :
 
 This plugin provides CLI commands to control Memcached directly, using the PHP [Memcached extension](https://www.php.net/manual/en/book.memcached.php).
 
-<a href="https://github.com/BcommeBois/oihana-php-robots">
+<a href="https://github.com/BcommeBois/oihana-php-memcached">
     <img src="https://raw.githubusercontent.com/BcommeBois/oihana-php-memcached/main/assets/images/oihana-php-memcached-logo-inline-512x160.png" width="256px" height="80px"/>
 </a>
 
