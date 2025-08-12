@@ -126,9 +126,19 @@ trait FileTrait
             }
         }
 
-        $tmpFile = tempnam( sys_get_temp_dir() , 'oihana_php_make_file' ) ;
+        $tmpFile = tempnam( sys_get_temp_dir() , 'oihana_php_command_make_file' ) ;
 
-        file_put_contents( $tmpFile , $content ) ;
+        if ( $tmpFile === false )
+        {
+            throw new RuntimeException("Failed to create temporary file" ) ;
+        }
+
+        if ( file_put_contents( $tmpFile , $content ) === false )
+        {
+            throw new RuntimeException("Failed to write content to temporary file $tmpFile" ) ;
+        }
+
+        chmod( $tmpFile , 0644 ) ;
 
         $tmpFileEscaped  = escapeshellarg($tmpFile);
         $filePathEscaped = escapeshellarg($filePath);
