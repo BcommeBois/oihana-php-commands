@@ -77,7 +77,7 @@ Memcached is an in-memory caching system that speeds up your applications by red
 
 ---
 
-### 🌐 [Oihana PHP Nginx](https://github.com/BcommeBois/oihana-php-certbot)
+### 🌐 [Oihana PHP Certbot](https://github.com/BcommeBois/oihana-php-certbot)
 
 <a href="https://github.com/BcommeBois/oihana-php-certbot">
     <img src="https://raw.githubusercontent.com/BcommeBois/oihana-php-certbot/main/assets/images/oihana-php-certbot-logo-inline-512x160.png" width="256px" height="80px"/>
