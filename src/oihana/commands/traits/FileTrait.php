@@ -126,29 +126,17 @@ trait FileTrait
             }
         }
 
-        $tmpFile = tempnam( sys_get_temp_dir() , 'oihana_php_command_make_file' ) ;
-
-        if ( $tmpFile === false )
-        {
-            throw new RuntimeException("Failed to create temporary file" ) ;
-        }
-
-        if ( file_put_contents( $tmpFile , $content ) === false )
-        {
-            throw new RuntimeException("Failed to write content to temporary file $tmpFile" ) ;
-        }
-
-        chmod( $tmpFile , 0644 ) ;
-
-        $tmpFileEscaped  = escapeshellarg($tmpFile);
+        $escapedContent  = $this->escapeForPrintf( $content ) ;
         $filePathEscaped = escapeshellarg($filePath);
+
 
         $status = $this->system
         (
-            command  : "mv $tmpFileEscaped $filePathEscaped" ,
+            command  : "tee $filePathEscaped" ,
             options  : $options ,
             silent   : true ,
             verbose  : $verbose ,
+            previous : "printf '%s' $escapedContent" ,
             sudo     : $sudo ,
             dryRun   : $dryRun
         ) ;
@@ -159,5 +147,15 @@ trait FileTrait
         }
 
         return ExitCode::SUCCESS;
+    }
+
+    /**
+     * Échappe une chaîne pour l'utiliser dans printf '%s' '...'
+     * Gère les apostrophes et caractères spéciaux.
+     */
+    protected function escapeForPrintf(string $content): string
+    {
+        $escaped = str_replace("'", "'\\''", $content);
+        return "'$escaped'";
     }
 }
