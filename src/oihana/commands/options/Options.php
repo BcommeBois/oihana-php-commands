@@ -10,7 +10,7 @@ use oihana\enums\Char;
 use oihana\interfaces\Arrayable;
 use oihana\interfaces\ClearableArrayable;
 use oihana\interfaces\Cloneable;
-use oihana\reflections\traits\ReflectionTrait;
+use oihana\reflect\traits\ReflectionTrait;
 
 use function oihana\core\documents\formatDocument;
 use function oihana\core\strings\formatFromDocument;

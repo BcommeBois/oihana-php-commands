@@ -2,7 +2,7 @@
 
 namespace oihana\commands\options;
 
-use oihana\reflections\traits\ConstantsTrait;
+use oihana\reflect\traits\ConstantsTrait;
 
 use function oihana\core\strings\hyphenate;
 
