@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [1.0.2] - 2025-08-13
+
+### Added
+- use oihana-php-reflect
+
+## [1.0.1] - 2025-08-12
+
+### Removed
+- Remove the Nginx and Certbot dependencies in the CommandOption class. 
+
 ## [1.0.0] - 2025-08-12
 
 ### Added

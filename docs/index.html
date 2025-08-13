@@ -101,28 +101,165 @@
 
 </br>
 
-<h3>🔗 Project on GitHub</h3>
-<p>View the full source code and contribute on GitHub:</p>
+<h2>Oihana PHP Commands</h2>
+<p>Build robust, scriptable command-line tooling for servers and web applications. Part of the <strong>Oihana PHP</strong> ecosystem, this package gives you a consistent foundation to automate day‑to‑day operations with confidence.</p>
+
 <p>
-    <a href="https://github.com/BcommeBois/oihana-php-commands" target="_blank">
-        https://github.com/BcommeBois/oihana-php-commands
-    </a>
+  <a href="https://packagist.org/packages/oihana/php-commands" target="_blank">
+    <img src="https://img.shields.io/packagist/v/oihana/php-commands.svg?style=flat-square" alt="Latest Version" />
+  </a>
+  <a href="https://packagist.org/packages/oihana/php-commands" target="_blank">
+    <img src="https://img.shields.io/packagist/dt/oihana/php-commands.svg?style=flat-square" alt="Total Downloads" />
+  </a>
+  <a href="LICENSE" target="_blank">
+    <img src="https://img.shields.io/packagist/l/oihana/php-commands.svg?style=flat-square" alt="License" />
+  </a>
+  </p>
+
+<p>
+  <strong>Documentation:</strong>
+  <a href="https://bcommebois.github.io/oihana-php-commands" target="_blank">https://bcommebois.github.io/oihana-php-commands</a>
+</p>
+
+<h3>🔗 Project on GitHub</h3>
+<p>
+  <a href="https://github.com/BcommeBois/oihana-php-commands" target="_blank">https://github.com/BcommeBois/oihana-php-commands</a>
 </p>
 
 <h3>📦 Installation</h3>
-<p>This library requires <a href="https://php.net/releases/" target="_blank">PHP 8.4+</a> and is installed via <a href="https://getcomposer.org/" target="_blank">Composer</a>:</p>
+<p>This library requires <a href="https://php.net/releases/" target="_blank">PHP 8.4+</a>. Install via <a href="https://getcomposer.org/" target="_blank">Composer</a>:</p>
 <pre class="language-bash prettyprint">composer require oihana/php-commands</pre>
 
-<h3>📄 License</h3>
-<p>This project is licensed under the <strong><a href="https://www.mozilla.org/en-US/MPL/2.0/" target="_blank">Mozilla Public License 2.0 (MPL-2.0)</a></strong>.</p>
-
-<h3>👤 About the Author</h3>
+<h3>✨ What you can do</h3>
 <ul>
-    <li><strong>Name:</strong> Marc ALCARAZ (aka <em>eKameleon</em>)</li>
-    <li><strong>Website:</strong> <a href="https://www.ooop.fr" target="_blank">www.ooop.fr</a></li>
-    <li><strong>Email:</strong> <a href="mailto:marc@ooop.fr">marc@ooop.fr</a></li>
+  <li>Manage MySQL databases: create users, grant privileges, back up and restore data.</li>
+  <li>Automate backups: schedule and execute incremental or full backups for databases and apps.</li>
+  <li>Install and update applications: deploy, upgrade, and maintain projects reliably.</li>
+  <li>Control caches: clear and manage systems like Memcached and Redis.</li>
+  <li>Handle SSL certificates: automate issuance and renewal with Let’s Encrypt/Certbot.</li>
+  <li>Configure NGINX: generate modular server configs and reload services.</li>
+  </ul>
+
+ 
+
+<h4>Under the hood</h4>
+<ul>
+  <li>First‑class integration with Symfony Console for building custom CLI commands.</li>
+  <li>Ready‑made plugins for databases, caches, web servers, certificates, and more.</li>
+  <li>A flexible options system based on the <a href="https://www.php-fig.org/psr/psr-11/" target="_blank">PSR‑11 Container</a>.</li>
+  <li>An extensible architecture to add your own tasks, workflows, and plugins.</li>
+  </ul>
+
+<p>Ideal for DevOps automation, hosting management, CI/CD pipelines, and local or production environment setup.</p>
+
+<h3>🔌 Plugins</h3>
+
+<p>Each plugin extends the CLI with focused, production‑ready capabilities.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>🔌</th>
+      <th>Plugin</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>🔏</td>
+      <td><a href="https://github.com/BcommeBois/oihana-php-certbot" target="_blank">Oihana PHP Certbot</a></td>
+      <td>Create, modify and manage Let’s Encrypt certificates via Certbot.</td>
+    </tr>
+    <tr>
+      <td>🧠</td>
+      <td><a href="https://github.com/BcommeBois/oihana-php-memcached" target="_blank">Oihana PHP Memcached</a></td>
+      <td>Manage Memcached in‑memory key‑value caching.</td>
+    </tr>
+    <tr>
+      <td>🌐</td>
+      <td><a href="https://github.com/BcommeBois/oihana-php-nginx" target="_blank">Oihana PHP Nginx</a></td>
+      <td>Create, modify and control NGINX configurations and commands.</td>
+    </tr>
+    <tr>
+      <td>🤖</td>
+      <td><a href="https://github.com/BcommeBois/oihana-php-robots" target="_blank">Oihana PHP Robots</a></td>
+      <td>Create or remove a robots.txt file from the CLI.</td>
+    </tr>
+  </tbody>
+  </table>
+
+<hr/>
+
+<h4>🔏 Certbot</h4>
+<p>
+  <a href="https://github.com/BcommeBois/oihana-php-certbot" target="_blank">
+    <img src="https://raw.githubusercontent.com/BcommeBois/oihana-php-certbot/main/assets/images/oihana-php-certbot-logo-inline-512x160.png" width="256" height="80" alt="Oihana PHP Certbot"/>
+  </a>
+</p>
+<p>Toolkit to create, modify and manage <a href="https://letsencrypt.org/" target="_blank">Let’s Encrypt</a> certificates via the <a href="https://certbot.eff.org/" target="_blank">Certbot</a> CLI.</p>
+<p>🔗 View the repository: <a href="https://github.com/BcommeBois/oihana-php-certbot" target="_blank">https://github.com/BcommeBois/oihana-php-certbot</a></p>
+
+<hr/>
+
+<h4>🧠 Memcached</h4>
+<p>
+  <a href="https://github.com/BcommeBois/oihana-php-memcached" target="_blank">
+    <img src="https://raw.githubusercontent.com/BcommeBois/oihana-php-memcached/main/assets/images/oihana-php-memcached-logo-inline-512x160.png" width="256" height="80" alt="Oihana PHP Memcached"/>
+  </a>
+</p>
+<p>CLI to control Memcached using the official <a href="https://www.php.net/manual/en/book.memcached.php" target="_blank">Memcached</a> PHP extension.</p>
+<p>🔗 View the repository: <a href="https://github.com/BcommeBois/oihana-php-memcached" target="_blank">https://github.com/BcommeBois/oihana-php-memcached</a></p>
+
+<hr/>
+
+<h4>🌐 Nginx</h4>
+<p>
+  <a href="https://github.com/BcommeBois/oihana-php-nginx" target="_blank">
+    <img src="https://raw.githubusercontent.com/BcommeBois/oihana-php-nginx/main/assets/images/oihana-php-nginx-logo-inline-512x160.png" width="256" height="80" alt="Oihana PHP Nginx"/>
+  </a>
+</p>
+<p>Simple CLI to manage NGINX and create/remove configuration files on your server.</p>
+<p>🔗 View the repository: <a href="https://github.com/BcommeBois/oihana-php-nginx" target="_blank">https://github.com/BcommeBois/oihana-php-nginx</a></p>
+
+<hr/>
+
+<h4>🤖 Robots</h4>
+<p>
+  <a href="https://github.com/BcommeBois/oihana-php-robots" target="_blank">
+    <img src="https://raw.githubusercontent.com/BcommeBois/oihana-php-robots/main/assets/images/oihana-php-robots-logo-inline-512x160.png" width="256" height="80" alt="Oihana PHP Robots"/>
+  </a>
+</p>
+<p>CLI to create or remove a website’s <code>robots.txt</code> file.</p>
+<p>🔗 View the repository: <a href="https://github.com/BcommeBois/oihana-php-robots" target="_blank">https://github.com/BcommeBois/oihana-php-robots</a></p>
+
+<h3>✅ Running tests</h3>
+<p>Run all tests:</p>
+<pre class="language-bash prettyprint">composer test</pre>
+<p>Run a specific test file:</p>
+<pre class="language-bash prettyprint">composer test ./tests/oihana/commands/ProcessTest.php</pre>
+
+<h3>🛠️ Generate the documentation</h3>
+<p>We use <a href="https://phpdoc.org/" target="_blank">phpDocumentor</a> to generate documentation into the <code>./docs</code> folder.</p>
+<pre class="language-bash prettyprint">composer doc</pre>
+
+<h3>🧾 License</h3>
+<p>Licensed under the <strong><a href="https://www.mozilla.org/en-US/MPL/2.0/" target="_blank">Mozilla Public License 2.0 (MPL‑2.0)</a></strong>.</p>
+
+<h3>👤 About the author</h3>
+<ul>
+  <li>Author: Marc ALCARAZ (aka eKameleon)</li>
+  <li>Email: <a href="mailto:marc@ooop.fr">marc@ooop.fr</a></li>
+  <li>Website: <a href="https://www.ooop.fr" target="_blank">https://www.ooop.fr</a></li>
 </ul>
 
+<h3>🔗 Related packages</h3>
+<ul>
+  <li><a href="https://github.com/BcommeBois/oihana-php-core" target="_blank">oihana/php-core</a> – core helpers and utilities used by this library</li>
+  <li><a href="https://github.com/BcommeBois/oihana-php-reflect" target="_blank">oihana/php-reflect</a> – reflection and hydration utilities</li>
+  <li><a href="https://github.com/BcommeBois/oihana-php-system" target="_blank">oihana/php-system</a> – common helpers of the Oihana PHP framework</li>
+  <li><a href="https://github.com/BcommeBois/oihana-php-schema" target="_blank">oihana/php-schema</a> – object‑oriented implementation of the Schema.org vocabulary</li>
+  <li><a href="https://github.com/BcommeBois/oihana-php-standards" target="_blank">oihana/php-standards</a> – constants and helpers based on major international standards (ISO, UN, UN/CEFACT, etc.)</li>
+</ul>
 
 
 <h3 id="toc">
