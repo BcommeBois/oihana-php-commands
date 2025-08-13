@@ -2,6 +2,8 @@
 
 namespace oihana\commands\options;
 
+use oihana\options\Option;
+
 /**
  * The enumeration of the global server options.
  *

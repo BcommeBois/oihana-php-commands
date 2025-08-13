@@ -97,43 +97,62 @@
                                         <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/oihana.html">oihana</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/oihana-commands.html">commands</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/oihana-commands-options.html">options</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/oihana-commands-exceptions.html">exceptions</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    Option
+    MissingPassphraseException
 
+        <span class="phpdocumentor-element__extends">
+        extends <abbr title="\Exception">Exception</abbr>
+    </span>
     
     
     
-            <span class="phpdocumentor-element__extends">
-            uses
-                            <abbr title="\oihana\reflections\traits\ConstantsTrait">ConstantsTrait</abbr>                    </span>
     </h2>
 
 <div class="phpdocumentor-label-line">
 
 
-    <div class="phpdocumentor-label phpdocumentor-label--success"><span>Abstract</span><span>Yes</span></div>
-
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/options/Option.php"><a href="files/src-oihana-commands-options-option.html"><abbr title="src/oihana/commands/options/Option.php">Option.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/exceptions/MissingPassphraseException.php"><a href="files/src-oihana-commands-exceptions-missingpassphraseexception.html"><abbr title="src/oihana/commands/exceptions/MissingPassphraseException.php">MissingPassphraseException.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Abstract base class for mapping property names to command-line option names.</p>
+            <p class="phpdocumentor-summary">The missing passphrase exception.</p>
 
 
-    <section class="phpdocumentor-description"><p>Typically used with <a href="classes/oihana-commands-options-Options.html#method_getOptions"><abbr title="\oihana\commands\options\Options::getOptions()">Options::getOptions()</abbr></a> to convert property keys
-into hyphenated command-line flags (e.g. &quot;dryRun&quot; → &quot;dry-run&quot;).</p>
+
+
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/oihana-commands-exceptions-MissingPassphraseException.html#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">author</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>Marc Alcaraz (ekameleon)</p>
 </section>
 
-
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">since</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.0.0</span>
+                                                                                
+                                             
+                                    </dd>
+                                            </dl>
 
 
 
@@ -141,7 +160,7 @@ into hyphenated command-line flags (e.g. &quot;dryRun&quot; → &quot;dry-run&qu
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/oihana-commands-options-Option.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/oihana-commands-exceptions-MissingPassphraseException.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -156,23 +175,16 @@ into hyphenated command-line flags (e.g. &quot;dryRun&quot; → &quot;dry-run&qu
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/oihana-commands-options-Option.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/oihana-commands-exceptions-MissingPassphraseException.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/oihana-commands-options-Option.html#method_getCommandOption">getCommandOption()</a>
+    <a class="" href="classes/oihana-commands-exceptions-MissingPassphraseException.html#method___construct">__construct()</a>
     <span>
-                                &nbsp;: string    </span>
+                                &nbsp;: mixed    </span>
 </dt>
-<dd>Returns the command line option expression from a specific option.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/oihana-commands-options-Option.html#method_getCommandPrefix">getCommandPrefix()</a>
-    <span>
-                                &nbsp;: string|null    </span>
-</dt>
-<dd>Returns the prefix from a specific option.</dd>
+<dd>Creates a new MissingPassphraseException instance.</dd>
 
     </dl>
 
@@ -185,32 +197,32 @@ into hyphenated command-line flags (e.g. &quot;dryRun&quot; → &quot;dry-run&qu
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/oihana-commands-options-Option.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/oihana-commands-exceptions-MissingPassphraseException.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
         class="phpdocumentor-element
             -method
             -public
-                                    -static                    "
+                                                        "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getCommandOption">
-        getCommandOption()
-        <a href="classes/oihana-commands-options-Option.html#method_getCommandOption" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method___construct">
+        __construct()
+        <a href="classes/oihana-commands-exceptions-MissingPassphraseException.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/options/Option.php"><a href="files/src-oihana-commands-options-option.html"><abbr title="src/oihana/commands/options/Option.php">Option.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/exceptions/MissingPassphraseException.php"><a href="files/src-oihana-commands-exceptions-missingpassphraseexception.html"><abbr title="src/oihana/commands/exceptions/MissingPassphraseException.php">MissingPassphraseException.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">24</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Returns the command line option expression from a specific option.</p>
+        <p class="phpdocumentor-summary">Creates a new MissingPassphraseException instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">getCommandOption</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$option</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;The passphrase is required.&quot;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$code</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">0</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Throwable">Throwable</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$previous</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -219,64 +231,29 @@ into hyphenated command-line flags (e.g. &quot;dryRun&quot; → &quot;dry-run&qu
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$option</span>
+                <span class="phpdocumentor-signature__argument__name">$message</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
+                 = <span class="phpdocumentor-signature__argument__default-value">&quot;The passphrase is required.&quot;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The name of the option to modify.</p>
+                    <section class="phpdocumentor-description"><p>The message of the error.</p>
 </section>
 
             </dd>
-            </dl>
-
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                    -static                    "
->
-    <h4 class="phpdocumentor-element__name" id="method_getCommandPrefix">
-        getCommandPrefix()
-        <a href="classes/oihana-commands-options-Option.html#method_getCommandPrefix" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/options/Option.php"><a href="files/src-oihana-commands-options-option.html"><abbr title="src/oihana/commands/options/Option.php">Option.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">34</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Returns the prefix from a specific option.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">getCommandPrefix</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$option</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$option</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
+                <span class="phpdocumentor-signature__argument__name">$code</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">0</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The name of the option.</p>
+                    <section class="phpdocumentor-description"><p>The code of the error.</p>
 </section>
 
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$previous</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Throwable">Throwable</abbr>|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
             </dd>
             </dl>
 
@@ -284,15 +261,7 @@ into hyphenated command-line flags (e.g. &quot;dryRun&quot; → &quot;dry-run&qu
 
     
 
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string|null</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>The prefix of the given option.</p>
-</section>
-
-            </section>
-
+    
 </article>
             </section>
 
@@ -300,7 +269,7 @@ into hyphenated command-line flags (e.g. &quot;dryRun&quot; → &quot;dry-run&qu
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/oihana/commands/options/Option.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/oihana/commands/exceptions/MissingPassphraseException.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -401,7 +370,7 @@ into hyphenated command-line flags (e.g. &quot;dryRun&quot; → &quot;dry-run&qu
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                <li><a href="classes/oihana-commands-options-Option.html#toc-methods">Methods</a></li>
+                                                                                <li><a href="classes/oihana-commands-exceptions-MissingPassphraseException.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
@@ -409,8 +378,7 @@ into hyphenated command-line flags (e.g. &quot;dryRun&quot; → &quot;dry-run&qu
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/oihana-commands-options-Option.html#method_getCommandOption">getCommandOption()</a></li>
-                                            <li class=""><a href="classes/oihana-commands-options-Option.html#method_getCommandPrefix">getCommandPrefix()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-exceptions-MissingPassphraseException.html#method___construct">__construct()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -430,7 +398,7 @@ into hyphenated command-line flags (e.g. &quot;dryRun&quot; → &quot;dry-run&qu
     </section>
 </section>
         </div>
-        <a href="classes/oihana-commands-options-Option.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/oihana-commands-exceptions-MissingPassphraseException.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

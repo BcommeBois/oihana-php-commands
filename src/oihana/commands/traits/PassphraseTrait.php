@@ -4,7 +4,7 @@ namespace oihana\commands\traits;
 
 use oihana\enums\Char;
 use oihana\enums\Param;
-use oihana\exceptions\MissingPassphraseException;
+use oihana\commands\exceptions\MissingPassphraseException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
