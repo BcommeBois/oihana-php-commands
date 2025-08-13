@@ -62,7 +62,7 @@ Discover the available plugins in the Oihana PHP Commands library. Each plugin e
 
 ---
 
-### 🌐 [Oihana PHP Certbot](https://github.com/BcommeBois/oihana-php-certbot)
+### 🔏 [Oihana PHP Certbot](https://github.com/BcommeBois/oihana-php-certbot)
 
 <a href="https://github.com/BcommeBois/oihana-php-certbot">
     <img src="https://raw.githubusercontent.com/BcommeBois/oihana-php-certbot/main/assets/images/oihana-php-certbot-logo-inline-512x160.png" width="256px" height="80px"/>
