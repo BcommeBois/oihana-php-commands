@@ -3,7 +3,7 @@
 namespace oihana\commands;
 
 use JsonSerializable;
-use oihana\reflections\traits\ConstantsTrait;
+use oihana\reflect\traits\ConstantsTrait;
 
 /**
  * Represents the result of a process execution, including standard output,

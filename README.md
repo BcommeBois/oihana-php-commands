@@ -142,3 +142,11 @@ Run the command :
 ```bash
 composer doc
 ```
+
+## 🔗 Related Packages
+
+- [oihana/php-core](https://github.com/BcommeBois/oihana-php-core) – core helpers and utilities used by this library
+- [oihana/php-reflect](https://github.com/BcommeBois/oihana-php-reflect) – reflection and hydration utilities
+- [oihana/php-system](https://github.com/BcommeBois/oihana-php-system) – Common Helpers of the oihana-php framework. 
+- [oihana/php-schema](https://github.com/BcommeBois/oihana-php-schema) – Object-oriented implementation of the Schema.org vocabulary.
+- [oihana/php-standards](https://github.com/BcommeBois/oihana-php-standards) – Constants and helpers based on major international standards (ISO, UN, UN/CEFACT, etc.) 

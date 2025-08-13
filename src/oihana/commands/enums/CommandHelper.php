@@ -2,7 +2,7 @@
 
 namespace oihana\commands\enums;
 
-use oihana\reflections\traits\ConstantsTrait;
+use oihana\reflect\traits\ConstantsTrait;
 
 /**
  * The enumeration of the command's helpers.

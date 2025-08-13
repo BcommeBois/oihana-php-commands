@@ -16,6 +16,10 @@
     "support": {
         "email": "marc@ooop.fr"
     },
+    "scripts": {
+        "doc": "rm -rf docs && mkdir docs && cp -r assets docs/assets && ./vendor/bin/phpdoc -c phpdoc.xml -v" ,
+        "test": "./vendor/bin/phpunit"
+    },
     "autoload-dev": {
         "psr-4": {
             "tests\\oihana\\" : "tests/oihana"
@@ -41,6 +45,7 @@
     "require": {
         "php": ">=8.4",
         "oihana/php-core": "dev-main",
+        "oihana/php-reflect": "dev-main",
         "oihana/php-system": "dev-main",
         "oihana/php-files": "dev-main",
         "oihana/php-schema": "dev-main",
@@ -49,10 +54,6 @@
         "symfony/lock": "^7.3",
         "symfony/string": "^7.3",
         "symfony/uid": "^7.3"
-    },
-    "scripts": {
-        "doc": "rm -rf docs && mkdir docs && cp -r assets docs/assets && ./vendor/bin/phpdoc -c phpdoc.xml -v" ,
-        "test": "./vendor/bin/phpunit"
     },
     "require-dev": {
         "phpunit/phpunit": "^12",
