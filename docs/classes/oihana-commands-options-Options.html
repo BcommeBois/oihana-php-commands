@@ -102,68 +102,46 @@
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    SudoCommandOptions
+    Options
 
-        <span class="phpdocumentor-element__extends">
-        extends <a href="classes/oihana-commands-options-CommandOptions.html"><abbr title="\oihana\commands\options\CommandOptions">CommandOptions</abbr></a>
-    </span>
     
     
+            <span class="phpdocumentor-element__implements">
+            implements
+                            <abbr title="\oihana\interfaces\ClearableArrayable">ClearableArrayable</abbr>,                             <abbr title="\oihana\interfaces\Cloneable">Cloneable</abbr>,                             <abbr title="\JsonSerializable">JsonSerializable</abbr>                    </span>
     
+            <span class="phpdocumentor-element__extends">
+            uses
+                            <abbr title="\oihana\reflections\traits\ReflectionTrait">ReflectionTrait</abbr>                    </span>
     </h2>
 
 <div class="phpdocumentor-label-line">
 
 
+    <div class="phpdocumentor-label phpdocumentor-label--success"><span>Abstract</span><span>Yes</span></div>
+
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/options/SudoCommandOptions.php"><a href="files/src-oihana-commands-options-sudocommandoptions.html"><abbr title="src/oihana/commands/options/SudoCommandOptions.php">SudoCommandOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/options/Options.php"><a href="files/src-oihana-commands-options-options.html"><abbr title="src/oihana/commands/options/Options.php">Options.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">The sudo command options definition.</p>
+            <p class="phpdocumentor-summary">Abstract base class for defining configurable options.</p>
 
 
-    <section class="phpdocumentor-description"><p>The <code class="prettyprint">sudo</code> property is true by default.</p>
+    <section class="phpdocumentor-description"><p>Features:</p>
+<ul>
+<li>Automatic hydration from arrays or objects.</li>
+<li>Reflection-based listing of public properties.</li>
+<li>Template string formatting with placeholders.</li>
+<li>CLI-compatible string generation from object state.</li>
+</ul>
 </section>
 
 
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="classes/oihana-commands-options-SudoCommandOptions.html#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Marc Alcaraz (ekameleon)</p>
-</section>
-
-                                    </dd>
-                            <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Marc Alcaraz (ekameleon)</p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0.0</span>
-                                                                                
-                                             
-                                    </dd>
-                                            </dl>
 
 
 
@@ -171,78 +149,29 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/oihana-commands-options-SudoCommandOptions.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/oihana-commands-options-Options.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
 
 
+    <h4 id="toc-interfaces">
+        Interfaces
+        <a href="classes/oihana-commands-options-Options.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <dl class="phpdocumentor-table-of-contents">
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\oihana\interfaces\ClearableArrayable">ClearableArrayable</abbr></dt>            <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\oihana\interfaces\Cloneable">Cloneable</abbr></dt>            <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\JsonSerializable">JsonSerializable</abbr></dt>    </dl>
 
 
 
 
-<h4 id="toc-constants">
-    Constants
-    <a href="classes/oihana-commands-options-SudoCommandOptions.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
-
-</h4>
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a class="" href="classes/oihana-commands-options-CommandOptions.html#constant_COMMAND">COMMAND</a>
-    <span>
-        &nbsp;= &#039;command&#039;                            </span>
-</dt>
-<dd>The &#039;command&#039; parameter.</dd>
-
-    </dl>
 
 
-<h4 id="toc-properties">
-    Properties
-    <a href="classes/oihana-commands-options-SudoCommandOptions.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
-
-</h4>
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/oihana-commands-options-CommandOptions.html#property_clear">$clear</a>
-    <span>
-                        &nbsp;: bool            </span>
-</dt>
-<dd>Indicates if the command clear the terminal when is launched.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/oihana-commands-options-CommandOptions.html#property_config">$config</a>
-    <span>
-                        &nbsp;: string|null            </span>
-</dt>
-<dd>The path of the config directory.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/oihana-commands-options-CommandOptions.html#property_dir">$dir</a>
-    <span>
-                        &nbsp;: string|null            </span>
-</dt>
-<dd>The path of the command directory.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/oihana-commands-options-CommandOptions.html#property_owner">$owner</a>
-    <span>
-                        &nbsp;: string|null            </span>
-</dt>
-<dd>Set the owner user to run the command as, if sudo is enabled.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/oihana-commands-options-SudoCommandOptions.html#property_sudo">$sudo</a>
-    <span>
-                        &nbsp;: bool|null            </span>
-</dt>
-<dd>Whether to prefix the command with `sudo`.</dd>
-
-    </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/oihana-commands-options-SudoCommandOptions.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/oihana-commands-options-Options.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
@@ -254,11 +183,11 @@
 <dd>Initializes the object using an associative array or object.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/oihana-commands-options-CommandOptions.html#method___toString">__toString()</a>
+    <a class="" href="classes/oihana-commands-options-Options.html#method___toString">__toString()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>Returns the string expression of the object.</dd>
+<dd>Returns a string representation of the object.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-options-Options.html#method_clone">clone()</a>
@@ -297,11 +226,11 @@ the corresponding public property values of the current object.</dd>
 <dd>Formats all public string properties using external data instead of internal values.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/oihana-commands-options-CommandOptions.html#method_getOptions">getOptions()</a>
+    <a class="" href="classes/oihana-commands-options-Options.html#method_getOptions">getOptions()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>Builds a command-line string of options based on the current object state.</dd>
+<dd>Returns a string representing the current options formatted as CLI arguments.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-options-Options.html#method_jsonSerialize">jsonSerialize()</a>
@@ -329,254 +258,13 @@ the corresponding public property values of the current object.</dd>
 
 
         
-    <section class="phpdocumentor-constants">
-        <h3 class="phpdocumentor-elements__header" id="constants">
-            Constants
-            <a href="classes/oihana-commands-options-SudoCommandOptions.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
-
-        </h3>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_COMMAND">
-        COMMAND
-        <a href="classes/oihana-commands-options-CommandOptions.html#constant_COMMAND" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/options/CommandOptions.php"><a href="files/src-oihana-commands-options-commandoptions.html"><abbr title="src/oihana/commands/options/CommandOptions.php">CommandOptions.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">17</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">The &#039;command&#039; parameter.</p>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">COMMAND</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;command&#039;</span>
-</code>
-
-
-    
-    
-    
-
-    
-
-</article>
-            </section>
 
         
-    <section class="phpdocumentor-properties">
-        <h3 class="phpdocumentor-elements__header" id="properties">
-            Properties
-            <a href="classes/oihana-commands-options-SudoCommandOptions.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
-
-        </h3>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                                    "
->
-    <h4 class="phpdocumentor-element__name" id="property_clear">
-        $clear
-        <a href="classes/oihana-commands-options-CommandOptions.html#property_clear" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                            </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/options/CommandOptions.php"><a href="files/src-oihana-commands-options-commandoptions.html"><abbr title="src/oihana/commands/options/CommandOptions.php">CommandOptions.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">23</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Indicates if the command clear the terminal when is launched.</p>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-        <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type">bool</span>
-    <span class="phpdocumentor-signature__name">$clear</span>
-     = <span class="phpdocumentor-signature__default-value">false</span></code>
-
-    
-    
-    
-
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                                    "
->
-    <h4 class="phpdocumentor-element__name" id="property_config">
-        $config
-        <a href="classes/oihana-commands-options-CommandOptions.html#property_config" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                            </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/options/CommandOptions.php"><a href="files/src-oihana-commands-options-commandoptions.html"><abbr title="src/oihana/commands/options/CommandOptions.php">CommandOptions.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">29</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">The path of the config directory.</p>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-        <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type">string|null</span>
-    <span class="phpdocumentor-signature__name">$config</span>
-     = <span class="phpdocumentor-signature__default-value">&#039;&#039;</span></code>
-
-    
-    
-    
-
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                                    "
->
-    <h4 class="phpdocumentor-element__name" id="property_dir">
-        $dir
-        <a href="classes/oihana-commands-options-CommandOptions.html#property_dir" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                            </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/options/CommandOptions.php"><a href="files/src-oihana-commands-options-commandoptions.html"><abbr title="src/oihana/commands/options/CommandOptions.php">CommandOptions.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">35</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">The path of the command directory.</p>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-        <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type">string|null</span>
-    <span class="phpdocumentor-signature__name">$dir</span>
-     = <span class="phpdocumentor-signature__default-value">&#039;&#039;</span></code>
-
-    
-    
-    
-
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                                    "
->
-    <h4 class="phpdocumentor-element__name" id="property_owner">
-        $owner
-        <a href="classes/oihana-commands-options-CommandOptions.html#property_owner" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                            </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/options/CommandOptions.php"><a href="files/src-oihana-commands-options-commandoptions.html"><abbr title="src/oihana/commands/options/CommandOptions.php">CommandOptions.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">47</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Set the owner user to run the command as, if sudo is enabled.</p>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-        <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type">string|null</span>
-    <span class="phpdocumentor-signature__name">$owner</span>
-     = <span class="phpdocumentor-signature__default-value">null</span></code>
-
-    
-    
-    
-
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                                    "
->
-    <h4 class="phpdocumentor-element__name" id="property_sudo">
-        $sudo
-        <a href="classes/oihana-commands-options-SudoCommandOptions.html#property_sudo" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                            </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/options/SudoCommandOptions.php"><a href="files/src-oihana-commands-options-sudocommandoptions.html"><abbr title="src/oihana/commands/options/SudoCommandOptions.php">SudoCommandOptions.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">23</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Whether to prefix the command with `sudo`.</p>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-        <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type">bool|null</span>
-    <span class="phpdocumentor-signature__name">$sudo</span>
-     = <span class="phpdocumentor-signature__default-value">true</span></code>
-
-    
-    
-    
-
-    
-
-    
-
-</article>
-            </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/oihana-commands-options-SudoCommandOptions.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/oihana-commands-options-Options.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -637,17 +325,17 @@ Unknown or non-public properties are silently ignored.</p>
 >
     <h4 class="phpdocumentor-element__name" id="method___toString">
         __toString()
-        <a href="classes/oihana-commands-options-CommandOptions.html#method___toString" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/oihana-commands-options-Options.html#method___toString" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/options/CommandOptions.php"><a href="files/src-oihana-commands-options-commandoptions.html"><abbr title="src/oihana/commands/options/CommandOptions.php">CommandOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/options/Options.php"><a href="files/src-oihana-commands-options-options.html"><abbr title="src/oihana/commands/options/Options.php">Options.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">91</span>
+    <span class="phpdocumentor-element-found-in__line">540</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Returns the string expression of the object.</p>
+        <p class="phpdocumentor-summary">Returns a string representation of the object.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -656,7 +344,9 @@ Unknown or non-public properties are silently ignored.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>Override this method in child classes to provide a meaningful string output.</p>
+</section>
+
     
     
 
@@ -665,6 +355,10 @@ Unknown or non-public properties are silently ignored.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Default implementation returns an empty string.</p>
+</section>
+
             </section>
 
 </article>
@@ -1102,17 +796,17 @@ echo $opts-&gt;url; // → https://example.com/docs
 >
     <h4 class="phpdocumentor-element__name" id="method_getOptions">
         getOptions()
-        <a href="classes/oihana-commands-options-CommandOptions.html#method_getOptions" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/oihana-commands-options-Options.html#method_getOptions" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/options/CommandOptions.php"><a href="files/src-oihana-commands-options-commandoptions.html"><abbr title="src/oihana/commands/options/CommandOptions.php">CommandOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/options/Options.php"><a href="files/src-oihana-commands-options-options.html"><abbr title="src/oihana/commands/options/Options.php">Options.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">63</span>
+    <span class="phpdocumentor-element-found-in__line">274</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Builds a command-line string of options based on the current object state.</p>
+        <p class="phpdocumentor-summary">Returns a string representing the current options formatted as CLI arguments.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1121,7 +815,11 @@ echo $opts-&gt;url; // → https://example.com/docs
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>This method converts the properties of the current options object into a list of
+command-line arguments, using a configurable prefix and separator for each property.</p>
+<p>You can pass a string or a callable to dynamically generate prefixes or separators based on the property name.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1181,6 +879,81 @@ echo $opts-&gt;url; // → https://example.com/docs
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/oihana-commands-options-Options.html#method_getOptions#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\ReflectionException">ReflectionException</abbr></span>
+                                                            
+                                             
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">example</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><pre class="prettyprint"><code class="language-php">class MyOption extends Option
+{
+    public const string FOO     = 'foo' ;
+    public const string LIST    = 'list' ;
+    public const string VERBOSE = 'verbose' ;
+}
+
+class MyOptions extends Options
+{
+    public string $foo     = 'value';
+    public bool   $verbose = true;
+    public array  $list    = ['a', 'b'];
+
+    public string $internalFlag = 'hello' ;
+}
+
+$options = new MyOptions();
+
+$result = $options-&gt;getOptions
+(
+    MyOption::class ,
+    prefix : fn( string $name ) =&gt; match($name)
+   {
+        MyOption::FOO     =&gt; '--' ,
+        MyOption::VERBOSE =&gt; '-' ,
+        MyOption::LIST    =&gt; '/opt:' ,
+        default           =&gt; '' ,
+    },
+    excludes : [ 'internalFlag' ] ,
+    separator : fn( string $name ) =&gt; $name === 'list' ? '=' : ' '
+);
+
+echo $result;
+// Output:
+// --foo &quot;value&quot; -verbose /opt:list=&quot;a&quot; /opt:list=&quot;b&quot;
+</code></pre>
+<p>Use the order parameter :</p>
+<pre class="prettyprint"><code class="language-php">$options-&gt;getOptions
+(
+   MyOption::class,
+   prefix: fn($name) =&gt; match ($name)
+   {
+      'foo' =&gt; '--',
+      'verbose' =&gt; '-',
+       default =&gt; '/opt:'
+   },
+   excludes  : ['internal'],
+   separator : fn($name) =&gt; $name === 'list' ? '=' : ' ',
+   order: ['verbose', 'foo'],
+   reverseOrder: false // Place these first
+);
+</code></pre>
+</section>
+
+                                    </dd>
+                                            </dl>
 
     
 
@@ -1492,7 +1265,7 @@ print_r($options-&gt;toArray(true));
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/oihana/commands/options/SudoCommandOptions.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/oihana/commands/options/Options.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -1593,40 +1366,22 @@ print_r($options-&gt;toArray(true));
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                        <li><a href="classes/oihana-commands-options-SudoCommandOptions.html#toc-constants">Constants</a></li>
-                                                            <li><a href="classes/oihana-commands-options-SudoCommandOptions.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/oihana-commands-options-SudoCommandOptions.html#toc-methods">Methods</a></li>
+                                                                                <li><a href="classes/oihana-commands-options-Options.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
-                            <li class="phpdocumentor-on-this-page-section__title">Constants</li>
-                <li>
-                    <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/oihana-commands-options-CommandOptions.html#constant_COMMAND">COMMAND</a></li>
-                                            </ul>
-                </li>
             
-                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
-                <li>
-                    <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/oihana-commands-options-CommandOptions.html#property_clear">$clear</a></li>
-                                                    <li class=""><a href="classes/oihana-commands-options-CommandOptions.html#property_config">$config</a></li>
-                                                    <li class=""><a href="classes/oihana-commands-options-CommandOptions.html#property_dir">$dir</a></li>
-                                                    <li class=""><a href="classes/oihana-commands-options-CommandOptions.html#property_owner">$owner</a></li>
-                                                    <li class=""><a href="classes/oihana-commands-options-SudoCommandOptions.html#property_sudo">$sudo</a></li>
-                                            </ul>
-                </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/oihana-commands-options-Options.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/oihana-commands-options-CommandOptions.html#method___toString">__toString()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-options-Options.html#method___toString">__toString()</a></li>
                                             <li class=""><a href="classes/oihana-commands-options-Options.html#method_clone">clone()</a></li>
                                             <li class=""><a href="classes/oihana-commands-options-Options.html#method_create">create()</a></li>
                                             <li class=""><a href="classes/oihana-commands-options-Options.html#method_format">format()</a></li>
                                             <li class=""><a href="classes/oihana-commands-options-Options.html#method_formatArray">formatArray()</a></li>
                                             <li class=""><a href="classes/oihana-commands-options-Options.html#method_formatFromDocument">formatFromDocument()</a></li>
-                                            <li class=""><a href="classes/oihana-commands-options-CommandOptions.html#method_getOptions">getOptions()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-options-Options.html#method_getOptions">getOptions()</a></li>
                                             <li class=""><a href="classes/oihana-commands-options-Options.html#method_jsonSerialize">jsonSerialize()</a></li>
                                             <li class=""><a href="classes/oihana-commands-options-Options.html#method_resolve">resolve()</a></li>
                                             <li class=""><a href="classes/oihana-commands-options-Options.html#method_toArray">toArray()</a></li>
@@ -1649,7 +1404,7 @@ print_r($options-&gt;toArray(true));
     </section>
 </section>
         </div>
-        <a href="classes/oihana-commands-options-SudoCommandOptions.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/oihana-commands-options-Options.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

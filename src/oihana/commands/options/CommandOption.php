@@ -2,7 +2,6 @@
 
 namespace oihana\commands\options;
 
-use oihana\options\Option;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 

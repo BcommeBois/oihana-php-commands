@@ -3,7 +3,6 @@
 namespace oihana\commands\options;
 
 use oihana\enums\Char;
-use oihana\options\Options;
 
 /**
  * Represents server-related configuration options for a website.

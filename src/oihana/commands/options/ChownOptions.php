@@ -5,8 +5,6 @@ namespace oihana\commands\options;
 use oihana\enums\Char;
 use ReflectionException;
 
-use oihana\options\Options;
-
 use function oihana\files\isMac;
 
 /**

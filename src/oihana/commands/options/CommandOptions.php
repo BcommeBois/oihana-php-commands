@@ -2,7 +2,6 @@
 
 namespace oihana\commands\options;
 
-use oihana\options\Options;
 use oihana\enums\Char;
 
 /**

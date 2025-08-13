@@ -2,8 +2,6 @@
 
 namespace oihana\commands\options;
 
-use oihana\options\Option;
-
 use function oihana\core\strings\hyphenate;
 use function oihana\files\isMac;
 
