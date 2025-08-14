@@ -561,6 +561,11 @@ Search.appendIndex(
             "summary": "Escapes\u0020a\u0020string\u0020to\u0020be\u0020safely\u0020used\u0020inside\u0020a\u0020shell\u0020command\u0020with\u0020printf\u0020\u0027\u0025s\u0027\u0020\u0027...\u0027.",
             "url": "namespaces/oihana-commands-helpers.html#function_escapeForPrintf"
         },                {
+            "fqsen": "\\xyz\\commands\\helpers\\formatJson\u0028\u0029",
+            "name": "formatJson",
+            "summary": "Format\u0020a\u0020json\u0020object\u0020in\u0020the\u0020terminal\u0020output.",
+            "url": "namespaces/xyz-commands-helpers.html#function_formatJson"
+        },                {
             "fqsen": "\\oihana\\commands\\helpers\\makeCommand\u0028\u0029",
             "name": "makeCommand",
             "summary": "Generates\u0020a\u0020complete\u0020shell\u0020command\u0020string,\u0020optionally\u0020including\u0020a\u0020pipeline.",
@@ -580,6 +585,11 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "Kernel\u0020constructor.",
             "url": "classes/oihana-commands-Kernel.html#method___construct"
+        },                {
+            "fqsen": "\\oihana\\commands\\Kernel\u003A\u003AassertActions\u0028\u0029",
+            "name": "assertActions",
+            "summary": "Check\u0020if\u0020the\u0020given\u0020\u0027action\u0027\u0020is\u0020register\u0020in\u0020the\u0020\u0027actions\u0027\u0020white\u002Dlist\u0020of\u0020the\u0020command.",
+            "url": "classes/oihana-commands-Kernel.html#method_assertActions"
         },                {
             "fqsen": "\\oihana\\commands\\Kernel\u003A\u003AinitializeActions\u0028\u0029",
             "name": "initializeActions",
@@ -1270,6 +1280,21 @@ Search.appendIndex(
             "name": "helpers",
             "summary": "",
             "url": "namespaces/oihana-commands-helpers.html"
+        },                {
+            "fqsen": "\\xyz\\commands\\helpers",
+            "name": "helpers",
+            "summary": "",
+            "url": "namespaces/xyz-commands-helpers.html"
+        },                {
+            "fqsen": "\\xyz\\commands",
+            "name": "commands",
+            "summary": "",
+            "url": "namespaces/xyz-commands.html"
+        },                {
+            "fqsen": "\\xyz",
+            "name": "xyz",
+            "summary": "",
+            "url": "namespaces/xyz.html"
         },                {
             "fqsen": "\\oihana\\commands",
             "name": "commands",

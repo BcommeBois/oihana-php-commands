@@ -2,6 +2,8 @@
 
 namespace oihana\commands;
 
+use UnexpectedValueException;
+
 use DI\Container;
 use DI\DependencyException;
 use DI\NotFoundException;
@@ -96,6 +98,34 @@ class Kernel extends Command implements LoggerInterface
      * @var int
      */
     public int $batchSize = 500 ;
+
+    /**
+     * Check if the given 'action' is register in the 'actions' white-list of the command.
+     *
+     * @param ?string $action The action to evaluates.
+     *
+     * @throws UnexpectedValueException If the given `action` is null, empty or not allowed and the `$actions` properties is not null.
+     *
+     * @return void
+     */
+    public function assertActions( ?string $action = null ):void
+    {
+        if( is_array( $this->actions ) && count( $this->actions ) > 0 )
+        {
+            if( !in_array( $this->action , $this->actions , true ) )
+            {
+                throw new UnexpectedValueException
+                (
+                    sprintf
+                    (
+                        'The action "%s" is not allowed. Allowed: %s' ,
+                        $this->action ,
+                        json_encode( $this->actions , JSON_UNESCAPED_SLASHES )
+                    )
+                );
+            }
+        }
+    }
 
     /**
      * Initializes the list of actions allowed for this command.
