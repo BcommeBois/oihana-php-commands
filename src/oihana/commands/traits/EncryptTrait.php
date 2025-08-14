@@ -35,10 +35,11 @@ trait EncryptTrait
     /**
      * Initialize the internal encrypt value.
      * @param array $init
-     * @return void
+     * @return static
      */
-    public function initializeEncrypt( array $init = [] ):void
+    public function initializeEncrypt( array $init = [] ):static
     {
         $this->encrypt = $init[ Param::ENCRYPT ] ?? $this->encrypt ;
+        return $this ;
     }
 }

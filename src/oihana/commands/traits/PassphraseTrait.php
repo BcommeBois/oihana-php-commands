@@ -93,10 +93,11 @@ trait PassphraseTrait
     /**
      * Initialize the internal passphrase value.
      * @param array $init
-     * @return void
+     * @return static
      */
-    public function initializePassphrase( array $init = [] ):void
+    public function initializePassphrase( array $init = [] ):static
     {
         $this->passphrase = $init[ Param::PASS_PHRASE ] ?? $this->passphrase ;
+        return $this ;
     }
 }

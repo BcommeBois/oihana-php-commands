@@ -70,11 +70,12 @@ trait ConsoleLoggerTrait
      * @param OutputInterface|null $output
      * @param array $verbosityLevelMap
      * @param array $formatLevelMap
-     * @return void
+     * @return static
      */
-    public function initializeConsoleLogger( ?OutputInterface $output = null , array $verbosityLevelMap = [] , array $formatLevelMap = []  ):void
+    public function initializeConsoleLogger( ?OutputInterface $output = null , array $verbosityLevelMap = [] , array $formatLevelMap = []  ):static
     {
         $this->console = isset( $output ) ? new ConsoleLogger( $output , $verbosityLevelMap , $formatLevelMap ) : null ;
+        return $this ;
     }
 
     /**
