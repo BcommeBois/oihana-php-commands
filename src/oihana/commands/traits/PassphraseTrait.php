@@ -2,9 +2,10 @@
 
 namespace oihana\commands\traits;
 
+use oihana\commands\options\CommandOption;
 use oihana\enums\Char;
-use oihana\enums\Param;
 use oihana\commands\exceptions\MissingPassphraseException;
+
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -69,9 +70,13 @@ trait PassphraseTrait
      * @return string|null Returns the passphrase.
      * @throws MissingPassphraseException
      */
-    protected function getPassPhrase( InputInterface $input , OutputInterface $output , bool $throwable = true ):?string
+    public function getPassPhrase( InputInterface $input , OutputInterface $output , bool $throwable = true ):?string
     {
-        $passphrase = $input->getOption( Param::PASS_PHRASE ) ?? $this->passphrase ;
+        $passphrase = $this->passphrase ;
+        if( $input->hasOption( CommandOption::PASS_PHRASE  ) )
+        {
+            $passphrase = $input->getOption( CommandOption::PASS_PHRASE ) ?? $this->passphrase ;
+        }
 
         if( $input->isInteractive() && ( !isset( $passphrase ) || $passphrase == Char::EMPTY ) )
         {
@@ -97,7 +102,7 @@ trait PassphraseTrait
      */
     public function initializePassphrase( array $init = [] ):static
     {
-        $this->passphrase = $init[ Param::PASS_PHRASE ] ?? $this->passphrase ;
+        $this->passphrase = $init[ CommandOption::PASS_PHRASE ] ?? $this->passphrase ;
         return $this ;
     }
 }

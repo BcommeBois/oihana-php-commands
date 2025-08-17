@@ -19,4 +19,14 @@ class CommandArg
      * The 'action' argument.
      */
     public const string ACTION = 'action' ;
+
+    /**
+     * The 'action' argument.
+     */
+    public const string ENCRYPT = 'encrypt' ;
+
+    /**
+     * The 'init' argument.
+     */
+    public const string INIT = 'init' ;
 }
