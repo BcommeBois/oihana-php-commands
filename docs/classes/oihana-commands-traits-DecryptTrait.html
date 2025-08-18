@@ -112,44 +112,35 @@
 
     <article class="phpdocumentor-element -trait">
         <h2 class="phpdocumentor-content__title">
-    EncryptTrait
+    DecryptTrait
             <span class="phpdocumentor-trait__extends">
             uses
                             <a href="classes/oihana-commands-traits-PassphraseTrait.html"><abbr title="\oihana\commands\traits\PassphraseTrait">trait:short</abbr></a>                    </span>
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/EncryptTrait.php"><a href="files/src-oihana-commands-traits-encrypttrait.html"><abbr title="src/oihana/commands/traits/EncryptTrait.php">EncryptTrait.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/DecryptTrait.php"><a href="files/src-oihana-commands-traits-decrypttrait.html"><abbr title="src/oihana/commands/traits/DecryptTrait.php">DecryptTrait.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Provides support for encryption options in console commands.</p>
+            <p class="phpdocumentor-summary">Provides support for decryption options in console commands.</p>
 
 
     <section class="phpdocumentor-description"><p>This trait defines a flag and helper methods to determine whether
-command execution should perform encryption, based on default values
+command execution should perform decryption, based on default values
 or runtime input options.</p>
 </section>
 
 
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="classes/oihana-commands-traits-EncryptTrait.html#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/oihana-commands-traits-DecryptTrait.html#tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Marc Alcaraz</p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
                     <span class="phpdocumentor-tag__name">since</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
@@ -165,7 +156,7 @@ or runtime input options.</p>
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/oihana-commands-traits-EncryptTrait.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/oihana-commands-traits-DecryptTrait.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -179,16 +170,16 @@ or runtime input options.</p>
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/oihana-commands-traits-EncryptTrait.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/oihana-commands-traits-DecryptTrait.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/oihana-commands-traits-EncryptTrait.html#property_encrypt">$encrypt</a>
+    <a class="" href="classes/oihana-commands-traits-DecryptTrait.html#property_decrypt">$decrypt</a>
     <span>
                         &nbsp;: bool            </span>
 </dt>
-<dd>Indicates whether encryption should be applied by default.</dd>
+<dd>Indicates whether decryption should be applied by default.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a class="" href="classes/oihana-commands-traits-PassphraseTrait.html#property_passphrase">$passphrase</a>
@@ -201,7 +192,7 @@ or runtime input options.</p>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/oihana-commands-traits-EncryptTrait.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/oihana-commands-traits-DecryptTrait.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
@@ -213,11 +204,11 @@ or runtime input options.</p>
 <dd>Returns the passphrase. if the command is interactive a question is asked to the command user to prompt the passphrase.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/oihana-commands-traits-EncryptTrait.html#method_initializeEncrypt">initializeEncrypt()</a>
+    <a class="" href="classes/oihana-commands-traits-DecryptTrait.html#method_initializeDecrypt">initializeDecrypt()</a>
     <span>
                                 &nbsp;: static    </span>
 </dt>
-<dd>Initializes the internal encryption flag.</dd>
+<dd>Initializes the internal decryption flag.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-traits-PassphraseTrait.html#method_initializePassphrase">initializePassphrase()</a>
@@ -227,11 +218,11 @@ or runtime input options.</p>
 <dd>Initialize the internal passphrase value.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/oihana-commands-traits-EncryptTrait.html#method_shouldEncrypt">shouldEncrypt()</a>
+    <a class="" href="classes/oihana-commands-traits-DecryptTrait.html#method_shouldDecrypt">shouldDecrypt()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
-<dd>Determines whether encryption should be applied for the given input.</dd>
+<dd>Determines whether decryption should be applied for the given input.</dd>
 
     </dl>
 
@@ -244,7 +235,7 @@ or runtime input options.</p>
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/oihana-commands-traits-EncryptTrait.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/oihana-commands-traits-DecryptTrait.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -254,30 +245,30 @@ or runtime input options.</p>
             -public
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_encrypt">
-        $encrypt
-        <a href="classes/oihana-commands-traits-EncryptTrait.html#property_encrypt" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_decrypt">
+        $decrypt
+        <a href="classes/oihana-commands-traits-DecryptTrait.html#property_decrypt" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/EncryptTrait.php"><a href="files/src-oihana-commands-traits-encrypttrait.html"><abbr title="src/oihana/commands/traits/EncryptTrait.php">EncryptTrait.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/DecryptTrait.php"><a href="files/src-oihana-commands-traits-decrypttrait.html"><abbr title="src/oihana/commands/traits/DecryptTrait.php">DecryptTrait.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Indicates whether encryption should be applied by default.</p>
+        <p class="phpdocumentor-summary">Indicates whether decryption should be applied by default.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__type">bool</span>
-    <span class="phpdocumentor-signature__name">$encrypt</span>
+    <span class="phpdocumentor-signature__name">$decrypt</span>
      = <span class="phpdocumentor-signature__default-value">true</span></code>
 
-        <section class="phpdocumentor-description"><p>This value can be overridden at runtime via the console option <a href="classes/oihana-commands-options-CommandOption.html#constant_ENCRYPT"><abbr title="\oihana\commands\options\CommandOption::ENCRYPT">CommandOption::ENCRYPT</abbr></a>.</p>
+        <section class="phpdocumentor-description"><p>This value can be overridden at runtime via the console option <a href="classes/oihana-commands-options-CommandOption.html#constant_DECRYPT"><abbr title="\oihana\commands\options\CommandOption::DECRYPT">CommandOption::DECRYPT</abbr></a>.</p>
 </section>
 
     
@@ -332,7 +323,7 @@ or runtime input options.</p>
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/oihana-commands-traits-EncryptTrait.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/oihana-commands-traits-DecryptTrait.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -425,23 +416,23 @@ or runtime input options.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_initializeEncrypt">
-        initializeEncrypt()
-        <a href="classes/oihana-commands-traits-EncryptTrait.html#method_initializeEncrypt" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_initializeDecrypt">
+        initializeDecrypt()
+        <a href="classes/oihana-commands-traits-DecryptTrait.html#method_initializeDecrypt" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/EncryptTrait.php"><a href="files/src-oihana-commands-traits-encrypttrait.html"><abbr title="src/oihana/commands/traits/EncryptTrait.php">EncryptTrait.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/DecryptTrait.php"><a href="files/src-oihana-commands-traits-decrypttrait.html"><abbr title="src/oihana/commands/traits/DecryptTrait.php">DecryptTrait.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Initializes the internal encryption flag.</p>
+        <p class="phpdocumentor-summary">Initializes the internal decryption flag.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">initializeEncrypt</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$init</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                    <span class="phpdocumentor-signature__name">initializeDecrypt</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$init</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -456,7 +447,7 @@ or runtime input options.</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>An associative array of initial options, possibly containing <a href="classes/oihana-commands-options-CommandOption.html#constant_ENCRYPT"><abbr title="\oihana\commands\options\CommandOption::ENCRYPT">CommandOption::ENCRYPT</abbr></a>.</p>
+                    <section class="phpdocumentor-description"><p>An associative array of initial options, possibly containing <a href="classes/oihana-commands-options-CommandOption.html#constant_DECRYPT"><abbr title="\oihana\commands\options\CommandOption::DECRYPT">CommandOption::DECRYPT</abbr></a>.</p>
 </section>
 
             </dd>
@@ -531,29 +522,29 @@ or runtime input options.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_shouldEncrypt">
-        shouldEncrypt()
-        <a href="classes/oihana-commands-traits-EncryptTrait.html#method_shouldEncrypt" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_shouldDecrypt">
+        shouldDecrypt()
+        <a href="classes/oihana-commands-traits-DecryptTrait.html#method_shouldDecrypt" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/EncryptTrait.php"><a href="files/src-oihana-commands-traits-encrypttrait.html"><abbr title="src/oihana/commands/traits/EncryptTrait.php">EncryptTrait.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/DecryptTrait.php"><a href="files/src-oihana-commands-traits-decrypttrait.html"><abbr title="src/oihana/commands/traits/DecryptTrait.php">DecryptTrait.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">56</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Determines whether encryption should be applied for the given input.</p>
+        <p class="phpdocumentor-summary">Determines whether decryption should be applied for the given input.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">shouldEncrypt</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Input\InputInterface">InputInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">shouldDecrypt</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Input\InputInterface">InputInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>This checks both the runtime console option <a href="classes/oihana-commands-options-CommandOption.html#constant_ENCRYPT"><abbr title="\oihana\commands\options\CommandOption::ENCRYPT">CommandOption::ENCRYPT</abbr></a>
-and the default $encrypt flag.</p>
+        <section class="phpdocumentor-description"><p>This checks both the runtime console option <a href="classes/oihana-commands-options-CommandOption.html#constant_DECRYPT"><abbr title="\oihana\commands\options\CommandOption::DECRYPT">CommandOption::DECRYPT</abbr></a>
+and the default $decrypt flag.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -577,7 +568,7 @@ and the default $encrypt flag.</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">bool</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>True if encryption should be performed, false otherwise.</p>
+                <section class="phpdocumentor-description"><p>True if decryption should be performed, false otherwise.</p>
 </section>
 
             </section>
@@ -589,7 +580,7 @@ and the default $encrypt flag.</p>
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/oihana/commands/traits/EncryptTrait.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/oihana/commands/traits/DecryptTrait.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -690,14 +681,14 @@ and the default $encrypt flag.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/oihana-commands-traits-EncryptTrait.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/oihana-commands-traits-EncryptTrait.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/oihana-commands-traits-DecryptTrait.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/oihana-commands-traits-DecryptTrait.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
                                     <li class="phpdocumentor-on-this-page-section__title">Properties</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/oihana-commands-traits-EncryptTrait.html#property_encrypt">$encrypt</a></li>
+                                            <li class=""><a href="classes/oihana-commands-traits-DecryptTrait.html#property_decrypt">$decrypt</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-PassphraseTrait.html#property_passphrase">$passphrase</a></li>
                                     </ul>
             </li>
@@ -705,9 +696,9 @@ and the default $encrypt flag.</p>
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/oihana-commands-traits-PassphraseTrait.html#method_getPassPhrase">getPassPhrase()</a></li>
-                                            <li class=""><a href="classes/oihana-commands-traits-EncryptTrait.html#method_initializeEncrypt">initializeEncrypt()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-traits-DecryptTrait.html#method_initializeDecrypt">initializeDecrypt()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-PassphraseTrait.html#method_initializePassphrase">initializePassphrase()</a></li>
-                                            <li class=""><a href="classes/oihana-commands-traits-EncryptTrait.html#method_shouldEncrypt">shouldEncrypt()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-traits-DecryptTrait.html#method_shouldDecrypt">shouldDecrypt()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -727,7 +718,7 @@ and the default $encrypt flag.</p>
     </section>
 </section>
         </div>
-        <a href="classes/oihana-commands-traits-EncryptTrait.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/oihana-commands-traits-DecryptTrait.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

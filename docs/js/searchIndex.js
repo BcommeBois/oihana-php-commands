@@ -88,13 +88,23 @@ Search.appendIndex(
         },                {
             "fqsen": "\\oihana\\commands\\enums\\CommandArg",
             "name": "CommandArg",
-            "summary": "The\u0020common\u0020command\u0020arguments\u0020enumeration.",
+            "summary": "Defines\u0020common\u0020command\u0020arguments\u0020used\u0020across\u0020console\u0020commands.",
             "url": "classes/oihana-commands-enums-CommandArg.html"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\CommandArg\u003A\u003AconfigureAction\u0028\u0029",
+            "name": "configureAction",
+            "summary": "Configures\u0020the\u0020\u007B\u0040see\u0020CommandArg\u003A\u003AACTION\u007D\u0020argument\u0020for\u0020a\u0020Symfony\u0020Console\u0020command.",
+            "url": "classes/oihana-commands-enums-CommandArg.html#method_configureAction"
         },                {
             "fqsen": "\\oihana\\commands\\enums\\CommandArg\u003A\u003AACTION",
             "name": "ACTION",
-            "summary": "The\u0020\u0027action\u0027\u0020argument.",
+            "summary": "Represents\u0020the\u0020\u0022action\u0022\u0020argument.",
             "url": "classes/oihana-commands-enums-CommandArg.html#constant_ACTION"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\CommandArg\u003A\u003AINIT",
+            "name": "INIT",
+            "summary": "Represents\u0020the\u0020\u0022init\u0022\u0020argument.",
+            "url": "classes/oihana-commands-enums-CommandArg.html#constant_INIT"
         },                {
             "fqsen": "\\oihana\\commands\\enums\\CommandHelper",
             "name": "CommandHelper",
@@ -746,10 +756,10 @@ Search.appendIndex(
             "summary": "The\u0020enumeration\u0020of\u0020the\u0020global\u0020command\u0020options.",
             "url": "classes/oihana-commands-options-CommandOption.html"
         },                {
-            "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003Aconfigure\u0028\u0029",
-            "name": "configure",
-            "summary": "Configures\u0020the\u0020options\u0020of\u0020the\u0020current\u0020command.",
-            "url": "classes/oihana-commands-options-CommandOption.html#method_configure"
+            "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003AconfigureClear\u0028\u0029",
+            "name": "configureClear",
+            "summary": "Configures\u0020the\u0020\u0027clear\u0027\u0020option\u0020of\u0020the\u0020current\u0020command.",
+            "url": "classes/oihana-commands-options-CommandOption.html#method_configureClear"
         },                {
             "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003ACLEAR",
             "name": "CLEAR",
@@ -765,6 +775,21 @@ Search.appendIndex(
             "name": "DIR",
             "summary": "",
             "url": "classes/oihana-commands-options-CommandOption.html#constant_DIR"
+        },                {
+            "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003ADECRYPT",
+            "name": "DECRYPT",
+            "summary": "",
+            "url": "classes/oihana-commands-options-CommandOption.html#constant_DECRYPT"
+        },                {
+            "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003AENCRYPT",
+            "name": "ENCRYPT",
+            "summary": "",
+            "url": "classes/oihana-commands-options-CommandOption.html#constant_ENCRYPT"
+        },                {
+            "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003APASS_PHRASE",
+            "name": "PASS_PHRASE",
+            "summary": "",
+            "url": "classes/oihana-commands-options-CommandOption.html#constant_PASS_PHRASE"
         },                {
             "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003ASUDO",
             "name": "SUDO",
@@ -1076,24 +1101,44 @@ Search.appendIndex(
             "summary": "The\u0020console\u0020logger\u0020reference.",
             "url": "classes/oihana-commands-traits-ConsoleLoggerTrait.html#property_console"
         },                {
+            "fqsen": "\\oihana\\commands\\traits\\DecryptTrait",
+            "name": "DecryptTrait",
+            "summary": "Provides\u0020support\u0020for\u0020decryption\u0020options\u0020in\u0020console\u0020commands.",
+            "url": "classes/oihana-commands-traits-DecryptTrait.html"
+        },                {
+            "fqsen": "\\oihana\\commands\\traits\\DecryptTrait\u003A\u003AinitializeDecrypt\u0028\u0029",
+            "name": "initializeDecrypt",
+            "summary": "Initializes\u0020the\u0020internal\u0020decryption\u0020flag.",
+            "url": "classes/oihana-commands-traits-DecryptTrait.html#method_initializeDecrypt"
+        },                {
+            "fqsen": "\\oihana\\commands\\traits\\DecryptTrait\u003A\u003AshouldDecrypt\u0028\u0029",
+            "name": "shouldDecrypt",
+            "summary": "Determines\u0020whether\u0020decryption\u0020should\u0020be\u0020applied\u0020for\u0020the\u0020given\u0020input.",
+            "url": "classes/oihana-commands-traits-DecryptTrait.html#method_shouldDecrypt"
+        },                {
+            "fqsen": "\\oihana\\commands\\traits\\DecryptTrait\u003A\u003A\u0024decrypt",
+            "name": "decrypt",
+            "summary": "Indicates\u0020whether\u0020decryption\u0020should\u0020be\u0020applied\u0020by\u0020default.",
+            "url": "classes/oihana-commands-traits-DecryptTrait.html#property_decrypt"
+        },                {
             "fqsen": "\\oihana\\commands\\traits\\EncryptTrait",
             "name": "EncryptTrait",
-            "summary": "The\u0020encrypt\u0020trait.",
+            "summary": "Provides\u0020support\u0020for\u0020encryption\u0020options\u0020in\u0020console\u0020commands.",
             "url": "classes/oihana-commands-traits-EncryptTrait.html"
-        },                {
-            "fqsen": "\\oihana\\commands\\traits\\EncryptTrait\u003A\u003AisEncrypted\u0028\u0029",
-            "name": "isEncrypted",
-            "summary": "Indicates\u0020if\u0020the\u0020dump\/restore\u0020method\u0020encrypt\u0020the\u0020datas.",
-            "url": "classes/oihana-commands-traits-EncryptTrait.html#method_isEncrypted"
         },                {
             "fqsen": "\\oihana\\commands\\traits\\EncryptTrait\u003A\u003AinitializeEncrypt\u0028\u0029",
             "name": "initializeEncrypt",
-            "summary": "Initialize\u0020the\u0020internal\u0020encrypt\u0020value.",
+            "summary": "Initializes\u0020the\u0020internal\u0020encryption\u0020flag.",
             "url": "classes/oihana-commands-traits-EncryptTrait.html#method_initializeEncrypt"
+        },                {
+            "fqsen": "\\oihana\\commands\\traits\\EncryptTrait\u003A\u003AshouldEncrypt\u0028\u0029",
+            "name": "shouldEncrypt",
+            "summary": "Determines\u0020whether\u0020encryption\u0020should\u0020be\u0020applied\u0020for\u0020the\u0020given\u0020input.",
+            "url": "classes/oihana-commands-traits-EncryptTrait.html#method_shouldEncrypt"
         },                {
             "fqsen": "\\oihana\\commands\\traits\\EncryptTrait\u003A\u003A\u0024encrypt",
             "name": "encrypt",
-            "summary": "Encrypt\u0020the\u0020dumps\u0020of\u0020the\u0020database.",
+            "summary": "Indicates\u0020whether\u0020encryption\u0020should\u0020be\u0020applied\u0020by\u0020default.",
             "url": "classes/oihana-commands-traits-EncryptTrait.html#property_encrypt"
         },                {
             "fqsen": "\\oihana\\commands\\traits\\FileTrait",

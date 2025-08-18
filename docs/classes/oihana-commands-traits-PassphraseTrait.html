@@ -121,7 +121,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/PassphraseTrait.php"><a href="files/src-oihana-commands-traits-passphrasetrait.html"><abbr title="src/oihana/commands/traits/PassphraseTrait.php">PassphraseTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
+    <span class="phpdocumentor-element-found-in__line">55</span>
 
     </aside>
 
@@ -249,6 +249,13 @@ class MyCommand extends Command
 <dd>Returns the IO writer reference.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/oihana-commands-traits-PassphraseTrait.html#method_getPassPhrase">getPassPhrase()</a>
+    <span>
+                                &nbsp;: string|null    </span>
+</dt>
+<dd>Returns the passphrase. if the command is interactive a question is asked to the command user to prompt the passphrase.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-traits-PassphraseTrait.html#method_initializePassphrase">initializePassphrase()</a>
     <span>
                                 &nbsp;: static    </span>
@@ -268,13 +275,6 @@ class MyCommand extends Command
                                 &nbsp;: mixed    </span>
 </dt>
 <dd>Executes a callback within a styled Symfony Console context (IO).</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/oihana-commands-traits-PassphraseTrait.html#method_getPassPhrase">getPassPhrase()</a>
-    <span>
-                                &nbsp;: string|null    </span>
-</dt>
-<dd>Returns the passphrase. if the command is interactive a question is asked to the command user to prompt the passphrase.</dd>
 
     </dl>
 
@@ -346,7 +346,7 @@ class MyCommand extends Command
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/PassphraseTrait.php"><a href="files/src-oihana-commands-traits-passphrasetrait.html"><abbr title="src/oihana/commands/traits/PassphraseTrait.php">PassphraseTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">62</span>
+    <span class="phpdocumentor-element-found-in__line">63</span>
 
     </aside>
 
@@ -546,6 +546,90 @@ If no <code class="prettyprint">callback</code> is provided in an action, that e
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getPassPhrase">
+        getPassPhrase()
+        <a href="classes/oihana-commands-traits-PassphraseTrait.html#method_getPassPhrase" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/PassphraseTrait.php"><a href="files/src-oihana-commands-traits-passphrasetrait.html"><abbr title="src/oihana/commands/traits/PassphraseTrait.php">PassphraseTrait.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">73</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Returns the passphrase. if the command is interactive a question is asked to the command user to prompt the passphrase.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getPassPhrase</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Input\InputInterface">InputInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$output</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$throwable</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$input</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$output</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$throwable</span>
+                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Indicates if the method throws a MissingPassphraseException if the passphrase is null.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/oihana-commands-traits-PassphraseTrait.html#method_getPassPhrase#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/oihana-commands-exceptions-MissingPassphraseException.html"><abbr title="\oihana\commands\exceptions\MissingPassphraseException">MissingPassphraseException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                                            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Returns the passphrase.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_initializePassphrase">
         initializePassphrase()
         <a href="classes/oihana-commands-traits-PassphraseTrait.html#method_initializePassphrase" class="headerlink"><i class="fas fa-link"></i></a>
@@ -554,7 +638,7 @@ If no <code class="prettyprint">callback</code> is provided in an action, that e
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/PassphraseTrait.php"><a href="files/src-oihana-commands-traits-passphrasetrait.html"><abbr title="src/oihana/commands/traits/PassphraseTrait.php">PassphraseTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">98</span>
+    <span class="phpdocumentor-element-found-in__line">103</span>
 
     </aside>
 
@@ -849,90 +933,6 @@ If no finish message is given, no closing message is printed.</p>
             </section>
 
 </article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_getPassPhrase">
-        getPassPhrase()
-        <a href="classes/oihana-commands-traits-PassphraseTrait.html#method_getPassPhrase" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/PassphraseTrait.php"><a href="files/src-oihana-commands-traits-passphrasetrait.html"><abbr title="src/oihana/commands/traits/PassphraseTrait.php">PassphraseTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">72</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Returns the passphrase. if the command is interactive a question is asked to the command user to prompt the passphrase.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">getPassPhrase</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Input\InputInterface">InputInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$output</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$throwable</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$input</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$output</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$throwable</span>
-                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Indicates if the method throws a MissingPassphraseException if the passphrase is null.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="classes/oihana-commands-traits-PassphraseTrait.html#method_getPassPhrase#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/oihana-commands-exceptions-MissingPassphraseException.html"><abbr title="\oihana\commands\exceptions\MissingPassphraseException">MissingPassphraseException</abbr></a></span>
-                                                            
-                                             
-                                    </dd>
-                                            </dl>
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string|null</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Returns the passphrase.</p>
-</section>
-
-            </section>
-
-</article>
             </section>
 
         <div class="phpdocumentor-modal" id="source-view">
@@ -1056,10 +1056,10 @@ If no finish message is given, no closing message is printed.</p>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/oihana-commands-traits-IOTrait.html#method_batchIOActions">batchIOActions()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-IOTrait.html#method_getIO">getIO()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-traits-PassphraseTrait.html#method_getPassPhrase">getPassPhrase()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-PassphraseTrait.html#method_initializePassphrase">initializePassphrase()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-IOTrait.html#method_runAction">runAction()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-IOTrait.html#method_runIOAction">runIOAction()</a></li>
-                                            <li class=""><a href="classes/oihana-commands-traits-PassphraseTrait.html#method_getPassPhrase">getPassPhrase()</a></li>
                                     </ul>
             </li>
                     </ul>

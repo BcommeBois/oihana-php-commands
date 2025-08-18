@@ -55,13 +55,15 @@ class CommandArg
      * );
      * ```
      *
-     * @param Command       $command        The command to configure.
-     * @param string|null   $description    An optional description of the argument (default: empty string).
-     * @param mixed|null    $default        An optional default value (default: null).
-     * @param array|Closure $suggestedValues Suggested values for autocompletion or validation.
-     *                                      Can be a static array or a closure returning an array.
+     * @param Command       $command         The command to configure.
+     * @param string|null   $description     An optional description of the argument (default: empty string).
+     * @param mixed|null    $default         An optional default value (default: null).
+     * @param array|Closure $suggestedValues Suggested values for autocompletion or validation. Can be a static array or a closure returning an array.
+     * @param ?int          $mode            The argument mode : InputArgument::REQUIRED, InputArgument::OPTIONAL, InputArgument::IS_ARRAY.
      *
      * @return Command The same {@see Command} instance, for fluent chaining.
+     *
+     * @see InputArgument
      */
     public static function configureAction
     (
@@ -69,13 +71,14 @@ class CommandArg
         ?string       $description     = ''   ,
         mixed         $default         = null ,
         array|Closure $suggestedValues = []   ,
+        ?int          $mode            = InputArgument::REQUIRED
     )
     :Command
     {
         $command->addArgument
         (
             name            : CommandArg::ACTION ,
-            mode            : InputArgument::REQUIRED ,
+            mode            : $mode ,
             description     : $description ,
             default         : $default ,
             suggestedValues : $suggestedValues
