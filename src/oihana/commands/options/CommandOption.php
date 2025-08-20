@@ -15,14 +15,17 @@ use Symfony\Component\Console\Input\InputOption;
  */
 class CommandOption extends Option
 {
-    public const string CLEAR       = 'clear'    ;
-    public const string CONFIG      = 'config'   ;
-    public const string DIR         = 'dir'      ;
-    public const string DECRYPT     = 'decrypt'  ;
-    public const string ENCRYPT     = 'encrypt'  ;
+    public const string CLEAR       = 'clear'      ;
+    public const string CONFIG      = 'config'     ;
+    public const string DIR         = 'dir'        ;
+    public const string DECRYPT     = 'decrypt'    ;
+    public const string ENCRYPT     = 'encrypt'    ;
     public const string PASS_PHRASE = 'passphrase' ;
-    public const string SUDO        = 'sudo'     ;
-    public const string OWNER       = 'owner'    ;
+    public const string QUIET       = 'quiet'      ;
+    public const string SILENT      = 'silent'     ;
+    public const string SUDO        = 'sudo'       ;
+    public const string OWNER       = 'owner'      ;
+    public const string VERSION     = 'version'    ;
 
     /**
      * Configures the 'clear' option of the current command.
