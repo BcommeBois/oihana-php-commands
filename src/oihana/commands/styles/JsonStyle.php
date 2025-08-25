@@ -13,8 +13,6 @@ use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Class JsonStyle
- *
  * A Symfony Console style helper for rendering JSON data with syntax highlighting.
  * Extends {@see OutputStyle} to provide colored and readable JSON output.
  *
