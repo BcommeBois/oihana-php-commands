@@ -217,9 +217,32 @@ class JsonStyle extends OutputStyle
             return;
         }
 
-        $styledJson = $json;
+        $styledJson = preg_replace_callback( '/"((?:[^"\\\\]|\\\\.)*)"(\s*:)?/s' , function ($matches)
+        {
+            // $matches[1] est le contenu de la chaîne.
+            // $matches[2] contient le ':' s'il existe.
 
-        foreach (self::PATTERNS as $pattern => $replacement)
+            if (isset($matches[2]))  // Si un ':' a été trouvé, c'est une clé.
+            {
+                $key = '"' . $matches[1] . '"';
+                return '<' . self::KEY . '>' . $key . '</' . self::KEY . '>' . $matches[2];
+            }
+            else  // Sinon, c'est une valeur de type chaîne.
+            {
+                $value = '"' . $matches[1] . '"';
+                return '<' . self::STRING . '>' . $value . '</' . self::STRING . '>';
+            }
+        }
+        , $json ) ;
+
+        $primitives =
+        [
+            '/\b(true|false)\b/'                      => '<' . self::BOOL . '>$1</' . self::BOOL . '>' ,
+            '/\b(null)\b/'                            => '<' . self::NULL . '>$1</' . self::NULL . '>' ,
+            '/(?<![a-zA-Z>"])\b(-?\d+\.?\d*)\b(?!")/' => '<' . self::NUMBER . '>$1</' . self::NUMBER . '>' ,
+        ];
+
+        foreach ( $primitives as $pattern => $replacement )
         {
             $styledJson = preg_replace($pattern, $replacement, $styledJson);
         }
