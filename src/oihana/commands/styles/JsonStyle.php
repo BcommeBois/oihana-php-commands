@@ -36,7 +36,7 @@ use function oihana\core\arrays\isAssociative;
  *     'tags'   => null
  * ]);
  * ```
- * 
+ *
  * @package oihana\commands\styles
  * @author  Marc Alcaraz (ekameleon)
  * @since   1.0.4
