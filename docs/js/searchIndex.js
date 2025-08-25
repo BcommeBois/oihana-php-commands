@@ -1038,7 +1038,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\oihana\\commands\\styles\\JsonStyle",
             "name": "JsonStyle",
-            "summary": "Class\u0020JsonStyle",
+            "summary": "A\u0020Symfony\u0020Console\u0020style\u0020helper\u0020for\u0020rendering\u0020JSON\u0020data\u0020with\u0020syntax\u0020highlighting.",
             "url": "classes/oihana-commands-styles-JsonStyle.html"
         },                {
             "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003A__construct\u0028\u0029",
