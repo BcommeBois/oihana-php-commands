@@ -2,6 +2,8 @@
 
 namespace oihana\commands\styles;
 
+use JsonException;
+
 use oihana\commands\enums\outputs\Palette;
 use oihana\commands\enums\outputs\ColorParam;
 use oihana\commands\enums\outputs\StyleOption;
@@ -72,11 +74,6 @@ class JsonStyle extends OutputStyle
     public const string BOOL = 'bool';
 
     /**
-     * @var string JSON style identifier for circular objects.
-     */
-    public const string CIRCULAR = 'circular';
-
-    /**
      * @var string JSON style identifier for keys
      */
     public const string KEY = 'key';
@@ -122,7 +119,6 @@ class JsonStyle extends OutputStyle
      */
     private const array DEFAULT_STYLES =
     [
-        // self::CIRCULAR => [ColorParam::FOREGROUND => Palette::RED,     ColorParam::BACKGROUND => null, ColorParam::OPTIONS => [StyleOption::BOLD]],
         self::KEY      => [ ColorParam::FOREGROUND => Palette::CYAN    , ColorParam::BACKGROUND => null , ColorParam::OPTIONS => [] ],
         self::STRING   => [ ColorParam::FOREGROUND => Palette::GREEN   , ColorParam::BACKGROUND => null , ColorParam::OPTIONS => [] ],
         self::NUMBER   => [ ColorParam::FOREGROUND => Palette::YELLOW  , ColorParam::BACKGROUND => null , ColorParam::OPTIONS => [] ],
@@ -140,13 +136,13 @@ class JsonStyle extends OutputStyle
      * Values = replacement strings with Symfony Console formatting tags.
      */
     private const array PATTERNS =
-    [
-        '/"(.*?)":/'       => "<"   . self::KEY    . ">\"$1\"</" . self::KEY    . ">:" ,
-        '/: "(.*?)"/'      => ': <' . self::STRING . '>"$1"</'   . self::STRING . '>'  ,
-        '/: (\d+)/'        => ': <' . self::NUMBER . '>$1</'     . self::NUMBER . '>'  ,
-        '/: (true|false)/' => ': <' . self::BOOL   . '>$1</'     . self::BOOL   . '>'  ,
-        '/: (null)/'       => ': <' . self::NULL   . '>$1</'     . self::NULL   . '>'  ,
-    ];
+   [
+       '/"(.*?)":/'          => "<"   . self::KEY    . ">\"$1\"</" . self::KEY    . ">:",
+       '/: "(.*?)"/'         => ': <' . self::STRING . '>"$1"</'   . self::STRING . '>',
+       '/\b(true|false)\b/'  => '<'   . self::BOOL   . '>$1</'     . self::BOOL   . '>',
+       '/\b(null)\b/'        => '<'   . self::NULL   . '>$1</'     . self::NULL   . '>',
+       '/\b(-?\d+\.?\d*)\b/' => '<'   . self::NUMBER . '>$1</'     . self::NUMBER . '>',
+   ];
 
     /**
      * Applies JSON syntax highlighting to the Symfony Console output formatter.
@@ -196,7 +192,7 @@ class JsonStyle extends OutputStyle
     (
         mixed $data ,
         int   $jsonOptions = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ,
-        int   $verbosity  = OutputInterface::VERBOSITY_NORMAL
+        int   $verbosity   = OutputInterface::VERBOSITY_NORMAL
     )
     : void
     {
@@ -205,19 +201,30 @@ class JsonStyle extends OutputStyle
             return;
         }
 
-        $json = json_encode($data, $jsonOptions);
-
-        if ( $json === false )
+        try
         {
-            $this->writeln('<error>Failed to encode JSON</error>');
+            $json = json_encode($data, $jsonOptions | JSON_THROW_ON_ERROR);
+        }
+        catch ( JsonException $e )
+        {
+            if ( $e->getCode() === JSON_ERROR_RECURSION )
+            {
+                $this->writeln('<' . self::NULL . '>[Circular Reference]</' . self::NULL . '>');
+            }
+            else
+            {
+                $this->writeln('<error>Failed to encode JSON: ' . $e->getMessage() . '</error>');
+            }
             return;
         }
 
-        foreach ( self::PATTERNS as $pattern => $replacement )
+        $styledJson = $json;
+
+        foreach (self::PATTERNS as $pattern => $replacement)
         {
-            $json = preg_replace( $pattern , $replacement , $json ) ;
+            $styledJson = preg_replace($pattern, $replacement, $styledJson);
         }
 
-        $this->writeln($json);
+        $this->writeln($styledJson);
     }
 }
