@@ -2,9 +2,8 @@
 
 namespace oihana\commands\styles;
 
-use JsonException;
-
 use JsonSerializable;
+
 use oihana\commands\enums\outputs\Palette;
 use oihana\commands\enums\outputs\ColorParam;
 use oihana\commands\enums\outputs\StyleOption;
@@ -12,13 +11,16 @@ use oihana\reflect\traits\ConstantsTrait;
 
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Output\OutputInterface;
+
 use function oihana\core\arrays\isAssociative;
 
 /**
  * A Symfony Console style helper for rendering JSON data with syntax highlighting.
  * Extends {@see OutputStyle} to provide colored and readable JSON output.
  *
- * Supports custom palettes and dynamic style injection.
+ * This class recursively walks through PHP data structures (arrays, objects)
+ * and builds a colorized JSON string representation. It handles primitive types,
+ * nested structures, and detects circular references in objects.
  *
  * Example:
  * ```php
@@ -34,6 +36,7 @@ use function oihana\core\arrays\isAssociative;
  *     'tags'   => null
  * ]);
  * ```
+ * 
  * @package oihana\commands\styles
  * @author  Marc Alcaraz (ekameleon)
  * @since   1.0.4
@@ -41,8 +44,6 @@ use function oihana\core\arrays\isAssociative;
 class JsonStyle extends OutputStyle
 {
     /**
-     * JsonStyle constructor.
-     *
      * Initializes the style and applies JSON-specific formatting rules.
      *
      * @param OutputInterface $output  Symfony console output implementation.
@@ -74,7 +75,7 @@ class JsonStyle extends OutputStyle
     public const string BOOL = 'bool';
 
     /**
-     * @var string JSON style identifier for circulars.
+     * @var string JSON style identifier for circular references.
      */
     public const string CIRCULAR = 'circular' ;
 
@@ -133,26 +134,7 @@ class JsonStyle extends OutputStyle
     ] ;
 
     /**
-     * Regex patterns for JSON syntax highlighting.
-     *
-     * @private
-     * @var array<string, string>
-     *
-     * Keys = regular expressions to match JSON tokens.
-     * Values = replacement strings with Symfony Console formatting tags.
-     */
-    private const array PATTERNS =
-   [
-       '/"(.*?)":/'  => "<"   . self::KEY    . ">\"$1\"</" . self::KEY    . ">:" ,
-       '/: "(.*?)"/' => ': <' . self::STRING . '>"$1"</'   . self::STRING . '>'  ,
-
-       '/(?<=[:\[,])\s*(true|false)\b/'  => ' <' . self::BOOL   . '>$1</' . self::BOOL   . '>',
-       '/(?<=[:\[,])\s*(null)\b/'        => ' <' . self::NULL   . '>$1</' . self::NULL   . '>',
-       '/(?<=[:\[,])\s*(-?\d+\.?\d*)\b/' => ' <' . self::NUMBER . '>$1</' . self::NUMBER . '>',
-   ];
-
-    /**
-     * Applies JSON syntax highlighting to the Symfony Console output formatter.
+     * Applies JSON syntax highlighting styles to the Symfony Console output formatter.
      *
      * Merges user-provided styles with {@see self::DEFAULT_STYLES} and registers them.
      *
@@ -180,13 +162,9 @@ class JsonStyle extends OutputStyle
      *
      * Encodes data to JSON, applies coloring rules, and writes to the console output.
      *
-     * @param mixed $data         Any PHP data to encode into JSON.
-     * @param int   $jsonOptions  Options for {@see json_encode()}, defaults to:
-     *                            - `JSON_PRETTY_PRINT`
-     *                            - `JSON_UNESCAPED_UNICODE`
-     *                            - `JSON_UNESCAPED_SLASHES`
-     * @param int   $verbosity    Minimum verbosity level required to output.
-     *                            Defaults to {@see OutputInterface::VERBOSITY_NORMAL}.
+     * @param mixed $data      Any PHP data to encode into JSON.
+     * @param int   $verbosity Minimum verbosity level required to output.
+     *                         Defaults to {@see OutputInterface::VERBOSITY_NORMAL}.
      *
      * @return void
      *
@@ -195,13 +173,7 @@ class JsonStyle extends OutputStyle
      * $style->writeJson(['hello' => 'world', 'count' => 5]);
      * ```
      */
-    public function writeJson
-    (
-        mixed $data ,
-        int   $jsonOptions = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ,
-        int   $verbosity   = OutputInterface::VERBOSITY_NORMAL
-    )
-    : void
+    public function writeJson( mixed $data , int $verbosity = OutputInterface::VERBOSITY_NORMAL ): void
     {
         if ( $this->getVerbosity() < $verbosity )
         {
@@ -214,50 +186,64 @@ class JsonStyle extends OutputStyle
     }
 
     /**
-     * Formate récursivement les données PHP en une chaîne JSON colorée.
+     * Recursively formats PHP data into a colorized JSON string.
      *
-     * @param mixed $data   Les données à formater.
-     * @param int   $indent Le niveau d'indentation actuel.
-     * @param array $seen   Tableau pour détecter les références circulaires.
+     * @param mixed $data   The data to format.
+     * @param int   $indent The current indentation level.
+     * @param array $seen   An array to track seen objects for circular reference detection.
      * @return string
      */
     private function formatRecursive(mixed $data, int $indent, array &$seen): string
     {
-        $indentStr = str_repeat(' ', $indent);
+        $indentStr = str_repeat(' ' , $indent ) ;
 
-        // --- Cas de base (types primitifs) ---
+        // --- Base cases (primitive types) ---
+
         if (is_null($data)) {
             return '<' . self::NULL . '>null</' . self::NULL . '>';
         }
-        if (is_bool($data)) {
+
+        if ( is_bool( $data ) )
+        {
             return '<' . self::BOOL . '>' . ($data ? 'true' : 'false') . '</' . self::BOOL . '>';
         }
-        if (is_numeric($data)) {
+
+        if ( is_numeric( $data ) )
+        {
             return '<' . self::NUMBER . '>' . $data . '</' . self::NUMBER . '>';
         }
-        if (is_string($data)) {
-            // On utilise json_encode sur la chaîne seule pour gérer parfaitement l'échappement.
+
+        if ( is_string( $data ) )
+        {
+            // Use json_encode on the string itself to handle escaping perfectly.
             return '<' . self::STRING . '>' . json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</' . self::STRING . '>';
         }
 
-        // --- Cas récursifs (tableaux et objets) ---
-        if (is_object($data)) {
-            $objectId = spl_object_id($data);
-            if (isset($seen[$objectId])) {
+        // --- Recursive cases (arrays and objects) ---
+
+        if ( is_object( $data ) )
+        {
+            $objectId = spl_object_id( $data ) ;
+            if ( isset( $seen[ $objectId ] ) )
+            {
                 return '<' . self::CIRCULAR . '>[Circular Reference]</' . self::CIRCULAR . '>';
             }
-            $seen[$objectId] = true;
-
-            if ($data instanceof JsonSerializable) {
+            $seen[ $objectId ] = true ;
+            if ($data instanceof JsonSerializable)
+            {
                 $data = $data->jsonSerialize();
-            } else {
+            }
+            else
+            {
                 $data = (array) $data;
             }
         }
 
-        if (is_array($data)) {
-            if (empty($data)) {
-                return '[]';
+        if ( is_array( $data ) )
+        {
+            if ( empty( $data ) )
+            {
+                return '[]' ;
             }
 
             $isAssoc = isAssociative($data);
@@ -268,30 +254,34 @@ class JsonStyle extends OutputStyle
 
             foreach ($data as $key => $value)
             {
-                $output .= str_repeat(' ', $indent + 4);
-                if ($isAssoc) {
-                    $output .= '<' . self::KEY . '>' . json_encode((string)$key) . '</' . self::KEY . '>: ';
+                $output .= str_repeat(' ' , $indent + 4 ) ;
+                if ( $isAssoc )
+                {
+                    $output .= '<' . self::KEY . '>' . json_encode((string)$key) . '</' . self::KEY . '>: ' ;
                 }
 
-                $output .= $this->formatRecursive($value, $indent + 4, $seen);
+                $output .= $this->formatRecursive( $value , $indent + 4 , $seen ) ;
 
-                if (++$i < $count) {
-                    $output .= ',';
+                if ( ++$i < $count )
+                {
+                    $output .= ',' ;
                 }
-                $output .= "\n";
+                $output .= "\n" ;
             }
 
-            $output .= $indentStr . ($isAssoc ? '}' : ']');
+            $output .= $indentStr . ( $isAssoc ? '}' : ']' ) ;
 
-            // Si c'était un objet, on le retire du tableau $seen pour la suite de la récursion
-            if (isset($objectId)) {
-                unset($seen[$objectId]);
+            // If it was an object, remove it from the seen array to allow the same object
+            // to be rendered again in a different part of the data structure.
+            if ( isset( $objectId ) )
+            {
+                unset( $seen[ $objectId ] ) ;
             }
 
-            return $output;
+            return $output ;
         }
 
-        // Cas d'un type non géré (ex: ressource)
+        // Handle unsupported types (e.g., resources).
         return '<error>[Unsupported Type]</error>';
     }
 }

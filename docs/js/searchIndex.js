@@ -1043,12 +1043,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "JsonStyle\u0020constructor.",
+            "summary": "Initializes\u0020the\u0020style\u0020and\u0020applies\u0020JSON\u002Dspecific\u0020formatting\u0020rules.",
             "url": "classes/oihana-commands-styles-JsonStyle.html#method___construct"
         },                {
             "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003AapplyJsonFormatter\u0028\u0029",
             "name": "applyJsonFormatter",
-            "summary": "Applies\u0020JSON\u0020syntax\u0020highlighting\u0020to\u0020the\u0020Symfony\u0020Console\u0020output\u0020formatter.",
+            "summary": "Applies\u0020JSON\u0020syntax\u0020highlighting\u0020styles\u0020to\u0020the\u0020Symfony\u0020Console\u0020output\u0020formatter.",
             "url": "classes/oihana-commands-styles-JsonStyle.html#method_applyJsonFormatter"
         },                {
             "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003AwriteJson\u0028\u0029",
@@ -1056,10 +1056,20 @@ Search.appendIndex(
             "summary": "Writes\u0020JSON\u0020data\u0020to\u0020the\u0020console\u0020with\u0020syntax\u0020highlighting.",
             "url": "classes/oihana-commands-styles-JsonStyle.html#method_writeJson"
         },                {
+            "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003AformatRecursive\u0028\u0029",
+            "name": "formatRecursive",
+            "summary": "Recursively\u0020formats\u0020PHP\u0020data\u0020into\u0020a\u0020colorized\u0020JSON\u0020string.",
+            "url": "classes/oihana-commands-styles-JsonStyle.html#method_formatRecursive"
+        },                {
             "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003ABOOL",
             "name": "BOOL",
             "summary": "",
             "url": "classes/oihana-commands-styles-JsonStyle.html#constant_BOOL"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003ACIRCULAR",
+            "name": "CIRCULAR",
+            "summary": "",
+            "url": "classes/oihana-commands-styles-JsonStyle.html#constant_CIRCULAR"
         },                {
             "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003AKEY",
             "name": "KEY",
@@ -1085,11 +1095,6 @@ Search.appendIndex(
             "name": "DEFAULT_STYLES",
             "summary": "Default\u0020color\u0020styles\u0020for\u0020JSON\u0020highlighting.",
             "url": "classes/oihana-commands-styles-JsonStyle.html#constant_DEFAULT_STYLES"
-        },                {
-            "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003APATTERNS",
-            "name": "PATTERNS",
-            "summary": "Regex\u0020patterns\u0020for\u0020JSON\u0020syntax\u0020highlighting.",
-            "url": "classes/oihana-commands-styles-JsonStyle.html#constant_PATTERNS"
         },                {
             "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003A\u0024output",
             "name": "output",

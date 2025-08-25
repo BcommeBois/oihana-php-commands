@@ -133,7 +133,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">44</span>
 
     </aside>
 
@@ -141,7 +141,9 @@
 
 
     <section class="phpdocumentor-description"><p>Extends <a href="classes/oihana-commands-styles-OutputStyle.html"><abbr title="\oihana\commands\styles\OutputStyle">OutputStyle</abbr></a> to provide colored and readable JSON output.</p>
-<p>Supports custom palettes and dynamic style injection.</p>
+<p>This class recursively walks through PHP data structures (arrays, objects)
+and builds a colorized JSON string representation. It handles primitive types,
+nested structures, and detects circular references in objects.</p>
 <p>Example:</p>
 <pre class="prettyprint"><code class="language-php">use oihana\commands\styles\JsonStyle;
 
@@ -212,6 +214,12 @@ $style-&gt;writeJson
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="classes/oihana-commands-styles-JsonStyle.html#constant_CIRCULAR">CIRCULAR</a>
+    <span>
+        &nbsp;= &#039;circular&#039;                            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a class="" href="classes/oihana-commands-styles-JsonStyle.html#constant_KEY">KEY</a>
     <span>
         &nbsp;= &#039;key&#039;                            </span>
@@ -238,16 +246,9 @@ $style-&gt;writeJson
             <dt class="phpdocumentor-table-of-contents__entry -constant -private">
     <a class="" href="classes/oihana-commands-styles-JsonStyle.html#constant_DEFAULT_STYLES">DEFAULT_STYLES</a>
     <span>
-        &nbsp;= [self::KEY =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::CYAN, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; []], self::STRING =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::GREEN, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; []], self::NUMBER =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::YELLOW, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; []], self::BOOL =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::MAGENTA, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; []], self::NULL =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::RED, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; [\oihana\commands\enums\outputs\StyleOption::BOLD]]]                            </span>
+        &nbsp;= [self::CIRCULAR =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::RED, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; [\oihana\commands\enums\outputs\StyleOption::BOLD]], self::KEY =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::CYAN, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; []], self::STRING =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::GREEN, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; []], self::NUMBER =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::YELLOW, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; []], self::BOOL =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::MAGENTA, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; []], self::NULL =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::RED, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; [\oihana\commands\enums\outputs\StyleOption::BOLD]]]                            </span>
 </dt>
 <dd>Default color styles for JSON highlighting.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -private">
-    <a class="" href="classes/oihana-commands-styles-JsonStyle.html#constant_PATTERNS">PATTERNS</a>
-    <span>
-        &nbsp;= [&#039;/&quot;(.*?)&quot;:/&#039; =&gt; &quot;&lt;&quot; . self::KEY . &quot;&gt;\&quot;\$1\&quot;&lt;/&quot; . self::KEY . &quot;&gt;:&quot;, &#039;/: &quot;(.*?)&quot;/&#039; =&gt; &#039;: &lt;&#039; . self::STRING . &#039;&gt;&quot;$1&quot;&lt;/&#039; . self::STRING . &#039;&gt;&#039;, &#039;/(?&lt;=[:\[,])\s*(true|false)\b/&#039; =&gt; &#039; &lt;&#039; . self::BOOL . &#039;&gt;$1&lt;/&#039; . self::BOOL . &#039;&gt;&#039;, &#039;/(?&lt;=[:\[,])\s*(null)\b/&#039; =&gt; &#039; &lt;&#039; . self::NULL . &#039;&gt;$1&lt;/&#039; . self::NULL . &#039;&gt;&#039;, &#039;/(?&lt;=[:\[,])\s*(-?\d+\.?\d*)\b/&#039; =&gt; &#039; &lt;&#039; . self::NUMBER . &#039;&gt;$1&lt;/&#039; . self::NUMBER . &#039;&gt;&#039;]                            </span>
-</dt>
-<dd>Regex patterns for JSON syntax highlighting.</dd>
 
     </dl>
 
@@ -278,7 +279,7 @@ $style-&gt;writeJson
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>JsonStyle constructor.</dd>
+<dd>Initializes the style and applies JSON-specific formatting rules.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-styles-OutputStyle.html#method_getFormatter">getFormatter()</a>
@@ -383,7 +384,7 @@ $style-&gt;writeJson
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Applies JSON syntax highlighting to the Symfony Console output formatter.</dd>
+<dd>Applies JSON syntax highlighting styles to the Symfony Console output formatter.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a class="" href="classes/oihana-commands-styles-OutputStyle.html#method_getErrorOutput">getErrorOutput()</a>
@@ -391,6 +392,13 @@ $style-&gt;writeJson
                                 &nbsp;: <abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr>    </span>
 </dt>
 <dd>Returns the error output stream.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/oihana-commands-styles-JsonStyle.html#method_formatRecursive">formatRecursive()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Recursively formats PHP data into a colorized JSON string.</dd>
 
     </dl>
 
@@ -413,7 +421,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">72</span>
+    <span class="phpdocumentor-element-found-in__line">75</span>
 
     </aside>
 
@@ -437,6 +445,39 @@ $style-&gt;writeJson
 
 </article>
                     <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_CIRCULAR">
+        CIRCULAR
+        <a href="classes/oihana-commands-styles-JsonStyle.html#constant_CIRCULAR" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">80</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">CIRCULAR</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;circular&#039;</span>
+</code>
+
+
+    
+        <section class="phpdocumentor-description"><p>JSON style identifier for circular references.</p>
+</section>
+
+    
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
     <h4 class="phpdocumentor-element__name" id="constant_KEY">
         KEY
         <a href="classes/oihana-commands-styles-JsonStyle.html#constant_KEY" class="headerlink"><i class="fas fa-link"></i></a>
@@ -446,7 +487,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">77</span>
+    <span class="phpdocumentor-element-found-in__line">85</span>
 
     </aside>
 
@@ -479,7 +520,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">82</span>
+    <span class="phpdocumentor-element-found-in__line">90</span>
 
     </aside>
 
@@ -512,7 +553,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">87</span>
+    <span class="phpdocumentor-element-found-in__line">95</span>
 
     </aside>
 
@@ -545,7 +586,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">92</span>
+    <span class="phpdocumentor-element-found-in__line">100</span>
 
     </aside>
 
@@ -578,7 +619,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">118</span>
+    <span class="phpdocumentor-element-found-in__line">126</span>
 
     </aside>
 
@@ -589,7 +630,7 @@ $style-&gt;writeJson
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">array&lt;string, array&lt;string, string|array&lt;string|int, mixed&gt;|null&gt;&gt;</span>
     <span class="phpdocumentor-signature__name">DEFAULT_STYLES</span>
-    = <span class="phpdocumentor-signature__default-value">[self::KEY =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::CYAN, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; []], self::STRING =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::GREEN, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; []], self::NUMBER =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::YELLOW, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; []], self::BOOL =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::MAGENTA, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; []], self::NULL =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::RED, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; [\oihana\commands\enums\outputs\StyleOption::BOLD]]]</span>
+    = <span class="phpdocumentor-signature__default-value">[self::CIRCULAR =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::RED, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; [\oihana\commands\enums\outputs\StyleOption::BOLD]], self::KEY =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::CYAN, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; []], self::STRING =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::GREEN, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; []], self::NUMBER =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::YELLOW, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; []], self::BOOL =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::MAGENTA, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; []], self::NULL =&gt; [\oihana\commands\enums\outputs\ColorParam::FOREGROUND =&gt; \oihana\commands\enums\outputs\Palette::RED, \oihana\commands\enums\outputs\ColorParam::BACKGROUND =&gt; null, \oihana\commands\enums\outputs\ColorParam::OPTIONS =&gt; [\oihana\commands\enums\outputs\StyleOption::BOLD]]]</span>
 </code>
 
 
@@ -609,55 +650,6 @@ $style-&gt;writeJson
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
         <a href="classes/oihana-commands-styles-JsonStyle.html#constant_DEFAULT_STYLES#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">private</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                             
-                                    </dd>
-                                            </dl>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -private ">
-    <h4 class="phpdocumentor-element__name" id="constant_PATTERNS">
-        PATTERNS
-        <a href="classes/oihana-commands-styles-JsonStyle.html#constant_PATTERNS" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">136</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Regex patterns for JSON syntax highlighting.</p>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;string, string&gt;</span>
-    <span class="phpdocumentor-signature__name">PATTERNS</span>
-    = <span class="phpdocumentor-signature__default-value">[&#039;/&quot;(.*?)&quot;:/&#039; =&gt; &quot;&lt;&quot; . self::KEY . &quot;&gt;\&quot;\$1\&quot;&lt;/&quot; . self::KEY . &quot;&gt;:&quot;, &#039;/: &quot;(.*?)&quot;/&#039; =&gt; &#039;: &lt;&#039; . self::STRING . &#039;&gt;&quot;$1&quot;&lt;/&#039; . self::STRING . &#039;&gt;&#039;, &#039;/(?&lt;=[:\[,])\s*(true|false)\b/&#039; =&gt; &#039; &lt;&#039; . self::BOOL . &#039;&gt;$1&lt;/&#039; . self::BOOL . &#039;&gt;&#039;, &#039;/(?&lt;=[:\[,])\s*(null)\b/&#039; =&gt; &#039; &lt;&#039; . self::NULL . &#039;&gt;$1&lt;/&#039; . self::NULL . &#039;&gt;&#039;, &#039;/(?&lt;=[:\[,])\s*(-?\d+\.?\d*)\b/&#039; =&gt; &#039; &lt;&#039; . self::NUMBER . &#039;&gt;$1&lt;/&#039; . self::NUMBER . &#039;&gt;&#039;]</span>
-</code>
-
-
-    
-        <section class="phpdocumentor-description"><p>Keys = regular expressions to match JSON tokens.
-Values = replacement strings with Symfony Console formatting tags.</p>
-</section>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="classes/oihana-commands-styles-JsonStyle.html#constant_PATTERNS#tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
@@ -699,7 +691,7 @@ Values = replacement strings with Symfony Console formatting tags.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">99</span>
+    <span class="phpdocumentor-element-found-in__line">107</span>
 
     </aside>
 
@@ -743,11 +735,11 @@ Values = replacement strings with Symfony Console formatting tags.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">64</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">JsonStyle constructor.</p>
+        <p class="phpdocumentor-summary">Initializes the style and applies JSON-specific formatting rules.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -756,9 +748,7 @@ Values = replacement strings with Symfony Console formatting tags.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>Initializes the style and applies JSON-specific formatting rules.</p>
-</section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1393,7 +1383,7 @@ $style-&gt;write([&quot;Done&quot;, &quot;Success&quot;], true);
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">190</span>
+    <span class="phpdocumentor-element-found-in__line">176</span>
 
     </aside>
 
@@ -1401,7 +1391,7 @@ $style-&gt;write([&quot;Done&quot;, &quot;Success&quot;], true);
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">writeJson</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$jsonOptions</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$verbosity</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">OutputInterface::VERBOSITY_NORMAL</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">writeJson</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$verbosity</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">OutputInterface::VERBOSITY_NORMAL</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1417,20 +1407,6 @@ $style-&gt;write([&quot;Done&quot;, &quot;Success&quot;], true);
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Any PHP data to encode into JSON.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$jsonOptions</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Options for <abbr title="\oihana\commands\styles\json_encode()">json_encode()</abbr>, defaults to:</p>
-<ul>
-<li><code class="prettyprint">JSON_PRETTY_PRINT</code></li>
-<li><code class="prettyprint">JSON_UNESCAPED_UNICODE</code></li>
-<li><code class="prettyprint">JSON_UNESCAPED_SLASHES</code></li>
-</ul>
 </section>
 
             </dd>
@@ -1556,11 +1532,11 @@ Defaults to <abbr title="\Symfony\Component\Console\Output\OutputInterface::VERB
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">155</span>
+    <span class="phpdocumentor-element-found-in__line">145</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Applies JSON syntax highlighting to the Symfony Console output formatter.</p>
+        <p class="phpdocumentor-summary">Applies JSON syntax highlighting styles to the Symfony Console output formatter.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -1635,6 +1611,75 @@ it returns the main output instance.</p>
                 <section class="phpdocumentor-description"><p>The error output interface.</p>
 </section>
 
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_formatRecursive">
+        formatRecursive()
+        <a href="classes/oihana-commands-styles-JsonStyle.html#method_formatRecursive" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">196</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Recursively formats PHP data into a colorized JSON string.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">formatRecursive</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$indent</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$seen</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The data to format.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$indent</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The current indentation level.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$seen</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>An array to track seen objects for circular reference detection.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
             </section>
 
 </article>
@@ -1754,12 +1799,12 @@ it returns the main output instance.</p>
                 <li>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/oihana-commands-styles-JsonStyle.html#constant_BOOL">BOOL</a></li>
+                                                    <li class=""><a href="classes/oihana-commands-styles-JsonStyle.html#constant_CIRCULAR">CIRCULAR</a></li>
                                                     <li class=""><a href="classes/oihana-commands-styles-JsonStyle.html#constant_KEY">KEY</a></li>
                                                     <li class=""><a href="classes/oihana-commands-styles-JsonStyle.html#constant_NULL">NULL</a></li>
                                                     <li class=""><a href="classes/oihana-commands-styles-JsonStyle.html#constant_NUMBER">NUMBER</a></li>
                                                     <li class=""><a href="classes/oihana-commands-styles-JsonStyle.html#constant_STRING">STRING</a></li>
                                                     <li class=""><a href="classes/oihana-commands-styles-JsonStyle.html#constant_DEFAULT_STYLES">DEFAULT_STYLES</a></li>
-                                                    <li class=""><a href="classes/oihana-commands-styles-JsonStyle.html#constant_PATTERNS">PATTERNS</a></li>
                                             </ul>
                 </li>
             
@@ -1790,6 +1835,7 @@ it returns the main output instance.</p>
                                             <li class=""><a href="classes/oihana-commands-styles-OutputStyle.html#method_writeln">writeln()</a></li>
                                             <li class=""><a href="classes/oihana-commands-styles-JsonStyle.html#method_applyJsonFormatter">applyJsonFormatter()</a></li>
                                             <li class=""><a href="classes/oihana-commands-styles-OutputStyle.html#method_getErrorOutput">getErrorOutput()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-styles-JsonStyle.html#method_formatRecursive">formatRecursive()</a></li>
                                     </ul>
             </li>
                     </ul>
