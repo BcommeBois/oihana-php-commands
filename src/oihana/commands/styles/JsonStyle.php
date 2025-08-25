@@ -4,6 +4,7 @@ namespace oihana\commands\styles;
 
 use JsonException;
 
+use JsonSerializable;
 use oihana\commands\enums\outputs\Palette;
 use oihana\commands\enums\outputs\ColorParam;
 use oihana\commands\enums\outputs\StyleOption;
@@ -11,6 +12,7 @@ use oihana\reflect\traits\ConstantsTrait;
 
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Output\OutputInterface;
+use function oihana\core\arrays\isAssociative;
 
 /**
  * A Symfony Console style helper for rendering JSON data with syntax highlighting.
@@ -72,6 +74,11 @@ class JsonStyle extends OutputStyle
     public const string BOOL = 'bool';
 
     /**
+     * @var string JSON style identifier for circulars.
+     */
+    public const string CIRCULAR = 'circular' ;
+
+    /**
      * @var string JSON style identifier for keys
      */
     public const string KEY = 'key';
@@ -117,6 +124,7 @@ class JsonStyle extends OutputStyle
      */
     private const array DEFAULT_STYLES =
     [
+        self::CIRCULAR => [ ColorParam::FOREGROUND => Palette::RED     , ColorParam::OPTIONS => [ StyleOption::BOLD ] ] ,
         self::KEY      => [ ColorParam::FOREGROUND => Palette::CYAN    , ColorParam::BACKGROUND => null , ColorParam::OPTIONS => [] ],
         self::STRING   => [ ColorParam::FOREGROUND => Palette::GREEN   , ColorParam::BACKGROUND => null , ColorParam::OPTIONS => [] ],
         self::NUMBER   => [ ColorParam::FOREGROUND => Palette::YELLOW  , ColorParam::BACKGROUND => null , ColorParam::OPTIONS => [] ],
@@ -200,53 +208,90 @@ class JsonStyle extends OutputStyle
             return;
         }
 
-        try
-        {
-            $json = json_encode($data, $jsonOptions | JSON_THROW_ON_ERROR);
+        $seen = [];
+        $output = $this->formatRecursive($data, 0, $seen);
+        $this->writeln($output);
+    }
+
+    /**
+     * Formate récursivement les données PHP en une chaîne JSON colorée.
+     *
+     * @param mixed $data   Les données à formater.
+     * @param int   $indent Le niveau d'indentation actuel.
+     * @param array $seen   Tableau pour détecter les références circulaires.
+     * @return string
+     */
+    private function formatRecursive(mixed $data, int $indent, array &$seen): string
+    {
+        $indentStr = str_repeat(' ', $indent);
+
+        // --- Cas de base (types primitifs) ---
+        if (is_null($data)) {
+            return '<' . self::NULL . '>null</' . self::NULL . '>';
         }
-        catch ( JsonException $e )
-        {
-            if ( $e->getCode() === JSON_ERROR_RECURSION )
-            {
-                $this->writeln('<' . self::NULL . '>[Circular Reference]</' . self::NULL . '>');
-            }
-            else
-            {
-                $this->writeln('<error>Failed to encode JSON: ' . $e->getMessage() . '</error>');
-            }
-            return;
+        if (is_bool($data)) {
+            return '<' . self::BOOL . '>' . ($data ? 'true' : 'false') . '</' . self::BOOL . '>';
         }
-
-        $styledJson = preg_replace_callback( '/"((?:[^"\\\\]|\\\\.)*)"(\s*:)?/s' , function ($matches)
-        {
-            // $matches[1] est le contenu de la chaîne.
-            // $matches[2] contient le ':' s'il existe.
-
-            if (isset($matches[2]))  // Si un ':' a été trouvé, c'est une clé.
-            {
-                $key = '"' . $matches[1] . '"';
-                return '<' . self::KEY . '>' . $key . '</' . self::KEY . '>' . $matches[2];
-            }
-            else  // Sinon, c'est une valeur de type chaîne.
-            {
-                $value = '"' . $matches[1] . '"';
-                return '<' . self::STRING . '>' . $value . '</' . self::STRING . '>';
-            }
+        if (is_numeric($data)) {
+            return '<' . self::NUMBER . '>' . $data . '</' . self::NUMBER . '>';
         }
-        , $json ) ;
-
-        $primitives =
-        [
-            '/\b(true|false)\b/'                      => '<' . self::BOOL . '>$1</' . self::BOOL . '>' ,
-            '/\b(null)\b/'                            => '<' . self::NULL . '>$1</' . self::NULL . '>' ,
-            '/(?<![a-zA-Z>"])\b(-?\d+\.?\d*)\b(?!")/' => '<' . self::NUMBER . '>$1</' . self::NUMBER . '>' ,
-        ];
-
-        foreach ( $primitives as $pattern => $replacement )
-        {
-            $styledJson = preg_replace($pattern, $replacement, $styledJson);
+        if (is_string($data)) {
+            // On utilise json_encode sur la chaîne seule pour gérer parfaitement l'échappement.
+            return '<' . self::STRING . '>' . json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</' . self::STRING . '>';
         }
 
-        $this->writeln($styledJson);
+        // --- Cas récursifs (tableaux et objets) ---
+        if (is_object($data)) {
+            $objectId = spl_object_id($data);
+            if (isset($seen[$objectId])) {
+                return '<' . self::CIRCULAR . '>[Circular Reference]</' . self::CIRCULAR . '>';
+            }
+            $seen[$objectId] = true;
+
+            if ($data instanceof JsonSerializable) {
+                $data = $data->jsonSerialize();
+            } else {
+                $data = (array) $data;
+            }
+        }
+
+        if (is_array($data)) {
+            if (empty($data)) {
+                return '[]';
+            }
+
+            $isAssoc = isAssociative($data);
+            $output  = $isAssoc ? "{\n" : "[\n" ;
+            $count   = count( $data ) ;
+
+            $i = 0 ;
+
+            foreach ($data as $key => $value)
+            {
+                $output .= str_repeat(' ', $indent + 4);
+                if ($isAssoc) {
+                    $output .= '<' . self::KEY . '>' . json_encode((string)$key) . '</' . self::KEY . '>: ';
+                }
+
+                $output .= $this->formatRecursive($value, $indent + 4, $seen);
+
+                if (++$i < $count) {
+                    $output .= ',';
+                }
+                $output .= "\n";
+            }
+
+            $output .= $indentStr . ($isAssoc ? '}' : ']');
+
+            // Si c'était un objet, on le retire du tableau $seen pour la suite de la récursion
+            if (isset($objectId)) {
+                unset($seen[$objectId]);
+            }
+
+            return $output;
+        }
+
+        // Cas d'un type non géré (ex: ressource)
+        return '<error>[Unsupported Type]</error>';
     }
 }

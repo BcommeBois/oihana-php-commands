@@ -30,11 +30,12 @@ class JsonStyleTest extends TestCase
         $output = $this->getOutputMock();
         $style  = new JsonStyle($output);
 
-        $data = [
-            'key' => 'value',
+        $data =
+        [
+            'key'    => 'value',
             'number' => 42,
-            'bool' => true,
-            'null' => null
+            'bool'   => true,
+            'null'   => null
         ];
 
         // Capture output via a custom callback
@@ -79,7 +80,7 @@ class JsonStyleTest extends TestCase
         $style->writeJson($resource);
         fclose($resource);
 
-        $this->assertStringContainsString('Failed to encode JSON', $captured);
+        $this->assertStringContainsString('<error>[Unsupported Type]</error>', $captured);
     }
 
     // --- Nouveaux tests ajoutés ---
