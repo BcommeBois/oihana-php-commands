@@ -121,81 +121,6 @@ Search.appendIndex(
             "summary": "The\u0020enumeration\u0020of\u0020the\u0020common\u0020command\u0027s\u0020parameters.",
             "url": "classes/oihana-commands-enums-CommandParam.html"
         },                {
-            "fqsen": "\\oihana\\commands\\enums\\CommandParam\u003A\u003ABATCH_SIZE",
-            "name": "BATCH_SIZE",
-            "summary": "The\u0020\u0027batchSize\u0027\u0020parameter.",
-            "url": "classes/oihana-commands-enums-CommandParam.html#constant_BATCH_SIZE"
-        },                {
-            "fqsen": "\\oihana\\commands\\enums\\CommandParam\u003A\u003ACLEARABLE",
-            "name": "CLEARABLE",
-            "summary": "The\u0020\u0027clearable\u0027\u0020parameter.",
-            "url": "classes/oihana-commands-enums-CommandParam.html#constant_CLEARABLE"
-        },                {
-            "fqsen": "\\oihana\\commands\\enums\\CommandParam\u003A\u003AACTIONS",
-            "name": "ACTIONS",
-            "summary": "The\u0020\u0027actions\u0027\u0020parameter.",
-            "url": "classes/oihana-commands-enums-CommandParam.html#constant_ACTIONS"
-        },                {
-            "fqsen": "\\oihana\\commands\\enums\\CommandParam\u003A\u003ACOMMAND",
-            "name": "COMMAND",
-            "summary": "The\u0020\u0027command\u0027\u0020parameter.",
-            "url": "classes/oihana-commands-enums-CommandParam.html#constant_COMMAND"
-        },                {
-            "fqsen": "\\oihana\\commands\\enums\\CommandParam\u003A\u003ACHOWN",
-            "name": "CHOWN",
-            "summary": "The\u0020\u0027chown\u0027\u0020parameter.",
-            "url": "classes/oihana-commands-enums-CommandParam.html#constant_CHOWN"
-        },                {
-            "fqsen": "\\oihana\\commands\\enums\\CommandParam\u003A\u003ACONFIG",
-            "name": "CONFIG",
-            "summary": "The\u0020\u0027config\u0027\u0020parameter.",
-            "url": "classes/oihana-commands-enums-CommandParam.html#constant_CONFIG"
-        },                {
-            "fqsen": "\\oihana\\commands\\enums\\CommandParam\u003A\u003ACONFIG_PATH",
-            "name": "CONFIG_PATH",
-            "summary": "The\u0020\u0027configPath\u0027\u0020parameter.",
-            "url": "classes/oihana-commands-enums-CommandParam.html#constant_CONFIG_PATH"
-        },                {
-            "fqsen": "\\oihana\\commands\\enums\\CommandParam\u003A\u003ADATABASE",
-            "name": "DATABASE",
-            "summary": "The\u0020\u0027database\u0027\u0020parameter.",
-            "url": "classes/oihana-commands-enums-CommandParam.html#constant_DATABASE"
-        },                {
-            "fqsen": "\\oihana\\commands\\enums\\CommandParam\u003A\u003ADESCRIPTION",
-            "name": "DESCRIPTION",
-            "summary": "The\u0020\u0027description\u0027\u0020parameter.",
-            "url": "classes/oihana-commands-enums-CommandParam.html#constant_DESCRIPTION"
-        },                {
-            "fqsen": "\\oihana\\commands\\enums\\CommandParam\u003A\u003AHELP",
-            "name": "HELP",
-            "summary": "The\u0020\u0027help\u0027\u0020parameter.",
-            "url": "classes/oihana-commands-enums-CommandParam.html#constant_HELP"
-        },                {
-            "fqsen": "\\oihana\\commands\\enums\\CommandParam\u003A\u003AID",
-            "name": "ID",
-            "summary": "The\u0020\u0027id\u0027\u0020parameter.",
-            "url": "classes/oihana-commands-enums-CommandParam.html#constant_ID"
-        },                {
-            "fqsen": "\\oihana\\commands\\enums\\CommandParam\u003A\u003AINFLECTOR",
-            "name": "INFLECTOR",
-            "summary": "The\u0020\u0027inflector\u0027\u0020parameter.",
-            "url": "classes/oihana-commands-enums-CommandParam.html#constant_INFLECTOR"
-        },                {
-            "fqsen": "\\oihana\\commands\\enums\\CommandParam\u003A\u003AJSON_OPTIONS",
-            "name": "JSON_OPTIONS",
-            "summary": "The\u0020\u0027jsonOptions\u0027\u0020parameter.",
-            "url": "classes/oihana-commands-enums-CommandParam.html#constant_JSON_OPTIONS"
-        },                {
-            "fqsen": "\\oihana\\commands\\enums\\CommandParam\u003A\u003AMYSQL_ROOT",
-            "name": "MYSQL_ROOT",
-            "summary": "The\u0020\u0027mysqlRoot\u0027\u0020parameter.",
-            "url": "classes/oihana-commands-enums-CommandParam.html#constant_MYSQL_ROOT"
-        },                {
-            "fqsen": "\\oihana\\commands\\enums\\CommandParam\u003A\u003ASERVER",
-            "name": "SERVER",
-            "summary": "The\u0020\u0027server\u0027\u0020parameter.",
-            "url": "classes/oihana-commands-enums-CommandParam.html#constant_SERVER"
-        },                {
             "fqsen": "\\oihana\\commands\\enums\\ExitCode",
             "name": "ExitCode",
             "summary": "Standard\u0020UNIX\u0020exit\u0020codes",
@@ -411,6 +336,106 @@ Search.appendIndex(
             "summary": "Signal\u0020code\u002Dto\u002Dname\u0020mapping.",
             "url": "classes/oihana-commands-enums-ExitCode.html#property_signalMap"
         },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\ColorParam",
+            "name": "ColorParam",
+            "summary": "Defines\u0020the\u0020available\u0020style\u0020attributes\u0020for\u0020Symfony\u0020Console\u0020output.",
+            "url": "classes/oihana-commands-enums-outputs-ColorParam.html"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\ColorParam\u003A\u003AFOREGROUND",
+            "name": "FOREGROUND",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-ColorParam.html#constant_FOREGROUND"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\ColorParam\u003A\u003ABACKGROUND",
+            "name": "BACKGROUND",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-ColorParam.html#constant_BACKGROUND"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\ColorParam\u003A\u003AOPTIONS",
+            "name": "OPTIONS",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-ColorParam.html#constant_OPTIONS"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\Palette",
+            "name": "Palette",
+            "summary": "Defines\u0020the\u0020available\u0020colors\u0020for\u0020Symfony\u0020Console\u0020output.",
+            "url": "classes/oihana-commands-enums-outputs-Palette.html"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\Palette\u003A\u003ABLACK",
+            "name": "BLACK",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-Palette.html#constant_BLACK"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\Palette\u003A\u003ABLUE",
+            "name": "BLUE",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-Palette.html#constant_BLUE"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\Palette\u003A\u003ACYAN",
+            "name": "CYAN",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-Palette.html#constant_CYAN"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\Palette\u003A\u003ADEFAULT",
+            "name": "DEFAULT",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-Palette.html#constant_DEFAULT"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\Palette\u003A\u003AGREEN",
+            "name": "GREEN",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-Palette.html#constant_GREEN"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\Palette\u003A\u003AMAGENTA",
+            "name": "MAGENTA",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-Palette.html#constant_MAGENTA"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\Palette\u003A\u003ARED",
+            "name": "RED",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-Palette.html#constant_RED"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\Palette\u003A\u003AYELLOW",
+            "name": "YELLOW",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-Palette.html#constant_YELLOW"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\Palette\u003A\u003AWHITE",
+            "name": "WHITE",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-Palette.html#constant_WHITE"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\StyleOption",
+            "name": "StyleOption",
+            "summary": "Defines\u0020the\u0020supported\u0020text\u0020formatting\u0020options\u0020for\u0020Symfony\u0020Console\u0020output.",
+            "url": "classes/oihana-commands-enums-outputs-StyleOption.html"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\StyleOption\u003A\u003ABLINK",
+            "name": "BLINK",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-StyleOption.html#constant_BLINK"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\StyleOption\u003A\u003ABOLD",
+            "name": "BOLD",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-StyleOption.html#constant_BOLD"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\StyleOption\u003A\u003ACONCEAL",
+            "name": "CONCEAL",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-StyleOption.html#constant_CONCEAL"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\StyleOption\u003A\u003AREVERSE",
+            "name": "REVERSE",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-StyleOption.html#constant_REVERSE"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\StyleOption\u003A\u003AUNDERSCORE",
+            "name": "UNDERSCORE",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-StyleOption.html#constant_UNDERSCORE"
+        },                {
             "fqsen": "\\oihana\\commands\\enums\\SystemCTLCommands",
             "name": "SystemCTLCommands",
             "summary": "Enumeration\u0020of\u0020common\u0020systemctl\u0020commands.",
@@ -535,6 +560,11 @@ Search.appendIndex(
             "name": "SYSTEM_CTL_UNMASK",
             "summary": "Reverses\u0020mask\u0020\u0028restores\u0020ability\u0020to\u0020start\u0029.",
             "url": "classes/oihana-commands-enums-SystemCTLCommands.html#constant_SYSTEM_CTL_UNMASK"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\traits\\CommandParamTrait",
+            "name": "CommandParamTrait",
+            "summary": "The\u0020enumeration\u0020of\u0020the\u0020common\u0020command\u0027s\u0020parameters.",
+            "url": "classes/oihana-commands-enums-traits-CommandParamTrait.html"
         },                {
             "fqsen": "\\oihana\\commands\\exceptions\\ExitException",
             "name": "ExitException",
@@ -791,6 +821,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/oihana-commands-options-CommandOption.html#constant_PASS_PHRASE"
         },                {
+            "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003AQUIET",
+            "name": "QUIET",
+            "summary": "",
+            "url": "classes/oihana-commands-options-CommandOption.html#constant_QUIET"
+        },                {
+            "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003ASILENT",
+            "name": "SILENT",
+            "summary": "",
+            "url": "classes/oihana-commands-options-CommandOption.html#constant_SILENT"
+        },                {
             "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003ASUDO",
             "name": "SUDO",
             "summary": "",
@@ -800,6 +840,11 @@ Search.appendIndex(
             "name": "OWNER",
             "summary": "",
             "url": "classes/oihana-commands-options-CommandOption.html#constant_OWNER"
+        },                {
+            "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003AVERSION",
+            "name": "VERSION",
+            "summary": "",
+            "url": "classes/oihana-commands-options-CommandOption.html#constant_VERSION"
         },                {
             "fqsen": "\\oihana\\commands\\options\\CommandOptions",
             "name": "CommandOptions",
@@ -990,6 +1035,151 @@ Search.appendIndex(
             "name": "status",
             "summary": "The\u0020exit\u0020status\u0020code\u0020\u00280\u0020for\u0020success\u0029.",
             "url": "classes/oihana-commands-Process.html#property_status"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\JsonStyle",
+            "name": "JsonStyle",
+            "summary": "Class\u0020JsonStyle",
+            "url": "classes/oihana-commands-styles-JsonStyle.html"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "JsonStyle\u0020constructor.",
+            "url": "classes/oihana-commands-styles-JsonStyle.html#method___construct"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003AapplyJsonFormatter\u0028\u0029",
+            "name": "applyJsonFormatter",
+            "summary": "Applies\u0020JSON\u0020syntax\u0020highlighting\u0020to\u0020the\u0020Symfony\u0020Console\u0020output\u0020formatter.",
+            "url": "classes/oihana-commands-styles-JsonStyle.html#method_applyJsonFormatter"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003AwriteJson\u0028\u0029",
+            "name": "writeJson",
+            "summary": "Writes\u0020JSON\u0020data\u0020to\u0020the\u0020console\u0020with\u0020syntax\u0020highlighting.",
+            "url": "classes/oihana-commands-styles-JsonStyle.html#method_writeJson"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003ABOOL",
+            "name": "BOOL",
+            "summary": "",
+            "url": "classes/oihana-commands-styles-JsonStyle.html#constant_BOOL"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003AKEY",
+            "name": "KEY",
+            "summary": "",
+            "url": "classes/oihana-commands-styles-JsonStyle.html#constant_KEY"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003ANULL",
+            "name": "NULL",
+            "summary": "",
+            "url": "classes/oihana-commands-styles-JsonStyle.html#constant_NULL"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003ANUMBER",
+            "name": "NUMBER",
+            "summary": "",
+            "url": "classes/oihana-commands-styles-JsonStyle.html#constant_NUMBER"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003ASTRING",
+            "name": "STRING",
+            "summary": "",
+            "url": "classes/oihana-commands-styles-JsonStyle.html#constant_STRING"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003ADEFAULT_STYLES",
+            "name": "DEFAULT_STYLES",
+            "summary": "Default\u0020color\u0020styles\u0020for\u0020JSON\u0020highlighting.",
+            "url": "classes/oihana-commands-styles-JsonStyle.html#constant_DEFAULT_STYLES"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003APATTERNS",
+            "name": "PATTERNS",
+            "summary": "Regex\u0020patterns\u0020for\u0020JSON\u0020syntax\u0020highlighting.",
+            "url": "classes/oihana-commands-styles-JsonStyle.html#constant_PATTERNS"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003A\u0024output",
+            "name": "output",
+            "summary": "The\u0020underlying\u0020Symfony\u0020console\u0020output\u0020interface.",
+            "url": "classes/oihana-commands-styles-JsonStyle.html#property_output"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\OutputStyle",
+            "name": "OutputStyle",
+            "summary": "Abstract\u0020base\u0020helper\u0020for\u0020extending\u0020Symfony\u0020Console\u0020output\u0020styles.",
+            "url": "classes/oihana-commands-styles-OutputStyle.html"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Creates\u0020a\u0020new\u0020OutputStyle\u0020instance.",
+            "url": "classes/oihana-commands-styles-OutputStyle.html#method___construct"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003AgetFormatter\u0028\u0029",
+            "name": "getFormatter",
+            "summary": "Returns\u0020the\u0020current\u0020output\u0020formatter.",
+            "url": "classes/oihana-commands-styles-OutputStyle.html#method_getFormatter"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003AgetVerbosity\u0028\u0029",
+            "name": "getVerbosity",
+            "summary": "Gets\u0020the\u0020current\u0020verbosity\u0020level.",
+            "url": "classes/oihana-commands-styles-OutputStyle.html#method_getVerbosity"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003AisDebug\u0028\u0029",
+            "name": "isDebug",
+            "summary": "Checks\u0020whether\u0020the\u0020output\u0020is\u0020in\u0020debug\u0020mode.",
+            "url": "classes/oihana-commands-styles-OutputStyle.html#method_isDebug"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003AisDecorated\u0028\u0029",
+            "name": "isDecorated",
+            "summary": "Checks\u0020whether\u0020ANSI\u0020output\u0020decoration\u0020is\u0020enabled.",
+            "url": "classes/oihana-commands-styles-OutputStyle.html#method_isDecorated"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003AisSilent\u0028\u0029",
+            "name": "isSilent",
+            "summary": "Checks\u0020whether\u0020the\u0020output\u0020is\u0020completely\u0020silent.",
+            "url": "classes/oihana-commands-styles-OutputStyle.html#method_isSilent"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003AisQuiet\u0028\u0029",
+            "name": "isQuiet",
+            "summary": "Checks\u0020whether\u0020the\u0020verbosity\u0020level\u0020is\u0020quiet.",
+            "url": "classes/oihana-commands-styles-OutputStyle.html#method_isQuiet"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003AisVerbose\u0028\u0029",
+            "name": "isVerbose",
+            "summary": "Checks\u0020whether\u0020the\u0020verbosity\u0020level\u0020is\u0020verbose.",
+            "url": "classes/oihana-commands-styles-OutputStyle.html#method_isVerbose"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003AisVeryVerbose\u0028\u0029",
+            "name": "isVeryVerbose",
+            "summary": "Checks\u0020whether\u0020the\u0020verbosity\u0020level\u0020is\u0020very\u0020verbose.",
+            "url": "classes/oihana-commands-styles-OutputStyle.html#method_isVeryVerbose"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003AsetDecorated\u0028\u0029",
+            "name": "setDecorated",
+            "summary": "Enables\u0020or\u0020disables\u0020ANSI\u0020output\u0020decoration.",
+            "url": "classes/oihana-commands-styles-OutputStyle.html#method_setDecorated"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003AsetFormatter\u0028\u0029",
+            "name": "setFormatter",
+            "summary": "Sets\u0020the\u0020output\u0020formatter.",
+            "url": "classes/oihana-commands-styles-OutputStyle.html#method_setFormatter"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003AsetVerbosity\u0028\u0029",
+            "name": "setVerbosity",
+            "summary": "Sets\u0020the\u0020current\u0020verbosity\u0020level.",
+            "url": "classes/oihana-commands-styles-OutputStyle.html#method_setVerbosity"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003Awrite\u0028\u0029",
+            "name": "write",
+            "summary": "Writes\u0020a\u0020message\u0020or\u0020a\u0020set\u0020of\u0020messages\u0020to\u0020the\u0020console.",
+            "url": "classes/oihana-commands-styles-OutputStyle.html#method_write"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003Awriteln\u0028\u0029",
+            "name": "writeln",
+            "summary": "Writes\u0020a\u0020message\u0020or\u0020a\u0020set\u0020of\u0020messages\u0020followed\u0020by\u0020a\u0020new\u0020line.",
+            "url": "classes/oihana-commands-styles-OutputStyle.html#method_writeln"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003AgetErrorOutput\u0028\u0029",
+            "name": "getErrorOutput",
+            "summary": "Returns\u0020the\u0020error\u0020output\u0020stream.",
+            "url": "classes/oihana-commands-styles-OutputStyle.html#method_getErrorOutput"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003A\u0024output",
+            "name": "output",
+            "summary": "The\u0020underlying\u0020Symfony\u0020Console\u0020output\u0020interface.",
+            "url": "classes/oihana-commands-styles-OutputStyle.html#property_output"
         },                {
             "fqsen": "\\oihana\\commands\\traits\\ChownTrait",
             "name": "ChownTrait",
@@ -1216,6 +1406,21 @@ Search.appendIndex(
             "summary": "The\u0020command\u0020writer.",
             "url": "classes/oihana-commands-traits-IOTrait.html#property_io"
         },                {
+            "fqsen": "\\oihana\\commands\\traits\\JsonStyleTrait",
+            "name": "JsonStyleTrait",
+            "summary": "Provides\u0020a\u0020reusable\u0020helper\u0020for\u0020creating\u0020and\u0020accessing\u0020a\u0020\u007B\u0040see\u0020JsonStyle\u007D\u0020instance.",
+            "url": "classes/oihana-commands-traits-JsonStyleTrait.html"
+        },                {
+            "fqsen": "\\oihana\\commands\\traits\\JsonStyleTrait\u003A\u003AgetJson\u0028\u0029",
+            "name": "getJson",
+            "summary": "Returns\u0020the\u0020\u007B\u0040see\u0020JsonStyle\u007D\u0020instance.",
+            "url": "classes/oihana-commands-traits-JsonStyleTrait.html#method_getJson"
+        },                {
+            "fqsen": "\\oihana\\commands\\traits\\JsonStyleTrait\u003A\u003A\u0024json",
+            "name": "json",
+            "summary": "The\u0020cached\u0020\u007B\u0040see\u0020JsonStyle\u007D\u0020instance.",
+            "url": "classes/oihana-commands-traits-JsonStyleTrait.html#property_json"
+        },                {
             "fqsen": "\\oihana\\commands\\traits\\LifecycleTrait",
             "name": "LifecycleTrait",
             "summary": "Provides\u0020helper\u0020methods\u0020to\u0020manage\u0020the\u0020lifecycle\u0020of\u0020console\u0020commands.",
@@ -1316,6 +1521,16 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/oihana-commands-enums.html"
         },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs",
+            "name": "outputs",
+            "summary": "",
+            "url": "namespaces/oihana-commands-enums-outputs.html"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\traits",
+            "name": "traits",
+            "summary": "",
+            "url": "namespaces/oihana-commands-enums-traits.html"
+        },                {
             "fqsen": "\\oihana\\commands\\exceptions",
             "name": "exceptions",
             "summary": "",
@@ -1355,6 +1570,11 @@ Search.appendIndex(
             "name": "options",
             "summary": "",
             "url": "namespaces/oihana-commands-options.html"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles",
+            "name": "styles",
+            "summary": "",
+            "url": "namespaces/oihana-commands-styles.html"
         },                {
             "fqsen": "\\oihana\\commands\\traits",
             "name": "traits",
