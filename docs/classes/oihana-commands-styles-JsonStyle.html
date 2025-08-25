@@ -245,7 +245,7 @@ $style-&gt;writeJson
             <dt class="phpdocumentor-table-of-contents__entry -constant -private">
     <a class="" href="classes/oihana-commands-styles-JsonStyle.html#constant_PATTERNS">PATTERNS</a>
     <span>
-        &nbsp;= [&#039;/&quot;(.*?)&quot;:/&#039; =&gt; &quot;&lt;&quot; . self::KEY . &quot;&gt;\&quot;\$1\&quot;&lt;/&quot; . self::KEY . &quot;&gt;:&quot;, &#039;/: &quot;(.*?)&quot;/&#039; =&gt; &#039;: &lt;&#039; . self::STRING . &#039;&gt;&quot;$1&quot;&lt;/&#039; . self::STRING . &#039;&gt;&#039;, &#039;/\b(true|false)\b/&#039; =&gt; &#039;&lt;&#039; . self::BOOL . &#039;&gt;$1&lt;/&#039; . self::BOOL . &#039;&gt;&#039;, &#039;/\b(null)\b/&#039; =&gt; &#039;&lt;&#039; . self::NULL . &#039;&gt;$1&lt;/&#039; . self::NULL . &#039;&gt;&#039;, &#039;/\b(-?\d+\.?\d*)\b/&#039; =&gt; &#039;&lt;&#039; . self::NUMBER . &#039;&gt;$1&lt;/&#039; . self::NUMBER . &#039;&gt;&#039;]                            </span>
+        &nbsp;= [&#039;/&quot;(.*?)&quot;:/&#039; =&gt; &quot;&lt;&quot; . self::KEY . &quot;&gt;\&quot;\$1\&quot;&lt;/&quot; . self::KEY . &quot;&gt;:&quot;, &#039;/: &quot;(.*?)&quot;/&#039; =&gt; &#039;: &lt;&#039; . self::STRING . &#039;&gt;&quot;$1&quot;&lt;/&#039; . self::STRING . &#039;&gt;&#039;, &#039;/(?&lt;=[:\[,])\s*(true|false)\b/&#039; =&gt; &#039; &lt;&#039; . self::BOOL . &#039;&gt;$1&lt;/&#039; . self::BOOL . &#039;&gt;&#039;, &#039;/(?&lt;=[:\[,])\s*(null)\b/&#039; =&gt; &#039; &lt;&#039; . self::NULL . &#039;&gt;$1&lt;/&#039; . self::NULL . &#039;&gt;&#039;, &#039;/(?&lt;=[:\[,])\s*(-?\d+\.?\d*)\b/&#039; =&gt; &#039; &lt;&#039; . self::NUMBER . &#039;&gt;$1&lt;/&#039; . self::NUMBER . &#039;&gt;&#039;]                            </span>
 </dt>
 <dd>Regex patterns for JSON syntax highlighting.</dd>
 
@@ -645,7 +645,7 @@ $style-&gt;writeJson
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">array&lt;string, string&gt;</span>
     <span class="phpdocumentor-signature__name">PATTERNS</span>
-    = <span class="phpdocumentor-signature__default-value">[&#039;/&quot;(.*?)&quot;:/&#039; =&gt; &quot;&lt;&quot; . self::KEY . &quot;&gt;\&quot;\$1\&quot;&lt;/&quot; . self::KEY . &quot;&gt;:&quot;, &#039;/: &quot;(.*?)&quot;/&#039; =&gt; &#039;: &lt;&#039; . self::STRING . &#039;&gt;&quot;$1&quot;&lt;/&#039; . self::STRING . &#039;&gt;&#039;, &#039;/\b(true|false)\b/&#039; =&gt; &#039;&lt;&#039; . self::BOOL . &#039;&gt;$1&lt;/&#039; . self::BOOL . &#039;&gt;&#039;, &#039;/\b(null)\b/&#039; =&gt; &#039;&lt;&#039; . self::NULL . &#039;&gt;$1&lt;/&#039; . self::NULL . &#039;&gt;&#039;, &#039;/\b(-?\d+\.?\d*)\b/&#039; =&gt; &#039;&lt;&#039; . self::NUMBER . &#039;&gt;$1&lt;/&#039; . self::NUMBER . &#039;&gt;&#039;]</span>
+    = <span class="phpdocumentor-signature__default-value">[&#039;/&quot;(.*?)&quot;:/&#039; =&gt; &quot;&lt;&quot; . self::KEY . &quot;&gt;\&quot;\$1\&quot;&lt;/&quot; . self::KEY . &quot;&gt;:&quot;, &#039;/: &quot;(.*?)&quot;/&#039; =&gt; &#039;: &lt;&#039; . self::STRING . &#039;&gt;&quot;$1&quot;&lt;/&#039; . self::STRING . &#039;&gt;&#039;, &#039;/(?&lt;=[:\[,])\s*(true|false)\b/&#039; =&gt; &#039; &lt;&#039; . self::BOOL . &#039;&gt;$1&lt;/&#039; . self::BOOL . &#039;&gt;&#039;, &#039;/(?&lt;=[:\[,])\s*(null)\b/&#039; =&gt; &#039; &lt;&#039; . self::NULL . &#039;&gt;$1&lt;/&#039; . self::NULL . &#039;&gt;&#039;, &#039;/(?&lt;=[:\[,])\s*(-?\d+\.?\d*)\b/&#039; =&gt; &#039; &lt;&#039; . self::NUMBER . &#039;&gt;$1&lt;/&#039; . self::NUMBER . &#039;&gt;&#039;]</span>
 </code>
 
 
@@ -1393,7 +1393,7 @@ $style-&gt;write([&quot;Done&quot;, &quot;Success&quot;], true);
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">189</span>
+    <span class="phpdocumentor-element-found-in__line">190</span>
 
     </aside>
 
@@ -1556,7 +1556,7 @@ Defaults to <abbr title="\Symfony\Component\Console\Output\OutputInterface::VERB
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">154</span>
+    <span class="phpdocumentor-element-found-in__line">155</span>
 
     </aside>
 

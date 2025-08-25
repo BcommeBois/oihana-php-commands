@@ -135,11 +135,12 @@ class JsonStyle extends OutputStyle
      */
     private const array PATTERNS =
    [
-       '/"(.*?)":/'          => "<"   . self::KEY    . ">\"$1\"</" . self::KEY    . ">:",
-       '/: "(.*?)"/'         => ': <' . self::STRING . '>"$1"</'   . self::STRING . '>',
-       '/\b(true|false)\b/'  => '<'   . self::BOOL   . '>$1</'     . self::BOOL   . '>',
-       '/\b(null)\b/'        => '<'   . self::NULL   . '>$1</'     . self::NULL   . '>',
-       '/\b(-?\d+\.?\d*)\b/' => '<'   . self::NUMBER . '>$1</'     . self::NUMBER . '>',
+       '/"(.*?)":/'  => "<"   . self::KEY    . ">\"$1\"</" . self::KEY    . ">:" ,
+       '/: "(.*?)"/' => ': <' . self::STRING . '>"$1"</'   . self::STRING . '>'  ,
+
+       '/(?<=[:\[,])\s*(true|false)\b/'  => ' <' . self::BOOL   . '>$1</' . self::BOOL   . '>',
+       '/(?<=[:\[,])\s*(null)\b/'        => ' <' . self::NULL   . '>$1</' . self::NULL   . '>',
+       '/(?<=[:\[,])\s*(-?\d+\.?\d*)\b/' => ' <' . self::NUMBER . '>$1</' . self::NUMBER . '>',
    ];
 
     /**
