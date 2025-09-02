@@ -133,6 +133,28 @@ abstract class OutputStyle
     }
 
     /**
+     * Outputs one or more blank lines to the console.
+     *
+     * This is a shorthand utility for adding visual separation between different parts of the output.
+     * It simply writes the specified number of newline characters (`PHP_EOL`)
+     * to the underlying output stream.
+     *
+     * @param int $count The number of new lines to output. Defaults to `1`.
+     *
+     * @return void
+     *
+     * @example
+     * ```php
+     * $style->newLine() ;  // Outputs 1 blank line.
+     * $style->newLine(3) ; // Outputs 3 blank lines.
+     * ```
+     */
+    public function newLine( int $count = 1 ): void
+    {
+        $this->output->write( str_repeat(PHP_EOL , $count ) ) ;
+    }
+
+    /**
      * Enables or disables ANSI output decoration.
      *
      * @param bool $decorated `true` to enable decoration, `false` to disable it.
@@ -185,7 +207,7 @@ abstract class OutputStyle
      */
     public function write(string|iterable $messages, bool $newline = false, int $type = OutputInterface::OUTPUT_NORMAL): void
     {
-        $this->output->write($messages, $newline, $type);
+        $this->output->write( $messages , $newline , $type ) ;
     }
 
     /**

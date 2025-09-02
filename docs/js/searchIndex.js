@@ -1151,6 +1151,11 @@ Search.appendIndex(
             "summary": "Checks\u0020whether\u0020the\u0020verbosity\u0020level\u0020is\u0020very\u0020verbose.",
             "url": "classes/oihana-commands-styles-OutputStyle.html#method_isVeryVerbose"
         },                {
+            "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003AnewLine\u0028\u0029",
+            "name": "newLine",
+            "summary": "Outputs\u0020one\u0020or\u0020more\u0020blank\u0020lines\u0020to\u0020the\u0020console.",
+            "url": "classes/oihana-commands-styles-OutputStyle.html#method_newLine"
+        },                {
             "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003AsetDecorated\u0028\u0029",
             "name": "setDecorated",
             "summary": "Enables\u0020or\u0020disables\u0020ANSI\u0020output\u0020decoration.",

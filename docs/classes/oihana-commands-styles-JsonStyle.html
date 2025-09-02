@@ -338,6 +338,13 @@ $style-&gt;writeJson
 <dd>Checks whether the verbosity level is very verbose.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/oihana-commands-styles-OutputStyle.html#method_newLine">newLine()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Outputs one or more blank lines to the console.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-styles-OutputStyle.html#method_setDecorated">setDecorated()</a>
     <span>
                                 &nbsp;: void    </span>
@@ -1151,6 +1158,75 @@ $style-&gt;writeJson
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_newLine">
+        newLine()
+        <a href="classes/oihana-commands-styles-OutputStyle.html#method_newLine" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">152</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Outputs one or more blank lines to the console.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">newLine</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$count</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">1</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>This is a shorthand utility for adding visual separation between different parts of the output.
+It simply writes the specified number of newline characters (<code class="prettyprint">PHP_EOL</code>)
+to the underlying output stream.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$count</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">1</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The number of new lines to output. Defaults to <code class="prettyprint">1</code>.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/oihana-commands-styles-OutputStyle.html#method_newLine#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">example</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><pre class="prettyprint"><code class="language-php">$style-&gt;newLine() ;  // Outputs 1 blank line.
+$style-&gt;newLine(3) ; // Outputs 3 blank lines.
+</code></pre>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_setDecorated">
         setDecorated()
         <a href="classes/oihana-commands-styles-OutputStyle.html#method_setDecorated" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1159,7 +1235,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">142</span>
+    <span class="phpdocumentor-element-found-in__line">164</span>
 
     </aside>
 
@@ -1206,7 +1282,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">154</span>
+    <span class="phpdocumentor-element-found-in__line">176</span>
 
     </aside>
 
@@ -1253,7 +1329,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">166</span>
+    <span class="phpdocumentor-element-found-in__line">188</span>
 
     </aside>
 
@@ -1300,7 +1376,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">186</span>
+    <span class="phpdocumentor-element-found-in__line">208</span>
 
     </aside>
 
@@ -1459,7 +1535,7 @@ Defaults to <abbr title="\Symfony\Component\Console\Output\OutputInterface::VERB
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">204</span>
+    <span class="phpdocumentor-element-found-in__line">226</span>
 
     </aside>
 
@@ -1581,7 +1657,7 @@ Defaults to <abbr title="\Symfony\Component\Console\Output\OutputInterface::VERB
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">218</span>
+    <span class="phpdocumentor-element-found-in__line">240</span>
 
     </aside>
 
@@ -1827,6 +1903,7 @@ it returns the main output instance.</p>
                                             <li class=""><a href="classes/oihana-commands-styles-OutputStyle.html#method_isSilent">isSilent()</a></li>
                                             <li class=""><a href="classes/oihana-commands-styles-OutputStyle.html#method_isVerbose">isVerbose()</a></li>
                                             <li class=""><a href="classes/oihana-commands-styles-OutputStyle.html#method_isVeryVerbose">isVeryVerbose()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-styles-OutputStyle.html#method_newLine">newLine()</a></li>
                                             <li class=""><a href="classes/oihana-commands-styles-OutputStyle.html#method_setDecorated">setDecorated()</a></li>
                                             <li class=""><a href="classes/oihana-commands-styles-OutputStyle.html#method_setFormatter">setFormatter()</a></li>
                                             <li class=""><a href="classes/oihana-commands-styles-OutputStyle.html#method_setVerbosity">setVerbosity()</a></li>
