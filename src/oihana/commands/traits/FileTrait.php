@@ -12,11 +12,22 @@ use function oihana\commands\helpers\escapeForPrintf;
 use function oihana\files\assertFile;
 
 /**
- * The trait to manage files.
+ * Manages file system operations using shell commands.
+ *
+ * This trait encapsulates common file operations, such as creating and deleting files,
+ * by executing underlying system commands (e.g., `rm`, `mkdir`, `tee`). It is designed
+ * to be used in contexts where command-line interaction is preferred or necessary,
+ * for instance, to handle complex permissions or to execute commands with elevated
+ * privileges (`sudo`).
+ *
+ * It relies on the `CommandTrait` for command execution, thereby inheriting features
+ * like `sudo` support, `dryRun` mode for testing, and verbosity control.
  *
  * @package oihana\commands\traits
  * @author  Marc Alcaraz (ekameleon)
  * @since   1.0.0
+ * 
+ * @see CommandTrait
  */
 trait FileTrait
 {
