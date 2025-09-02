@@ -2,6 +2,7 @@
 
 namespace oihana\commands\styles;
 
+use Generator;
 use JsonSerializable;
 
 use oihana\commands\enums\outputs\Palette;
@@ -158,6 +159,57 @@ class JsonStyle extends OutputStyle
     }
 
     /**
+     * Gets the fully formatted and colorized JSON as a single string.
+     *
+     * @param mixed $data The data to format.
+     * @return string     The formatted JSON string.
+     */
+    public function getFormattedJson( mixed $data ): string
+    {
+        $seen = [] ;
+        $generator = $this->formatJsonAsGenerator( $data , 0 , $seen ) ;
+        return implode('' , iterator_to_array( $generator , false ) ) ;
+    }
+
+    /**
+     * Writes JSON data to the console using a streaming approach.
+     *
+     * This method formats and writes the JSON output piece by piece directly
+     * to the output stream, avoiding buffering the entire string in memory.
+     * This makes it suitable for rendering very large data structures without
+     * exhausting the memory limit.
+     *
+     * @param mixed $data      The data to encode and write as JSON.
+     * @param int   $verbosity The minimum verbosity level required to display the output.
+     *                         Defaults to OutputInterface::VERBOSITY_NORMAL.
+     *
+     * @return static Returns the instance for method chaining.
+     *
+     * @example
+     * ```php
+     * $style->streamWriteJson(['user' => 'John Doe', 'id' => 123]);
+     * ```
+     */
+    public function streamWriteJson(mixed $data, int $verbosity = OutputInterface::VERBOSITY_NORMAL): static
+    {
+        if ( $this->getVerbosity() < $verbosity )
+        {
+            return $this;
+        }
+
+        $seen = [];
+
+        foreach ( $this->formatJsonAsGenerator( $data , 0 , $seen ) as $chunk )
+        {
+            $this->write($chunk) ;
+        }
+
+        $this->newLine() ; // Final newline
+        
+        return $this;
+    }
+
+    /**
      * Writes JSON data to the console with syntax highlighting.
      *
      * Encodes data to JSON, applies coloring rules, and writes to the console output.
@@ -175,114 +227,109 @@ class JsonStyle extends OutputStyle
      */
     public function writeJson( mixed $data , int $verbosity = OutputInterface::VERBOSITY_NORMAL ) :static
     {
-        if ( $this->getVerbosity() < $verbosity )
+        if ( $this->getVerbosity() >= $verbosity )
         {
-            return $this ;
+            $this->writeln( $this->getFormattedJson( $data ) ) ;
         }
-
-        $seen = [];
-        $output = $this->formatRecursive($data, 0, $seen);
-        $this->writeln($output);
-        return $this ;
+        return $this;
     }
 
     /**
-     * Recursively formats PHP data into a colorized JSON string.
+     * Recursively formats PHP data, yielding each formatted chunk.
      *
-     * @param mixed $data   The data to format.
-     * @param int   $indent The current indentation level.
-     * @param array $seen   An array to track seen objects for circular reference detection.
-     * @return string
+     * This private generator is the core of the formatting logic. It traverses
+     * the data and yields pieces of the formatted string, allowing the caller
+     * to either stream them or buffer them.
+     *
+     * @param mixed      $data   The data to format.
+     * @param int        $indent The current indentation level.
+     * @param array      &$seen  Array for circular reference detection.
+     * @return Generator<string>
      */
-    private function formatRecursive( mixed $data, int $indent, array &$seen ): string
+    private function formatJsonAsGenerator( mixed $data , int $indent , array &$seen ) :Generator
     {
-        $indentStr = str_repeat(' ' , $indent ) ;
-
         // --- Base cases (primitive types) ---
 
-        if (is_null($data)) {
-            return '<' . self::NULL . '>null</' . self::NULL . '>';
+        if ( is_null( $data ) )
+        {
+            yield '<' . self::NULL . '>null</' . self::NULL . '>';
+            return;
         }
 
         if ( is_bool( $data ) )
         {
-            return '<' . self::BOOL . '>' . ($data ? 'true' : 'false') . '</' . self::BOOL . '>';
+            yield '<' . self::BOOL . '>' . ($data ? 'true' : 'false') . '</' . self::BOOL . '>';
+            return;
         }
 
         if ( is_numeric( $data ) )
         {
-            return '<' . self::NUMBER . '>' . $data . '</' . self::NUMBER . '>';
+            yield '<' . self::NUMBER . '>' . $data . '</' . self::NUMBER . '>';
+            return;
         }
 
         if ( is_string( $data ) )
         {
-            // Use json_encode on the string itself to handle escaping perfectly.
-            return '<' . self::STRING . '>' . json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</' . self::STRING . '>';
+            yield '<' . self::STRING . '>' . json_encode( $data , JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . '</' . self::STRING . '>' ;
+            return;
         }
 
         // --- Recursive cases (arrays and objects) ---
-
         if ( is_object( $data ) )
         {
             $objectId = spl_object_id( $data ) ;
             if ( isset( $seen[ $objectId ] ) )
             {
-                return '<' . self::CIRCULAR . '>[Circular Reference]</' . self::CIRCULAR . '>';
+                yield '<' . self::CIRCULAR . '>[Circular Reference]</' . self::CIRCULAR . '>' ;
+                return;
             }
             $seen[ $objectId ] = true ;
-            if ($data instanceof JsonSerializable)
-            {
-                $data = $data->jsonSerialize();
-            }
-            else
-            {
-                $data = (array) $data;
-            }
+            $data = $data instanceof JsonSerializable ? $data->jsonSerialize() : (array) $data ;
         }
 
         if ( is_array( $data ) )
         {
             if ( empty( $data ) )
             {
-                return '[]' ;
+                yield '[]';
+                return;
             }
 
             $isAssoc = isAssociative($data);
-            $output  = $isAssoc ? "{\n" : "[\n" ;
-            $count   = count( $data ) ;
+            yield $isAssoc ? "{\n" : "[\n";
 
-            $i = 0 ;
+            $count = count($data);
+            $i = 0;
 
-            foreach ($data as $key => $value)
+            foreach ( $data as $key => $value )
             {
-                $output .= str_repeat(' ' , $indent + 4 ) ;
+                yield str_repeat(' ', $indent + 4 ) ;
+
                 if ( $isAssoc )
                 {
-                    $output .= '<' . self::KEY . '>' . json_encode((string)$key) . '</' . self::KEY . '>: ' ;
+                    yield '<' . self::KEY . '>' . json_encode((string)$key) . '</' . self::KEY . '>: ' ;
                 }
 
-                $output .= $this->formatRecursive( $value , $indent + 4 , $seen ) ;
+                // Delegate generation to the recursive call
+                yield from $this->formatJsonAsGenerator( $value , $indent + 4 , $seen ) ;
 
                 if ( ++$i < $count )
                 {
-                    $output .= ',' ;
+                    yield ',' ;
                 }
-                $output .= "\n" ;
+                yield "\n" ;
             }
 
-            $output .= $indentStr . ( $isAssoc ? '}' : ']' ) ;
+            yield str_repeat(' ' , $indent ) . ($isAssoc ? '}' : ']' ) ;
 
-            // If it was an object, remove it from the seen array to allow the same object
-            // to be rendered again in a different part of the data structure.
             if ( isset( $objectId ) )
             {
                 unset( $seen[ $objectId ] ) ;
             }
 
-            return $output ;
+            return ;
         }
 
-        // Handle unsupported types (e.g., resources).
-        return '<error>[Unsupported Type]</error>';
+        yield '<error>[Unsupported Type]</error>' ;
     }
 }
