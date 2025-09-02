@@ -7,7 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## [Unreleased]
 
 ### Added
+
 - oihana\commands\exceptions\MissingPassphraseException class
+- oihana\commands\style\JsonStyle class
+- oihana\commands\style\OutputStyle class
 
 ## [1.0.3] - 2025-08-13
 
