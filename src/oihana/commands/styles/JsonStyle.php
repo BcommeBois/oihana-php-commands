@@ -172,49 +172,18 @@ class JsonStyle extends OutputStyle
     }
 
     /**
-     * Writes JSON data to the console using a streaming approach.
-     *
-     * This method formats and writes the JSON output piece by piece directly
-     * to the output stream, avoiding buffering the entire string in memory.
-     * This makes it suitable for rendering very large data structures without
-     * exhausting the memory limit.
-     *
-     * @param mixed $data      The data to encode and write as JSON.
-     * @param int   $verbosity The minimum verbosity level required to display the output.
-     *                         Defaults to OutputInterface::VERBOSITY_NORMAL.
-     *
-     * @return static Returns the instance for method chaining.
-     *
-     * @example
-     * ```php
-     * $style->streamWriteJson(['user' => 'John Doe', 'id' => 123]);
-     * ```
-     */
-    public function streamWriteJson(mixed $data, int $verbosity = OutputInterface::VERBOSITY_NORMAL): static
-    {
-        if ( $this->getVerbosity() < $verbosity )
-        {
-            return $this;
-        }
-
-        $seen = [];
-
-        foreach ( $this->formatJsonAsGenerator( $data , 0 , $seen ) as $chunk )
-        {
-            $this->write($chunk) ;
-        }
-
-        $this->newLine() ; // Final newline
-
-        return $this;
-    }
-
-    /**
      * Writes JSON data to the console with syntax highlighting.
      *
      * Encodes data to JSON, applies coloring rules, and writes to the console output.
      *
+     * This method can operate in two modes:
+     * 1. Streaming (default): Writes data piece by piece, ensuring low and
+     * constant memory usage. Ideal for large or unknown-size data.
+     * 2. Buffering: Formats the entire string in memory before output.
+     * Only use this for small, size-controlled data.
+     *
      * @param mixed $data      Any PHP data to encode into JSON.
+     * @param bool  $stream    Whether to use the memory-efficient streaming mode. Defaults to true.
      * @param int   $verbosity Minimum verbosity level required to output.
      *                         Defaults to {@see OutputInterface::VERBOSITY_NORMAL}.
      *
@@ -225,12 +194,36 @@ class JsonStyle extends OutputStyle
      * $style->writeJson(['hello' => 'world', 'count' => 5]);
      * ```
      */
-    public function writeJson( mixed $data , int $verbosity = OutputInterface::VERBOSITY_NORMAL ) :static
+    public function writeJson
+    (
+        mixed $data ,
+        bool  $stream    = true,
+        int   $verbosity = OutputInterface::VERBOSITY_NORMAL
+    )
+    :static
     {
-        if ( $this->getVerbosity() >= $verbosity )
+        if ( $this->getVerbosity() < $verbosity )
         {
-            $this->writeln( $this->getFormattedJson( $data ) ) ;
+            return $this ;
         }
+
+        $seen = [];
+
+        if ( $stream )
+        {
+            // --- Streaming Mode (Low memory) ---
+            foreach ($this->formatJsonAsGenerator($data, 0, $seen) as $chunk)
+            {
+                $this->write($chunk);
+            }
+            $this->writeln(''); // Final newline
+        }
+        else
+        {
+            // --- Buffering Mode (High memory) ---
+            $this->writeln($this->getFormattedJson($data));
+        }
+
         return $this;
     }
 
@@ -291,7 +284,7 @@ class JsonStyle extends OutputStyle
         {
             if ( empty( $data ) )
             {
-                yield '[]';
+                yield '[]' ;
                 return;
             }
 
