@@ -141,7 +141,7 @@ abstract class OutputStyle
      *
      * @param int $count The number of new lines to output. Defaults to `1`.
      *
-     * @return void
+     * @return static
      *
      * @example
      * ```php
@@ -149,9 +149,10 @@ abstract class OutputStyle
      * $style->newLine(3) ; // Outputs 3 blank lines.
      * ```
      */
-    public function newLine( int $count = 1 ): void
+    public function newLine( int $count = 1 ): static
     {
         $this->output->write( str_repeat(PHP_EOL , $count ) ) ;
+        return $this ;
     }
 
     /**
@@ -159,11 +160,12 @@ abstract class OutputStyle
      *
      * @param bool $decorated `true` to enable decoration, `false` to disable it.
      *
-     * @return void
+     * @return static
      */
-    public function setDecorated( bool $decorated ): void
+    public function setDecorated( bool $decorated ): static
     {
         $this->output->setDecorated( $decorated ) ;
+        return $this ;
     }
 
     /**
@@ -171,11 +173,12 @@ abstract class OutputStyle
      *
      * @param OutputFormatterInterface $formatter The new formatter to apply.
      *
-     * @return void
+     * @return static
      */
-    public function setFormatter( OutputFormatterInterface $formatter ): void
+    public function setFormatter( OutputFormatterInterface $formatter ): static
     {
         $this->output->setFormatter( $formatter ) ;
+        return $this ;
     }
 
     /**
@@ -183,11 +186,12 @@ abstract class OutputStyle
      *
      * @param int $level One of the `OutputInterface::VERBOSITY_*` constants.
      *
-     * @return void
+     * @return static
      */
-    public function setVerbosity( int $level ): void
+    public function setVerbosity( int $level ): static
     {
-        $this->output->setVerbosity($level);
+        $this->output->setVerbosity( $level ) ;
+        return $this ;
     }
 
     /**
@@ -197,7 +201,7 @@ abstract class OutputStyle
      * @param bool            $newline  Whether to append a new line after the output.
      * @param int             $type     One of the `OutputInterface::OUTPUT_*` constants.
      *
-     * @return void
+     * @return static
      *
      * @example
      * ```php
@@ -205,9 +209,16 @@ abstract class OutputStyle
      * $style->write(["Done", "Success"], true);
      * ```
      */
-    public function write(string|iterable $messages, bool $newline = false, int $type = OutputInterface::OUTPUT_NORMAL): void
+    public function write
+    (
+        string|iterable $messages ,
+        bool            $newline = false ,
+        int             $type    = OutputInterface::OUTPUT_NORMAL
+    )
+    : static
     {
         $this->output->write( $messages , $newline , $type ) ;
+        return $this ;
     }
 
     /**
@@ -216,16 +227,17 @@ abstract class OutputStyle
      * @param string|iterable $messages The message(s) to write.
      * @param int             $type     One of the `OutputInterface::OUTPUT_*` constants.
      *
-     * @return void
+     * @return static
      *
      * @example
      * ```php
      * $style->writeln("<info>Task completed successfully!</info>");
      * ```
      */
-    public function writeln(string|iterable $messages, int $type = OutputInterface::OUTPUT_NORMAL): void
+    public function writeln( string|iterable $messages, int $type = OutputInterface::OUTPUT_NORMAL ): static
     {
         $this->output->writeln($messages, $type);
+        return $this ;
     }
 
     /**

@@ -142,7 +142,7 @@ class JsonStyle extends OutputStyle
      *
      * @return void
      */
-    protected function applyJsonFormatter( array $styles = [] ): void
+    public function applyJsonFormatter( array $styles = [] ): void
     {
         $merged    = array_replace_recursive( self::DEFAULT_STYLES , $styles ) ;
         $formatter = $this->getFormatter() ;
@@ -166,23 +166,24 @@ class JsonStyle extends OutputStyle
      * @param int   $verbosity Minimum verbosity level required to output.
      *                         Defaults to {@see OutputInterface::VERBOSITY_NORMAL}.
      *
-     * @return void
+     * @return static
      *
      * @example
      * ```php
      * $style->writeJson(['hello' => 'world', 'count' => 5]);
      * ```
      */
-    public function writeJson( mixed $data , int $verbosity = OutputInterface::VERBOSITY_NORMAL ): void
+    public function writeJson( mixed $data , int $verbosity = OutputInterface::VERBOSITY_NORMAL ) :static
     {
         if ( $this->getVerbosity() < $verbosity )
         {
-            return;
+            return $this ;
         }
 
         $seen = [];
         $output = $this->formatRecursive($data, 0, $seen);
         $this->writeln($output);
+        return $this ;
     }
 
     /**
@@ -193,7 +194,7 @@ class JsonStyle extends OutputStyle
      * @param array $seen   An array to track seen objects for circular reference detection.
      * @return string
      */
-    private function formatRecursive(mixed $data, int $indent, array &$seen): string
+    private function formatRecursive( mixed $data, int $indent, array &$seen ): string
     {
         $indentStr = str_repeat(' ' , $indent ) ;
 
