@@ -205,7 +205,7 @@ class JsonStyle extends OutputStyle
         }
 
         $this->newLine() ; // Final newline
-        
+
         return $this;
     }
 
