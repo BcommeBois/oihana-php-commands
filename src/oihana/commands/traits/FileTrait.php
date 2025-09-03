@@ -26,7 +26,7 @@ use function oihana\files\assertFile;
  * @package oihana\commands\traits
  * @author  Marc Alcaraz (ekameleon)
  * @since   1.0.0
- * 
+ *
  * @see CommandTrait
  */
 trait FileTrait
