@@ -341,15 +341,25 @@ Search.appendIndex(
             "summary": "Defines\u0020the\u0020available\u0020style\u0020attributes\u0020for\u0020Symfony\u0020Console\u0020output.",
             "url": "classes/oihana-commands-enums-outputs-ColorParam.html"
         },                {
-            "fqsen": "\\oihana\\commands\\enums\\outputs\\ColorParam\u003A\u003AFOREGROUND",
-            "name": "FOREGROUND",
-            "summary": "",
-            "url": "classes/oihana-commands-enums-outputs-ColorParam.html#constant_FOREGROUND"
-        },                {
             "fqsen": "\\oihana\\commands\\enums\\outputs\\ColorParam\u003A\u003ABACKGROUND",
             "name": "BACKGROUND",
             "summary": "",
             "url": "classes/oihana-commands-enums-outputs-ColorParam.html#constant_BACKGROUND"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\ColorParam\u003A\u003ABG",
+            "name": "BG",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-ColorParam.html#constant_BG"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\ColorParam\u003A\u003AFG",
+            "name": "FG",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-ColorParam.html#constant_FG"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\ColorParam\u003A\u003AFOREGROUND",
+            "name": "FOREGROUND",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-outputs-ColorParam.html#constant_FOREGROUND"
         },                {
             "fqsen": "\\oihana\\commands\\enums\\outputs\\ColorParam\u003A\u003AOPTIONS",
             "name": "OPTIONS",
@@ -360,6 +370,11 @@ Search.appendIndex(
             "name": "Palette",
             "summary": "Defines\u0020the\u0020available\u0020colors\u0020for\u0020Symfony\u0020Console\u0020output.",
             "url": "classes/oihana-commands-enums-outputs-Palette.html"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\outputs\\Palette\u003A\u003AassertColor\u0028\u0029",
+            "name": "assertColor",
+            "summary": "Indicates\u0020if\u0020the\u0020passed\u0020value\u0020is\u0020a\u0020valid\u0020color.",
+            "url": "classes/oihana-commands-enums-outputs-Palette.html#method_assertColor"
         },                {
             "fqsen": "\\oihana\\commands\\enums\\outputs\\Palette\u003A\u003ABLACK",
             "name": "BLACK",
@@ -591,30 +606,65 @@ Search.appendIndex(
             "summary": "Clears\u0020the\u0020terminal\u0020console\u0020screen,\u0020depending\u0020on\u0020the\u0020operating\u0020system.",
             "url": "namespaces/oihana-commands-helpers.html#function_clearConsole"
         },                {
+            "fqsen": "\\oihana\\commands\\helpers\\comment\u0028\u0029",
+            "name": "comment",
+            "summary": "Formats\u0020a\u0020message\u0020as\u0020a\u0020comment\u0020\u0028magenta\u0020text,\u0020underscore\u0029.",
+            "url": "namespaces/oihana-commands-helpers.html#function_comment"
+        },                {
             "fqsen": "\\oihana\\commands\\helpers\\domainExists\u0028\u0029",
             "name": "domainExists",
             "summary": "Checks\u0020whether\u0020the\u0020given\u0020domain\u0020has\u0020valid\u0020DNS\u0020records\u0020\u0028A,\u0020AAAA,\u0020or\u0020CNAME\u0029.",
             "url": "namespaces/oihana-commands-helpers.html#function_domainExists"
+        },                {
+            "fqsen": "\\oihana\\commands\\helpers\\error\u0028\u0029",
+            "name": "error",
+            "summary": "Formats\u0020a\u0020message\u0020as\u0020an\u0020error\u0020message\u0020\u0028red\u0020text,\u0020bold\u0029.",
+            "url": "namespaces/oihana-commands-helpers.html#function_error"
         },                {
             "fqsen": "\\oihana\\commands\\helpers\\escapeForPrintf\u0028\u0029",
             "name": "escapeForPrintf",
             "summary": "Escapes\u0020a\u0020string\u0020to\u0020be\u0020safely\u0020used\u0020inside\u0020a\u0020shell\u0020command\u0020with\u0020printf\u0020\u0027\u0025s\u0027\u0020\u0027...\u0027.",
             "url": "namespaces/oihana-commands-helpers.html#function_escapeForPrintf"
         },                {
-            "fqsen": "\\xyz\\commands\\helpers\\formatJson\u0028\u0029",
+            "fqsen": "\\oihana\\commands\\helpers\\format\u0028\u0029",
+            "name": "format",
+            "summary": "Formats\u0020a\u0020message\u0020string\u0020with\u0020Symfony\u0020Console\u0020color\/style\u0020tags.",
+            "url": "namespaces/oihana-commands-helpers.html#function_format"
+        },                {
+            "fqsen": "\\oihana\\commands\\helpers\\formatJson\u0028\u0029",
             "name": "formatJson",
             "summary": "Format\u0020a\u0020json\u0020object\u0020in\u0020the\u0020terminal\u0020output.",
-            "url": "namespaces/xyz-commands-helpers.html#function_formatJson"
+            "url": "namespaces/oihana-commands-helpers.html#function_formatJson"
+        },                {
+            "fqsen": "\\oihana\\commands\\helpers\\info\u0028\u0029",
+            "name": "info",
+            "summary": "Formats\u0020a\u0020message\u0020as\u0020an\u0020informational\u0020message\u0020using\u0020a\u0020cyan\u0020foreground\u0020color.",
+            "url": "namespaces/oihana-commands-helpers.html#function_info"
         },                {
             "fqsen": "\\oihana\\commands\\helpers\\makeCommand\u0028\u0029",
             "name": "makeCommand",
             "summary": "Generates\u0020a\u0020complete\u0020shell\u0020command\u0020string,\u0020optionally\u0020including\u0020a\u0020pipeline.",
             "url": "namespaces/oihana-commands-helpers.html#function_makeCommand"
         },                {
+            "fqsen": "\\oihana\\commands\\helpers\\notice\u0028\u0029",
+            "name": "notice",
+            "summary": "Formats\u0020a\u0020message\u0020as\u0020a\u0020notice\u0020\u0028blue\u0020text,\u0020bold\u0029.",
+            "url": "namespaces/oihana-commands-helpers.html#function_notice"
+        },                {
             "fqsen": "\\oihana\\commands\\helpers\\silent\u0028\u0029",
             "name": "silent",
             "summary": "Appends\u0020a\u0020redirection\u0020string\u0020to\u0020suppress\u0020output\u0020from\u0020a\u0020shell\u0020command.",
             "url": "namespaces/oihana-commands-helpers.html#function_silent"
+        },                {
+            "fqsen": "\\oihana\\commands\\helpers\\success\u0028\u0029",
+            "name": "success",
+            "summary": "Formats\u0020a\u0020message\u0020as\u0020a\u0020success\u0020message\u0020\u0028green\u0020text\u0029.",
+            "url": "namespaces/oihana-commands-helpers.html#function_success"
+        },                {
+            "fqsen": "\\oihana\\commands\\helpers\\warning\u0028\u0029",
+            "name": "warning",
+            "summary": "Formats\u0020a\u0020message\u0020as\u0020a\u0020warning\u0020message\u0020\u0028yellow\u0020text\u0029.",
+            "url": "namespaces/oihana-commands-helpers.html#function_warning"
         },                {
             "fqsen": "\\oihana\\commands\\Kernel",
             "name": "Kernel",
@@ -1051,15 +1101,20 @@ Search.appendIndex(
             "summary": "Applies\u0020JSON\u0020syntax\u0020highlighting\u0020styles\u0020to\u0020the\u0020Symfony\u0020Console\u0020output\u0020formatter.",
             "url": "classes/oihana-commands-styles-JsonStyle.html#method_applyJsonFormatter"
         },                {
+            "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003AgetFormattedJson\u0028\u0029",
+            "name": "getFormattedJson",
+            "summary": "Gets\u0020the\u0020fully\u0020formatted\u0020and\u0020colorized\u0020JSON\u0020as\u0020a\u0020single\u0020string.",
+            "url": "classes/oihana-commands-styles-JsonStyle.html#method_getFormattedJson"
+        },                {
             "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003AwriteJson\u0028\u0029",
             "name": "writeJson",
             "summary": "Writes\u0020JSON\u0020data\u0020to\u0020the\u0020console\u0020with\u0020syntax\u0020highlighting.",
             "url": "classes/oihana-commands-styles-JsonStyle.html#method_writeJson"
         },                {
-            "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003AformatRecursive\u0028\u0029",
-            "name": "formatRecursive",
-            "summary": "Recursively\u0020formats\u0020PHP\u0020data\u0020into\u0020a\u0020colorized\u0020JSON\u0020string.",
-            "url": "classes/oihana-commands-styles-JsonStyle.html#method_formatRecursive"
+            "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003AformatJsonAsGenerator\u0028\u0029",
+            "name": "formatJsonAsGenerator",
+            "summary": "Recursively\u0020formats\u0020PHP\u0020data,\u0020yielding\u0020each\u0020formatted\u0020chunk.",
+            "url": "classes/oihana-commands-styles-JsonStyle.html#method_formatJsonAsGenerator"
         },                {
             "fqsen": "\\oihana\\commands\\styles\\JsonStyle\u003A\u003ABOOL",
             "name": "BOOL",
@@ -1115,6 +1170,11 @@ Search.appendIndex(
             "name": "getFormatter",
             "summary": "Returns\u0020the\u0020current\u0020output\u0020formatter.",
             "url": "classes/oihana-commands-styles-OutputStyle.html#method_getFormatter"
+        },                {
+            "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003AgetOutput\u0028\u0029",
+            "name": "getOutput",
+            "summary": "Returns\u0020the\u0020Symfony\u0020Console\u0020output\u0020reference.",
+            "url": "classes/oihana-commands-styles-OutputStyle.html#method_getOutput"
         },                {
             "fqsen": "\\oihana\\commands\\styles\\OutputStyle\u003A\u003AgetVerbosity\u0028\u0029",
             "name": "getVerbosity",
@@ -1343,7 +1403,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\oihana\\commands\\traits\\FileTrait",
             "name": "FileTrait",
-            "summary": "The\u0020trait\u0020to\u0020manage\u0020files.",
+            "summary": "Manages\u0020file\u0020system\u0020operations\u0020using\u0020shell\u0020commands.",
             "url": "classes/oihana-commands-traits-FileTrait.html"
         },                {
             "fqsen": "\\oihana\\commands\\traits\\FileTrait\u003A\u003AdeleteFile\u0028\u0029",
@@ -1550,21 +1610,6 @@ Search.appendIndex(
             "name": "helpers",
             "summary": "",
             "url": "namespaces/oihana-commands-helpers.html"
-        },                {
-            "fqsen": "\\xyz\\commands\\helpers",
-            "name": "helpers",
-            "summary": "",
-            "url": "namespaces/xyz-commands-helpers.html"
-        },                {
-            "fqsen": "\\xyz\\commands",
-            "name": "commands",
-            "summary": "",
-            "url": "namespaces/xyz-commands.html"
-        },                {
-            "fqsen": "\\xyz",
-            "name": "xyz",
-            "summary": "",
-            "url": "namespaces/xyz.html"
         },                {
             "fqsen": "\\oihana\\commands",
             "name": "commands",

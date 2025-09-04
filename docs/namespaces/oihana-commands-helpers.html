@@ -68,16 +68,6 @@
                     <section class="phpdocumentor-sidebar__category -namespaces">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="namespaces/xyz.html" class="">xyz</a>
-</h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="namespaces/xyz-commands.html" class="">commands</a>
-                
-            </li>
-            </ul>
-
-                                    <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="namespaces/oihana.html" class="">oihana</a>
 </h4>
     <ul class="phpdocumentor-list">
@@ -150,11 +140,25 @@
 <dd>Clears the terminal console screen, depending on the operating system.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/oihana-commands-helpers.html#function_comment">comment()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Formats a message as a comment (magenta text, underscore).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
     <a class="" href="namespaces/oihana-commands-helpers.html#function_domainExists">domainExists()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Checks whether the given domain has valid DNS records (A, AAAA, or CNAME).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/oihana-commands-helpers.html#function_error">error()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Formats a message as an error message (red text, bold).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -function -">
     <a class="" href="namespaces/oihana-commands-helpers.html#function_escapeForPrintf">escapeForPrintf()</a>
@@ -164,6 +168,27 @@
 <dd>Escapes a string to be safely used inside a shell command with printf &#039;%s&#039; &#039;...&#039;.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/oihana-commands-helpers.html#function_format">format()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Formats a message string with Symfony Console color/style tags.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/oihana-commands-helpers.html#function_formatJson">formatJson()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Format a json object in the terminal output.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/oihana-commands-helpers.html#function_info">info()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Formats a message as an informational message using a cyan foreground color.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
     <a class="" href="namespaces/oihana-commands-helpers.html#function_makeCommand">makeCommand()</a>
     <span>
                                 &nbsp;: string    </span>
@@ -171,11 +196,32 @@
 <dd>Generates a complete shell command string, optionally including a pipeline.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/oihana-commands-helpers.html#function_notice">notice()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Formats a message as a notice (blue text, bold).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
     <a class="" href="namespaces/oihana-commands-helpers.html#function_silent">silent()</a>
     <span>
                                 &nbsp;: string|null    </span>
 </dt>
 <dd>Appends a redirection string to suppress output from a shell command.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/oihana-commands-helpers.html#function_success">success()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Formats a message as a success message (green text).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -function -">
+    <a class="" href="namespaces/oihana-commands-helpers.html#function_warning">warning()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Formats a message as a warning message (yellow text).</dd>
 
     </dl>
 
@@ -398,6 +444,73 @@ clearConsole(false); // Does nothing
 
 </article>
                     <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_comment">
+        comment()
+        <a href="namespaces/oihana-commands-helpers.html#function_comment" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/helpers/comment.php"><a href="files/src-oihana-commands-helpers-comment.html"><abbr title="src/oihana/commands/helpers/comment.php">comment.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">25</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Formats a message as a comment (magenta text, underscore).</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">comment</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+        <section class="phpdocumentor-description"><p>This is a helper function based on <a href="namespaces/oihana-commands-helpers.html#function_format"><abbr title="\oihana\commands\helpers\format()">format()</abbr></a> to quickly generate
+console output messages with a consistent &quot;comment&quot; style.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$message</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The message text to format.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="namespaces/oihana-commands-helpers.html#function_comment#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">example</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><pre class="prettyprint"><code class="language-php">echo comment(&quot;This is a comment&quot;);
+// Output: &lt;fg=magenta;options=underscore&gt;This is a comment&lt;/&gt;
+</code></pre>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The formatted message with Symfony Console style tags.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
     <h4 class="phpdocumentor-element__name" id="function_domainExists">
         domainExists()
         <a href="namespaces/oihana-commands-helpers.html#function_domainExists" class="headerlink"><i class="fas fa-link"></i></a>
@@ -481,6 +594,73 @@ else
         <span class="phpdocumentor-signature__response_type">bool</span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>True if DNS records exist for the domain, false otherwise.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_error">
+        error()
+        <a href="namespaces/oihana-commands-helpers.html#function_error" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/helpers/error.php"><a href="files/src-oihana-commands-helpers-error.html"><abbr title="src/oihana/commands/helpers/error.php">error.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">25</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Formats a message as an error message (red text, bold).</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">error</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+        <section class="phpdocumentor-description"><p>This is a helper function based on <a href="namespaces/oihana-commands-helpers.html#function_format"><abbr title="\oihana\commands\helpers\format()">format()</abbr></a> to quickly generate
+console output messages with a consistent &quot;error&quot; style.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$message</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The message text to format.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="namespaces/oihana-commands-helpers.html#function_error#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">example</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><pre class="prettyprint"><code class="language-php">echo error(&quot;Something went wrong!&quot;);
+// Output: &lt;fg=red;options=bold&gt;Something went wrong!&lt;/&gt;
+</code></pre>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The formatted message with Symfony Console style tags.</p>
 </section>
 
             </section>
@@ -574,6 +754,262 @@ echo $cmd;
         <span class="phpdocumentor-signature__response_type">string</span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>The escaped string enclosed in single quotes, safe for shell printf.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_format">
+        format()
+        <a href="namespaces/oihana-commands-helpers.html#function_format" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/helpers/format.php"><a href="files/src-oihana-commands-helpers-format.html"><abbr title="src/oihana/commands/helpers/format.php">format.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">46</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Formats a message string with Symfony Console color/style tags.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">format</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+        <section class="phpdocumentor-description"><p>This function generates a string decorated with Symfony Console
+formatting tags (<code class="prettyprint">&lt;fg=...;bg=...;options=...&gt;message&lt;/&gt;</code>) based
+on the provided foreground, background, and style options.</p>
+<p>Supported options keys:</p>
+<ul>
+<li><code class="prettyprint">fg</code>       : foreground color (see <a href="classes/oihana-commands-enums-outputs-Palette.html"><abbr title="\oihana\commands\enums\outputs\Palette">Palette</abbr></a>).</li>
+<li><code class="prettyprint">bg</code>       : background color (see <a href="classes/oihana-commands-enums-outputs-Palette.html"><abbr title="\oihana\commands\enums\outputs\Palette">Palette</abbr></a>).</li>
+<li><code class="prettyprint">options</code>  : one or multiple text styles (see <a href="classes/oihana-commands-enums-outputs-StyleOption.html"><abbr title="\oihana\commands\enums\outputs\StyleOption">StyleOption</abbr></a>).</li>
+</ul>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$message</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The text to format.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$options</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Optional associative array of formatting options.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="namespaces/oihana-commands-helpers.html#function_format#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>If an invalid color or style is provided.</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">example</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><pre class="prettyprint"><code class="language-php">use function oihana\commands\helpers\format;
+use oihana\commands\enums\outputs\Palette;
+use oihana\commands\enums\outputs\StyleOption;
+
+echo format('Hello World', ['fg' =&gt; Palette::GREEN]);
+// Output: &lt;fg=green&gt;Hello World&lt;/&gt;
+
+echo format('Warning!', ['fg' =&gt; Palette::RED, 'options' =&gt; StyleOption::BOLD]);
+// Output: &lt;fg=red;options=bold&gt;Warning!&lt;/&gt;
+
+echo format('Info', ['bg' =&gt; Palette::CYAN, 'options' =&gt; [StyleOption::UNDERSCORE, StyleOption::BOLD]]);
+// Output: &lt;bg=cyan;options=underscore,bold&gt;Info&lt;/&gt;
+</code></pre>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The message wrapped in Symfony Console style tags.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_formatJson">
+        formatJson()
+        <a href="namespaces/oihana-commands-helpers.html#function_formatJson" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/helpers/formatJson.php"><a href="files/src-oihana-commands-helpers-formatjson.html"><abbr title="src/oihana/commands/helpers/formatJson.php">formatJson.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">23</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Format a json object in the terminal output.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">formatJson</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Style\SymfonyStyle">SymfonyStyle</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$io</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$indent</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">0</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$isArrayItem</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$seen</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\oihana\reflect\Reflection">Reflection</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$reflection</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$io</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Style\SymfonyStyle">SymfonyStyle</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$indent</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">0</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$isArrayItem</span>
+                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$seen</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$reflection</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\oihana\reflect\Reflection">Reflection</abbr>|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="namespaces/oihana-commands-helpers.html#function_formatJson#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\ReflectionException">ReflectionException</abbr></span>
+                                                            
+                                             
+                                    </dd>
+                                            </dl>
+
+    
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_info">
+        info()
+        <a href="namespaces/oihana-commands-helpers.html#function_info" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/helpers/info.php"><a href="files/src-oihana-commands-helpers-info.html"><abbr title="src/oihana/commands/helpers/info.php">info.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">23</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Formats a message as an informational message using a cyan foreground color.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">info</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+        <section class="phpdocumentor-description"><p>This is a helper function based on <a href="namespaces/oihana-commands-helpers.html#function_format"><abbr title="\oihana\commands\helpers\format()">format()</abbr></a> to quickly generate
+console output messages with a consistent &quot;info&quot; style.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$message</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The message text to format.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="namespaces/oihana-commands-helpers.html#function_info#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">example</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><pre class="prettyprint"><code class="language-php">echo info(&quot;This is an informational message&quot;);
+// Output: &lt;fg=cyan&gt;This is an informational message&lt;/&gt;
+</code></pre>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The formatted message with Symfony Console style tags.</p>
 </section>
 
             </section>
@@ -742,6 +1178,73 @@ $cmd     = $this-&gt;makeCommand('wp cache flush', options: $options );
 
 </article>
                     <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_notice">
+        notice()
+        <a href="namespaces/oihana-commands-helpers.html#function_notice" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/helpers/notice.php"><a href="files/src-oihana-commands-helpers-notice.html"><abbr title="src/oihana/commands/helpers/notice.php">notice.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">24</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Formats a message as a notice (blue text, bold).</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">notice</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+        <section class="phpdocumentor-description"><p>This is a helper function based on <a href="namespaces/oihana-commands-helpers.html#function_format"><abbr title="\oihana\commands\helpers\format()">format()</abbr></a> to quickly generate
+console output messages with a consistent &quot;notice&quot; style.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$message</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The message text to format.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="namespaces/oihana-commands-helpers.html#function_notice#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">example</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><pre class="prettyprint"><code class="language-php">echo notice(&quot;Take note of this!&quot;);
+// Output: &lt;fg=blue;options=bold&gt;Take note of this!&lt;/&gt;
+</code></pre>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The formatted message with Symfony Console style tags.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
     <h4 class="phpdocumentor-element__name" id="function_silent">
         silent()
         <a href="namespaces/oihana-commands-helpers.html#function_silent" class="headerlink"><i class="fas fa-link"></i></a>
@@ -837,6 +1340,140 @@ echo $cmd;
         <span class="phpdocumentor-signature__response_type">string|null</span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>The updated command string (or null if input was null).</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_success">
+        success()
+        <a href="namespaces/oihana-commands-helpers.html#function_success" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/helpers/success.php"><a href="files/src-oihana-commands-helpers-success.html"><abbr title="src/oihana/commands/helpers/success.php">success.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">24</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Formats a message as a success message (green text).</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">success</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+        <section class="phpdocumentor-description"><p>This is a helper function based on <a href="namespaces/oihana-commands-helpers.html#function_format"><abbr title="\oihana\commands\helpers\format()">format()</abbr></a> to quickly generate
+console output messages with a consistent &quot;success&quot; style.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$message</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The message text to format.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="namespaces/oihana-commands-helpers.html#function_success#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">example</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><pre class="prettyprint"><code class="language-php">echo success(&quot;Operation completed successfully!&quot;);
+// Output: &lt;fg=green&gt;Operation completed successfully!&lt;/&gt;
+</code></pre>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The formatted message with Symfony Console style tags.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article class="phpdocumentor-element -function - ">
+    <h4 class="phpdocumentor-element__name" id="function_warning">
+        warning()
+        <a href="namespaces/oihana-commands-helpers.html#function_warning" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/helpers/warning.php"><a href="files/src-oihana-commands-helpers-warning.html"><abbr title="src/oihana/commands/helpers/warning.php">warning.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">24</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Formats a message as a warning message (yellow text).</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility"></span>
+                    <span class="phpdocumentor-signature__name">warning</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+        <section class="phpdocumentor-description"><p>This is a helper function based on <a href="namespaces/oihana-commands-helpers.html#function_format"><abbr title="\oihana\commands\helpers\format()">format()</abbr></a> to quickly generate
+console output messages with a consistent &quot;warning&quot; style.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$message</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The message text to format.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="namespaces/oihana-commands-helpers.html#function_warning#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">example</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><pre class="prettyprint"><code class="language-php">echo warning(&quot;Be careful!&quot;);
+// Output: &lt;fg=yellow&gt;This is a warning message&lt;/&gt;
+</code></pre>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The formatted message with Symfony Console style tags.</p>
 </section>
 
             </section>
@@ -959,10 +1596,18 @@ echo $cmd;
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="namespaces/oihana-commands-helpers.html#function_assertDomain">assertDomain()</a></li>
                                                     <li class=""><a href="namespaces/oihana-commands-helpers.html#function_clearConsole">clearConsole()</a></li>
+                                                    <li class=""><a href="namespaces/oihana-commands-helpers.html#function_comment">comment()</a></li>
                                                     <li class=""><a href="namespaces/oihana-commands-helpers.html#function_domainExists">domainExists()</a></li>
+                                                    <li class=""><a href="namespaces/oihana-commands-helpers.html#function_error">error()</a></li>
                                                     <li class=""><a href="namespaces/oihana-commands-helpers.html#function_escapeForPrintf">escapeForPrintf()</a></li>
+                                                    <li class=""><a href="namespaces/oihana-commands-helpers.html#function_format">format()</a></li>
+                                                    <li class=""><a href="namespaces/oihana-commands-helpers.html#function_formatJson">formatJson()</a></li>
+                                                    <li class=""><a href="namespaces/oihana-commands-helpers.html#function_info">info()</a></li>
                                                     <li class=""><a href="namespaces/oihana-commands-helpers.html#function_makeCommand">makeCommand()</a></li>
+                                                    <li class=""><a href="namespaces/oihana-commands-helpers.html#function_notice">notice()</a></li>
                                                     <li class=""><a href="namespaces/oihana-commands-helpers.html#function_silent">silent()</a></li>
+                                                    <li class=""><a href="namespaces/oihana-commands-helpers.html#function_success">success()</a></li>
+                                                    <li class=""><a href="namespaces/oihana-commands-helpers.html#function_warning">warning()</a></li>
                                             </ul>
                 </li>
                     </ul>

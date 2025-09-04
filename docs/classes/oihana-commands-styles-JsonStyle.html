@@ -68,16 +68,6 @@
                     <section class="phpdocumentor-sidebar__category -namespaces">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="namespaces/xyz.html" class="">xyz</a>
-</h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="namespaces/xyz-commands.html" class="">commands</a>
-                
-            </li>
-            </ul>
-
-                                    <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="namespaces/oihana.html" class="">oihana</a>
 </h4>
     <ul class="phpdocumentor-list">
@@ -133,7 +123,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
 
     </aside>
 
@@ -282,11 +272,32 @@ $style-&gt;writeJson
 <dd>Initializes the style and applies JSON-specific formatting rules.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/oihana-commands-styles-JsonStyle.html#method_applyJsonFormatter">applyJsonFormatter()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Applies JSON syntax highlighting styles to the Symfony Console output formatter.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/oihana-commands-styles-JsonStyle.html#method_getFormattedJson">getFormattedJson()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Gets the fully formatted and colorized JSON as a single string.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-styles-OutputStyle.html#method_getFormatter">getFormatter()</a>
     <span>
                                 &nbsp;: <abbr title="\Symfony\Component\Console\Formatter\OutputFormatterInterface">OutputFormatterInterface</abbr>    </span>
 </dt>
 <dd>Returns the current output formatter.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/oihana-commands-styles-OutputStyle.html#method_getOutput">getOutput()</a>
+    <span>
+                                &nbsp;: <abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr>    </span>
+</dt>
+<dd>Returns the Symfony Console output reference.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-styles-OutputStyle.html#method_getVerbosity">getVerbosity()</a>
@@ -340,58 +351,51 @@ $style-&gt;writeJson
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-styles-OutputStyle.html#method_newLine">newLine()</a>
     <span>
-                                &nbsp;: void    </span>
+                                &nbsp;: static    </span>
 </dt>
 <dd>Outputs one or more blank lines to the console.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-styles-OutputStyle.html#method_setDecorated">setDecorated()</a>
     <span>
-                                &nbsp;: void    </span>
+                                &nbsp;: static    </span>
 </dt>
 <dd>Enables or disables ANSI output decoration.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-styles-OutputStyle.html#method_setFormatter">setFormatter()</a>
     <span>
-                                &nbsp;: void    </span>
+                                &nbsp;: static    </span>
 </dt>
 <dd>Sets the output formatter.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-styles-OutputStyle.html#method_setVerbosity">setVerbosity()</a>
     <span>
-                                &nbsp;: void    </span>
+                                &nbsp;: static    </span>
 </dt>
 <dd>Sets the current verbosity level.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-styles-OutputStyle.html#method_write">write()</a>
     <span>
-                                &nbsp;: void    </span>
+                                &nbsp;: static    </span>
 </dt>
 <dd>Writes a message or a set of messages to the console.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-styles-JsonStyle.html#method_writeJson">writeJson()</a>
     <span>
-                                &nbsp;: void    </span>
+                                &nbsp;: static    </span>
 </dt>
 <dd>Writes JSON data to the console with syntax highlighting.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-styles-OutputStyle.html#method_writeln">writeln()</a>
     <span>
-                                &nbsp;: void    </span>
+                                &nbsp;: static    </span>
 </dt>
 <dd>Writes a message or a set of messages followed by a new line.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/oihana-commands-styles-JsonStyle.html#method_applyJsonFormatter">applyJsonFormatter()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Applies JSON syntax highlighting styles to the Symfony Console output formatter.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a class="" href="classes/oihana-commands-styles-OutputStyle.html#method_getErrorOutput">getErrorOutput()</a>
@@ -401,11 +405,11 @@ $style-&gt;writeJson
 <dd>Returns the error output stream.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/oihana-commands-styles-JsonStyle.html#method_formatRecursive">formatRecursive()</a>
+    <a class="" href="classes/oihana-commands-styles-JsonStyle.html#method_formatJsonAsGenerator">formatJsonAsGenerator()</a>
     <span>
-                                &nbsp;: string    </span>
+                                &nbsp;: <abbr title="\Generator">Generator</abbr>&lt;string|int, string&gt;    </span>
 </dt>
-<dd>Recursively formats PHP data into a colorized JSON string.</dd>
+<dd>Recursively formats PHP data, yielding each formatted chunk.</dd>
 
     </dl>
 
@@ -428,7 +432,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">75</span>
+    <span class="phpdocumentor-element-found-in__line">76</span>
 
     </aside>
 
@@ -461,7 +465,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">80</span>
+    <span class="phpdocumentor-element-found-in__line">81</span>
 
     </aside>
 
@@ -494,7 +498,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">85</span>
+    <span class="phpdocumentor-element-found-in__line">86</span>
 
     </aside>
 
@@ -527,7 +531,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">90</span>
+    <span class="phpdocumentor-element-found-in__line">91</span>
 
     </aside>
 
@@ -560,7 +564,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">95</span>
+    <span class="phpdocumentor-element-found-in__line">96</span>
 
     </aside>
 
@@ -593,7 +597,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">100</span>
+    <span class="phpdocumentor-element-found-in__line">101</span>
 
     </aside>
 
@@ -626,7 +630,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">126</span>
+    <span class="phpdocumentor-element-found-in__line">127</span>
 
     </aside>
 
@@ -698,7 +702,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">107</span>
+    <span class="phpdocumentor-element-found-in__line">108</span>
 
     </aside>
 
@@ -742,7 +746,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">64</span>
+    <span class="phpdocumentor-element-found-in__line">65</span>
 
     </aside>
 
@@ -814,6 +818,110 @@ $style-&gt;writeJson
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_applyJsonFormatter">
+        applyJsonFormatter()
+        <a href="classes/oihana-commands-styles-JsonStyle.html#method_applyJsonFormatter" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">146</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Applies JSON syntax highlighting styles to the Symfony Console output formatter.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">applyJsonFormatter</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$styles</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Merges user-provided styles with <abbr title="\oihana\commands\styles\self::DEFAULT_STYLES">self::DEFAULT_STYLES</abbr> and registers them.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$styles</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Custom style overrides.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getFormattedJson">
+        getFormattedJson()
+        <a href="classes/oihana-commands-styles-JsonStyle.html#method_getFormattedJson" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">167</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Gets the fully formatted and colorized JSON as a single string.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getFormattedJson</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The data to format.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The formatted JSON string.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getFormatter">
         getFormatter()
         <a href="classes/oihana-commands-styles-OutputStyle.html#method_getFormatter" class="headerlink"><i class="fas fa-link"></i></a>
@@ -857,6 +965,45 @@ $style-&gt;writeJson
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getOutput">
+        getOutput()
+        <a href="classes/oihana-commands-styles-OutputStyle.html#method_getOutput" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">69</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Returns the Symfony Console output reference.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getOutput</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getVerbosity">
         getVerbosity()
         <a href="classes/oihana-commands-styles-OutputStyle.html#method_getVerbosity" class="headerlink"><i class="fas fa-link"></i></a>
@@ -865,7 +1012,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">70</span>
+    <span class="phpdocumentor-element-found-in__line">79</span>
 
     </aside>
 
@@ -908,7 +1055,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">80</span>
+    <span class="phpdocumentor-element-found-in__line">89</span>
 
     </aside>
 
@@ -951,7 +1098,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">90</span>
+    <span class="phpdocumentor-element-found-in__line">99</span>
 
     </aside>
 
@@ -994,7 +1141,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">110</span>
+    <span class="phpdocumentor-element-found-in__line">119</span>
 
     </aside>
 
@@ -1037,7 +1184,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">100</span>
+    <span class="phpdocumentor-element-found-in__line">109</span>
 
     </aside>
 
@@ -1080,7 +1227,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">120</span>
+    <span class="phpdocumentor-element-found-in__line">129</span>
 
     </aside>
 
@@ -1123,7 +1270,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">130</span>
+    <span class="phpdocumentor-element-found-in__line">139</span>
 
     </aside>
 
@@ -1166,7 +1313,7 @@ $style-&gt;writeJson
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">152</span>
+    <span class="phpdocumentor-element-found-in__line">161</span>
 
     </aside>
 
@@ -1174,7 +1321,7 @@ $style-&gt;writeJson
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">newLine</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$count</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">1</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">newLine</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$count</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">1</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1219,7 +1366,11 @@ $style-&gt;newLine(3) ; // Outputs 3 blank lines.
 
     
 
-    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1235,7 +1386,7 @@ $style-&gt;newLine(3) ; // Outputs 3 blank lines.
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">164</span>
+    <span class="phpdocumentor-element-found-in__line">174</span>
 
     </aside>
 
@@ -1243,7 +1394,7 @@ $style-&gt;newLine(3) ; // Outputs 3 blank lines.
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setDecorated</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$decorated</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setDecorated</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$decorated</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1266,7 +1417,11 @@ $style-&gt;newLine(3) ; // Outputs 3 blank lines.
 
     
 
-    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1282,7 +1437,7 @@ $style-&gt;newLine(3) ; // Outputs 3 blank lines.
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">176</span>
+    <span class="phpdocumentor-element-found-in__line">187</span>
 
     </aside>
 
@@ -1290,7 +1445,7 @@ $style-&gt;newLine(3) ; // Outputs 3 blank lines.
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setFormatter</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Formatter\OutputFormatterInterface">OutputFormatterInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$formatter</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setFormatter</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Formatter\OutputFormatterInterface">OutputFormatterInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$formatter</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1313,7 +1468,11 @@ $style-&gt;newLine(3) ; // Outputs 3 blank lines.
 
     
 
-    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1329,7 +1488,7 @@ $style-&gt;newLine(3) ; // Outputs 3 blank lines.
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">188</span>
+    <span class="phpdocumentor-element-found-in__line">200</span>
 
     </aside>
 
@@ -1337,7 +1496,7 @@ $style-&gt;newLine(3) ; // Outputs 3 blank lines.
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setVerbosity</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$level</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setVerbosity</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$level</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1360,7 +1519,11 @@ $style-&gt;newLine(3) ; // Outputs 3 blank lines.
 
     
 
-    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1376,7 +1539,7 @@ $style-&gt;newLine(3) ; // Outputs 3 blank lines.
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">208</span>
+    <span class="phpdocumentor-element-found-in__line">221</span>
 
     </aside>
 
@@ -1384,7 +1547,7 @@ $style-&gt;newLine(3) ; // Outputs 3 blank lines.
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">write</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|iterable&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$messages</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$newline</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">OutputInterface::OUTPUT_NORMAL</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">write</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|iterable&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$messages</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$newline</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">OutputInterface::OUTPUT_NORMAL</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1443,7 +1606,11 @@ $style-&gt;write([&quot;Done&quot;, &quot;Success&quot;], true);
 
     
 
-    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1459,7 +1626,7 @@ $style-&gt;write([&quot;Done&quot;, &quot;Success&quot;], true);
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">176</span>
+    <span class="phpdocumentor-element-found-in__line">197</span>
 
     </aside>
 
@@ -1467,12 +1634,19 @@ $style-&gt;write([&quot;Done&quot;, &quot;Success&quot;], true);
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">writeJson</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$verbosity</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">OutputInterface::VERBOSITY_NORMAL</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">writeJson</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$stream</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$verbosity</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">OutputInterface::VERBOSITY_NORMAL</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
         <section class="phpdocumentor-description"><p>Encodes data to JSON, applies coloring rules, and writes to the console output.</p>
+<p>This method can operate in two modes:</p>
+<ol>
+<li>Streaming (default): Writes data piece by piece, ensuring low and
+constant memory usage. Ideal for large or unknown-size data.</li>
+<li>Buffering: Formats the entire string in memory before output.
+Only use this for small, size-controlled data.</li>
+</ol>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1483,6 +1657,15 @@ $style-&gt;write([&quot;Done&quot;, &quot;Success&quot;], true);
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Any PHP data to encode into JSON.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$stream</span>
+                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Whether to use the memory-efficient streaming mode. Defaults to true.</p>
 </section>
 
             </dd>
@@ -1519,7 +1702,11 @@ Defaults to <abbr title="\Symfony\Component\Console\Output\OutputInterface::VERB
 
     
 
-    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1535,7 +1722,7 @@ Defaults to <abbr title="\Symfony\Component\Console\Output\OutputInterface::VERB
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">226</span>
+    <span class="phpdocumentor-element-found-in__line">246</span>
 
     </aside>
 
@@ -1543,7 +1730,7 @@ Defaults to <abbr title="\Symfony\Component\Console\Output\OutputInterface::VERB
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">writeln</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|iterable&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$messages</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">OutputInterface::OUTPUT_NORMAL</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">writeln</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|iterable&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$messages</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">OutputInterface::OUTPUT_NORMAL</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1592,56 +1779,11 @@ Defaults to <abbr title="\Symfony\Component\Console\Output\OutputInterface::VERB
 
     
 
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_applyJsonFormatter">
-        applyJsonFormatter()
-        <a href="classes/oihana-commands-styles-JsonStyle.html#method_applyJsonFormatter" class="headerlink"><i class="fas fa-link"></i></a>
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
 
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">145</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Applies JSON syntax highlighting styles to the Symfony Console output formatter.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">applyJsonFormatter</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$styles</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <section class="phpdocumentor-description"><p>Merges user-provided styles with <abbr title="\oihana\commands\styles\self::DEFAULT_STYLES">self::DEFAULT_STYLES</abbr> and registers them.</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$styles</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Custom style overrides.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-    
-
-    
 </article>
                     <article
         class="phpdocumentor-element
@@ -1657,7 +1799,7 @@ Defaults to <abbr title="\Symfony\Component\Console\Output\OutputInterface::VERB
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/OutputStyle.php"><a href="files/src-oihana-commands-styles-outputstyle.html"><abbr title="src/oihana/commands/styles/OutputStyle.php">OutputStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">240</span>
+    <span class="phpdocumentor-element-found-in__line">261</span>
 
     </aside>
 
@@ -1696,28 +1838,32 @@ it returns the main output instance.</p>
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_formatRecursive">
-        formatRecursive()
-        <a href="classes/oihana-commands-styles-JsonStyle.html#method_formatRecursive" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_formatJsonAsGenerator">
+        formatJsonAsGenerator()
+        <a href="classes/oihana-commands-styles-JsonStyle.html#method_formatJsonAsGenerator" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/styles/JsonStyle.php"><a href="files/src-oihana-commands-styles-jsonstyle.html"><abbr title="src/oihana/commands/styles/JsonStyle.php">JsonStyle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">196</span>
+    <span class="phpdocumentor-element-found-in__line">242</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Recursively formats PHP data into a colorized JSON string.</p>
+        <p class="phpdocumentor-summary">Recursively formats PHP data, yielding each formatted chunk.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">formatRecursive</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$indent</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$seen</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">formatJsonAsGenerator</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$indent</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$seen</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Generator">Generator</abbr>&lt;string|int, string&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>This private generator is the core of the formatting logic. It traverses
+the data and yields pieces of the formatted string, allowing the caller
+to either stream them or buffer them.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1743,7 +1889,7 @@ it returns the main output instance.</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>An array to track seen objects for circular reference detection.</p>
+                    <section class="phpdocumentor-description"><p>Array for circular reference detection.</p>
 </section>
 
             </dd>
@@ -1755,7 +1901,7 @@ it returns the main output instance.</p>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Generator">Generator</abbr>&lt;string|int, string&gt;</span>
             </section>
 
 </article>
@@ -1895,7 +2041,10 @@ it returns the main output instance.</p>
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/oihana-commands-styles-JsonStyle.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-styles-JsonStyle.html#method_applyJsonFormatter">applyJsonFormatter()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-styles-JsonStyle.html#method_getFormattedJson">getFormattedJson()</a></li>
                                             <li class=""><a href="classes/oihana-commands-styles-OutputStyle.html#method_getFormatter">getFormatter()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-styles-OutputStyle.html#method_getOutput">getOutput()</a></li>
                                             <li class=""><a href="classes/oihana-commands-styles-OutputStyle.html#method_getVerbosity">getVerbosity()</a></li>
                                             <li class=""><a href="classes/oihana-commands-styles-OutputStyle.html#method_isDebug">isDebug()</a></li>
                                             <li class=""><a href="classes/oihana-commands-styles-OutputStyle.html#method_isDecorated">isDecorated()</a></li>
@@ -1910,9 +2059,8 @@ it returns the main output instance.</p>
                                             <li class=""><a href="classes/oihana-commands-styles-OutputStyle.html#method_write">write()</a></li>
                                             <li class=""><a href="classes/oihana-commands-styles-JsonStyle.html#method_writeJson">writeJson()</a></li>
                                             <li class=""><a href="classes/oihana-commands-styles-OutputStyle.html#method_writeln">writeln()</a></li>
-                                            <li class=""><a href="classes/oihana-commands-styles-JsonStyle.html#method_applyJsonFormatter">applyJsonFormatter()</a></li>
                                             <li class=""><a href="classes/oihana-commands-styles-OutputStyle.html#method_getErrorOutput">getErrorOutput()</a></li>
-                                            <li class=""><a href="classes/oihana-commands-styles-JsonStyle.html#method_formatRecursive">formatRecursive()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-styles-JsonStyle.html#method_formatJsonAsGenerator">formatJsonAsGenerator()</a></li>
                                     </ul>
             </li>
                     </ul>

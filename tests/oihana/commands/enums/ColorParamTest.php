@@ -18,6 +18,8 @@ class ColorParamTest extends TestCase
 
     public function testConstantValues(): void
     {
+        $this->assertSame('fg'         , ColorParam::FG         , 'FG must equal "fg".' ) ;
+        $this->assertSame('bg'         , ColorParam::BG         , 'BG must equal "bg".' ) ;
         $this->assertSame('foreground' , ColorParam::FOREGROUND , 'FOREGROUND must equal "foreground".' ) ;
         $this->assertSame('background' , ColorParam::BACKGROUND , 'BACKGROUND must equal "background".' ) ;
         $this->assertSame('options'    , ColorParam::OPTIONS    , 'OPTIONS must equal "options".'       ) ;
@@ -28,6 +30,6 @@ class ColorParamTest extends TestCase
     {
         $reflection = new ReflectionClass(ColorParam::class);
         $constants = $reflection->getConstants();
-        $this->assertCount(3, $constants, 'ColorParam must contain exactly 3 constants.');
+        $this->assertCount(5, $constants, 'ColorParam must contain exactly 5 constants.');
     }
 }

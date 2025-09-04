@@ -1,6 +1,6 @@
 <?php
 
-namespace xyz\commands\helpers;
+namespace oihana\commands\helpers;
 
 use JsonSerializable;
 use oihana\enums\Char;

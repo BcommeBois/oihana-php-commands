@@ -9,6 +9,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Added
 
 - oihana\commands\exceptions\MissingPassphraseException class
+
+- oihana\commands\helpers\comment
+- oihana\commands\helpers\error
+- oihana\commands\helpers\format
+- oihana\commands\helpers\info
+- oihana\commands\helpers\warning
+ 
 - oihana\commands\style\JsonStyle class
 - oihana\commands\style\OutputStyle class
 

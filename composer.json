@@ -36,10 +36,17 @@
         [
             "src/oihana/commands/helpers/assertDomain.php" ,
             "src/oihana/commands/helpers/clearConsole.php" ,
+            "src/oihana/commands/helpers/comment.php" ,
             "src/oihana/commands/helpers/domainExists.php" ,
+            "src/oihana/commands/helpers/error.php" ,
             "src/oihana/commands/helpers/escapeForPrintf.php" ,
+            "src/oihana/commands/helpers/format.php" ,
+            "src/oihana/commands/helpers/info.php" ,
             "src/oihana/commands/helpers/makeCommand.php" ,
-            "src/oihana/commands/helpers/silent.php"
+            "src/oihana/commands/helpers/notice.php" ,
+            "src/oihana/commands/helpers/silent.php" ,
+            "src/oihana/commands/helpers/success.php" ,
+            "src/oihana/commands/helpers/warning.php"
         ]
     },
     "require": {

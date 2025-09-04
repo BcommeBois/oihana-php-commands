@@ -63,6 +63,15 @@ abstract class OutputStyle
     }
 
     /**
+     * Returns the Symfony Console output reference.
+     * @return OutputInterface
+     */
+    public function getOutput():OutputInterface
+    {
+        return $this->output;
+    }
+
+    /**
      * Gets the current verbosity level.
      *
      * @return int One of the `OutputInterface::VERBOSITY_*` constants.

@@ -16,14 +16,24 @@ class ColorParam
     use ConstantsTrait ;
 
     /**
-     * @var string Foreground color key
-     */
-    public const string FOREGROUND = 'foreground';
-
-    /**
      * @var string Background color key
      */
     public const string BACKGROUND = 'background';
+
+    /**
+     * @var string Background shortcut color key.
+     */
+    public const string BG = 'bg';
+
+    /**
+     * @var string Foreground shortcut color key.
+     */
+    public const string FG = 'fg';
+
+    /**
+     * @var string Foreground color key
+     */
+    public const string FOREGROUND = 'foreground';
 
     /**
      * @var string Options / styles key
