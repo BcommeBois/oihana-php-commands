@@ -12,6 +12,16 @@ namespace oihana\commands\enums\traits;
 trait CommandParamTrait
 {
     /**
+     * The 'after' parameter.
+     */
+    public const string AFTER = 'after' ;
+
+    /**
+     * The 'args' parameter.
+     */
+    public const string ARGS = 'args' ;
+    
+    /**
      * The 'batchSize' parameter.
      */
     public const string BATCH_SIZE = 'batchSize' ;
@@ -25,6 +35,11 @@ trait CommandParamTrait
      * The 'actions' parameter.
      */
     public const string ACTIONS = 'actions' ;
+
+    /**
+     * The 'before' parameter.
+     */
+    public const string BEFORE = 'before' ;
 
     /**
      * The 'command' parameter.
@@ -80,6 +95,11 @@ trait CommandParamTrait
      * The 'mysqlRoot' parameter.
      */
     public const string MYSQL_ROOT = 'mysqlRoot' ;
+
+    /**
+     * The 'name' parameter.
+     */
+    public const string NAME = 'name' ;
 
     /**
      * The 'server' parameter.

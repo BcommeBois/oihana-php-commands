@@ -16,6 +16,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - oihana\commands\helpers\info
 - oihana\commands\helpers\warning
  
+- oihana\commands\traits\ChainedCommandsTrait
+
 - oihana\commands\style\JsonStyle class
 - oihana\commands\style\OutputStyle class
 

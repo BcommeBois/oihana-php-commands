@@ -88,6 +88,8 @@ trait UITrait
     )
     :static
     {
+        $defaultFormat = "%message% | %percent:3s%% (%current%/%max%) | %elapsed%" . PHP_EOL  ;
+
         if( is_array( $formatDefinitions ) )
         {
             foreach( $formatDefinitions as $name => $format )
@@ -97,7 +99,7 @@ trait UITrait
         }
         else
         {
-            $progressBar->setFormatDefinition( $format , "[%bar%]" . PHP_EOL . PHP_EOL . " %message% | %percent:3s%% (%current%/%max%) | %elapsed%" . PHP_EOL ) ;
+            $progressBar->setFormatDefinition( $format , $defaultFormat ) ;
         }
 
         $progressBar->setFormat( $format );
@@ -106,6 +108,34 @@ trait UITrait
 
         return $this ;
     }
+
+    // public function initializeProgressBar
+    // (
+    //     ProgressBar $progressBar ,
+    //     string      $format            = 'pretty' ,
+    //     int         $barWidth          = 50 ,
+    //     ?array      $formatDefinitions = null
+    // )
+    // :static
+    // {
+    //     if( is_array( $formatDefinitions ) )
+    //     {
+    //         foreach( $formatDefinitions as $name => $format )
+    //         {
+    //             $progressBar->setFormatDefinition( $name , $format );
+    //         }
+    //     }
+    //     else
+    //     {
+    //         $progressBar->setFormatDefinition( $format , "[%bar%]" . PHP_EOL . PHP_EOL . " %message% | %percent:3s%% (%current%/%max%) | %elapsed%" . PHP_EOL ) ;
+    //     }
+    //
+    //     $progressBar->setFormat( $format );
+    //     $progressBar->setBarWidth( $barWidth );
+    //     $progressBar->setRedrawFrequency(1 );
+    //
+    //     return $this ;
+    // }
 
     /**
      * Iterate over an iterable collection with a progress bar and optional per-item messages.
