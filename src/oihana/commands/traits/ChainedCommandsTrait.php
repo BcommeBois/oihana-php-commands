@@ -67,6 +67,10 @@ trait ChainedCommandsTrait
      */
     public function after( InputInterface $input , OutputInterface $output ) :int
     {
+        if ( empty( $this->after ) )
+        {
+            return ExitCode::SUCCESS;
+        }
         return $this->runCommands( $this->after , $input , $output ) ;
     }
 
@@ -75,6 +79,10 @@ trait ChainedCommandsTrait
      */
     public function before( InputInterface $input , OutputInterface $output ) :int
     {
+        if ( empty( $this->before ) )
+        {
+            return ExitCode::SUCCESS;
+        }
         return $this->runCommands($this->before, $input , $output ) ;
     }
 
@@ -148,6 +156,11 @@ trait ChainedCommandsTrait
      */
     protected function runCommands( array $commands , InputInterface $input , OutputInterface $output ): int
     {
+        if ( empty( $commands ) )
+        {
+            return ExitCode::SUCCESS;
+        }
+
         $app = $this->getApplication();
 
         if ( !$app )
