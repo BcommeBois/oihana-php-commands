@@ -2,7 +2,7 @@
 
 namespace oihana\commands\traits;
 
-use Symfony\Component\Console\Exception\CommandNotFoundException;
+use Symfony\Component\Console\Exception\ExceptionInterface;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -47,8 +47,9 @@ use oihana\commands\enums\ExitCode;
  * @author  Marc Alcaraz
  * @since   1.0.0
  *
- * @property array<int,mixed> $before Commands or callables executed before the main command.
  * @property array<int,mixed> $after Commands or callables executed after the main command.
+ * @property array<int,mixed> $before Commands or callables executed before the main command.
+ * @property array<int,mixed> $run Commands or callables to execute.
  */
 trait ChainedCommandsTrait
 {
@@ -63,7 +64,13 @@ trait ChainedCommandsTrait
     protected array $before = [] ;
 
     /**
+     * @var array<int,array{name:string,args:array}> Commands to run.
+     */
+    protected array $run = [] ;
+
+    /**
      * Executes all after-commands.
+     * @throws ExceptionInterface
      */
     public function after( InputInterface $input , OutputInterface $output ) :int
     {
@@ -76,6 +83,7 @@ trait ChainedCommandsTrait
 
     /**
      * Executes all before-commands.
+     * @throws ExceptionInterface
      */
     public function before( InputInterface $input , OutputInterface $output ) :int
     {
@@ -115,8 +123,20 @@ trait ChainedCommandsTrait
      */
     public function initializeChain( array $init = [] ):static
     {
-        $this->after = $init[ CommandParam::AFTER ] ?? [] ;
+        $this->after  = $init[ CommandParam::AFTER  ] ?? [] ;
         $this->before = $init[ CommandParam::BEFORE ] ?? [] ;
+        $this->run    = $init[ CommandParam::RUN    ] ?? [] ;
+        return $this ;
+    }
+
+    /**
+     * Initialize the list of commands to run.
+     * @param array $init
+     * @return $this
+     */
+    public function initializeRun( array $init = [] ):static
+    {
+        $this->run = $init[ CommandParam::RUN ] ?? [] ;
         return $this ;
     }
 
@@ -152,7 +172,7 @@ trait ChainedCommandsTrait
      * @return int Returns `ExitCode::SUCCESS` if all commands executed successfully,
      *             otherwise returns the first non-success exit code encountered.
      *
-     * @throws CommandNotFoundException If a named Symfony command cannot be found in the application.
+     * @throws ExceptionInterface
      */
     protected function runCommands( array $commands , InputInterface $input , OutputInterface $output ): int
     {
@@ -162,11 +182,6 @@ trait ChainedCommandsTrait
         }
 
         $app = $this->getApplication();
-
-        if ( !$app )
-        {
-            return ExitCode::FAILURE;
-        }
 
         foreach ( $commands as $cmd )
         {
@@ -178,6 +193,11 @@ trait ChainedCommandsTrait
                     return $result;
                 }
                 continue;
+            }
+
+            if ( !$app )
+            {
+                return ExitCode::FAILURE;
             }
 
             $name = $cmd[ CommandParam::NAME ] ?? null ;
@@ -192,7 +212,6 @@ trait ChainedCommandsTrait
             $input = new ArrayInput( array_merge( [ CommandParam::COMMAND => $name ] , $args ) );
 
             $exitCode = $command->run( $input , $output ) ;
-
             if ( $exitCode !== ExitCode::SUCCESS )
             {
                 return $exitCode ; // stop chain if error
@@ -202,4 +221,41 @@ trait ChainedCommandsTrait
         return ExitCode::SUCCESS;
     }
 
+    /**
+     * Executes the full chain of commands: before, main run, and after.
+     *
+     * This method should be used instead of calling `run()` directly, because
+     * `run()` is reserved by Symfony Console commands. `trigger()` ensures that
+     * the following sequence is executed in order:
+     *
+     *   1. All "before" commands/callables
+     *   2. All "run" commands/callables
+     *   3. All "after" commands/callables
+     *
+     * If any command or callable in the chain returns a non-success exit code,
+     * the execution stops immediately and that code is returned.
+     *
+     * @param InputInterface  $input  The input instance of the main command.
+     * @param OutputInterface $output The output instance of the main command.
+     *
+     * @return int Exit code of the chain: `ExitCode::SUCCESS` if all commands
+     *             executed successfully, otherwise the first non-success code.
+     *
+     * @throws ExceptionInterface If any command throws an exception.
+     */
+    public function trigger( InputInterface $input , OutputInterface $output ) :int
+    {
+        $status = $this->before($input, $output) ;
+        if ( $status !== ExitCode::SUCCESS )
+        {
+            return $status;
+        }
+
+        $exit = $this->runCommands( $this->run , $input , $output ) ;
+        if ($exit !== ExitCode::SUCCESS) {
+            return $exit;
+        }
+
+        return $this->after( $input , $output ) ;
+    }
 }

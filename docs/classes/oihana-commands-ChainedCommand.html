@@ -101,20 +101,17 @@
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    Kernel
+    ChainedCommand
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Symfony\Component\Console\Command\Command">Command</abbr>
+        extends <a href="classes/oihana-commands-Kernel.html"><abbr title="\oihana\commands\Kernel">Kernel</abbr></a>
     </span>
     
     
-            <span class="phpdocumentor-element__implements">
-            implements
-                            <abbr title="\Psr\Log\LoggerInterface">LoggerInterface</abbr>                    </span>
     
             <span class="phpdocumentor-element__extends">
             uses
-                            <a href="classes/oihana-commands-traits-CommandTrait.html"><abbr title="\oihana\commands\traits\CommandTrait">CommandTrait</abbr></a>,                             <abbr title="\oihana\traits\ConfigTrait">ConfigTrait</abbr>,                             <abbr title="\oihana\traits\ContainerTrait">ContainerTrait</abbr>,                             <a href="classes/oihana-commands-traits-ConsoleLoggerTrait.html"><abbr title="\oihana\commands\traits\ConsoleLoggerTrait">ConsoleLoggerTrait</abbr></a>,                             <abbr title="\oihana\date\traits\DateTrait">DateTrait</abbr>,                             <a href="classes/oihana-commands-traits-FileTrait.html"><abbr title="\oihana\commands\traits\FileTrait">FileTrait</abbr></a>,                             <a href="classes/oihana-commands-traits-HelperTrait.html"><abbr title="\oihana\commands\traits\HelperTrait">HelperTrait</abbr></a>,                             <abbr title="\oihana\traits\IDTrait">IDTrait</abbr>,                             <a href="classes/oihana-commands-traits-InflectorTrait.html"><abbr title="\oihana\commands\traits\InflectorTrait">InflectorTrait</abbr></a>,                             <abbr title="\oihana\traits\JsonOptionsTrait">JsonOptionsTrait</abbr>,                             <a href="classes/oihana-commands-traits-LifecycleTrait.html"><abbr title="\oihana\commands\traits\LifecycleTrait">LifecycleTrait</abbr></a>,                             <a href="classes/oihana-commands-traits-UITrait.html"><abbr title="\oihana\commands\traits\UITrait">UITrait</abbr></a>                    </span>
+                            <a href="classes/oihana-commands-traits-ChainedCommandsTrait.html"><abbr title="\oihana\commands\traits\ChainedCommandsTrait">ChainedCommandsTrait</abbr></a>                    </span>
     </h2>
 
 <div class="phpdocumentor-label-line">
@@ -123,25 +120,57 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/Kernel.php"><a href="files/src-oihana-commands-kernel.html"><abbr title="src/oihana/commands/Kernel.php">Kernel.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/ChainedCommand.php"><a href="files/src-oihana-commands-chainedcommand.html"><abbr title="src/oihana/commands/ChainedCommand.php">ChainedCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">45</span>
+    <span class="phpdocumentor-element-found-in__line">72</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Kernel command class representing a Symfony Console command
-integrated with dependency injection and extended with multiple traits.</p>
+            <p class="phpdocumentor-summary">Symfony Console command class supporting before/after chained commands.</p>
 
 
-    <section class="phpdocumentor-description"><p>This class provides initialization logic for common command parameters
-such as actions, batch size, description, and help text.</p>
-<p>It implements the PSR-3 LoggerInterface to provide logging capabilities.</p>
+    <section class="phpdocumentor-description"><p>This command class extends <code class="prettyprint">Kernel</code> and integrates the <code class="prettyprint">ChainedCommandsTrait</code>
+to allow executing arrays of commands or callables before and after the main command logic.
+It also integrates command options such as <code class="prettyprint">--clear</code> to optionally clear the console
+before execution.</p>
+<p>Execution flow:</p>
+<pre class="prettyprint"><code class="prettyprint">┌─────────────┐
+│   before    │ &lt;- Array of commands/callables executed before main logic
+└─────┬───────┘
+      │
+      ▼
+┌─────────────┐
+│    run      │ &lt;- Main command logic (array of commands/callables)
+└─────┬───────┘
+      │
+      ▼
+┌─────────────┐
+│    after    │ &lt;- Array of commands/callables executed after main logic
+└─────────────┘
+</code></pre>
+<p>Usage example:</p>
+<pre class="prettyprint"><code class="language-php">$command = new ChainedCommand('app:chained', $container,
+[
+    'before' =&gt;
+    [
+        fn(InputInterface $in, OutputInterface $out, $cmd) =&gt; $out-&gt;writeln('Before hook')
+    ],
+    'run' =&gt;
+    [
+        fn(InputInterface $in, OutputInterface $out, $cmd) =&gt; $out-&gt;writeln('Main logic executed')
+    ],
+    'after' =&gt;
+    [
+        ['name' =&gt; 'app:cleanup', 'args' =&gt; []]
+    ]
+]);
+</code></pre>
 </section>
 
 
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="classes/oihana-commands-Kernel.html#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/oihana-commands-ChainedCommand.html#tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
@@ -150,7 +179,7 @@ such as actions, batch size, description, and help text.</p>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>Marc Alcaraz (ekameleon)</p>
+                                                 <section class="phpdocumentor-description"><p>Marc Alcaraz</p>
 </section>
 
                                     </dd>
@@ -170,26 +199,19 @@ such as actions, batch size, description, and help text.</p>
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/oihana-commands-Kernel.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/oihana-commands-ChainedCommand.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
 
 
-    <h4 id="toc-interfaces">
-        Interfaces
-        <a href="classes/oihana-commands-Kernel.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Psr\Log\LoggerInterface">LoggerInterface</abbr></dt>    </dl>
 
 
 
 
 <h4 id="toc-constants">
     Constants
-    <a href="classes/oihana-commands-Kernel.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/oihana-commands-ChainedCommand.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
@@ -205,7 +227,7 @@ such as actions, batch size, description, and help text.</p>
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/oihana-commands-Kernel.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/oihana-commands-ChainedCommand.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
@@ -231,11 +253,10 @@ such as actions, batch size, description, and help text.</p>
 <dd>Number of items to process per batch.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/oihana-commands-traits-CommandTrait.html#property_commandOptions">$commandOptions</a>
+    <a class="" href="classes/oihana-commands-ChainedCommand.html#property_commandOptions">$commandOptions</a>
     <span>
                         &nbsp;: <a href="classes/oihana-commands-options-CommandOptions.html"><abbr title="\oihana\commands\options\CommandOptions">CommandOptions</abbr></a>|null            </span>
 </dt>
-<dd>The global command options.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/oihana-commands-traits-ConsoleLoggerTrait.html#property_console">$console</a>
@@ -258,20 +279,45 @@ such as actions, batch size, description, and help text.</p>
 </dt>
 <dd>The question helper reference of the command.</dd>
 
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/oihana-commands-traits-ChainedCommandsTrait.html#property_after">$after</a>
+    <span>
+                        &nbsp;: array&lt;int, array{name: string, args: array}&gt;            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/oihana-commands-traits-ChainedCommandsTrait.html#property_before">$before</a>
+    <span>
+                        &nbsp;: array&lt;int, array{name: string, args: array}&gt;            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/oihana-commands-traits-ChainedCommandsTrait.html#property_run">$run</a>
+    <span>
+                        &nbsp;: array&lt;int, array{name: string, args: array}&gt;            </span>
+</dt>
+
     </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/oihana-commands-Kernel.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/oihana-commands-ChainedCommand.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/oihana-commands-Kernel.html#method___construct">__construct()</a>
+    <a class="" href="classes/oihana-commands-ChainedCommand.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>Kernel constructor.</dd>
+<dd>ChainedCommand constructor.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_after">after()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Executes all after-commands.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_alert">alert()</a>
@@ -286,6 +332,13 @@ such as actions, batch size, description, and help text.</p>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Check if the given &#039;action&#039; is register in the &#039;actions&#039; white-list of the command.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_before">before()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Executes all before-commands.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-traits-UITrait.html#method_createProgressBar">createProgressBar()</a>
@@ -372,11 +425,32 @@ such as actions, batch size, description, and help text.</p>
 <dd>Initializes the list of actions allowed for this command.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_initializeAfter">initializeAfter()</a>
+    <span>
+                                &nbsp;: $this    </span>
+</dt>
+<dd>Initialize the list of commands to run after the main command.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-Kernel.html#method_initializeBatchSize">initializeBatchSize()</a>
     <span>
                                 &nbsp;: static    </span>
 </dt>
 <dd>Initializes the batch size parameter of the command.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_initializeBefore">initializeBefore()</a>
+    <span>
+                                &nbsp;: $this    </span>
+</dt>
+<dd>Initialize the list of commands to run before the main command.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_initializeChain">initializeChain()</a>
+    <span>
+                                &nbsp;: $this    </span>
+</dt>
+<dd>Initialize the list of commands to run after and before the main command.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_initializeConsoleLogger">initializeConsoleLogger()</a>
@@ -405,6 +479,13 @@ such as actions, batch size, description, and help text.</p>
                                 &nbsp;: static    </span>
 </dt>
 <dd>Applies configuration to a ProgressBar instance.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_initializeRun">initializeRun()</a>
+    <span>
+                                &nbsp;: $this    </span>
+</dt>
+<dd>Initialize the list of commands to run.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_log">log()</a>
@@ -449,11 +530,32 @@ such as actions, batch size, description, and help text.</p>
 <dd>Executes a shell command with optional sudo/user context and silent mode.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_trigger">trigger()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Executes the full chain of commands: before, main run, and after.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_warning">warning()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Exceptional occurrences that are not errors.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/oihana-commands-ChainedCommand.html#method_configure">configure()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Configures the command options.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/oihana-commands-ChainedCommand.html#method_execute">execute()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Executes the current command.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a class="" href="classes/oihana-commands-traits-CommandTrait.html#method_initializeCommandOptions">initializeCommandOptions()</a>
@@ -477,6 +579,13 @@ such as actions, batch size, description, and help text.</p>
 <dd>Initializes the Kernel command with all parameters and dependencies.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_runCommands">runCommands()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Runs an array of chained commands or callables.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a class="" href="classes/oihana-commands-traits-LifecycleTrait.html#method_startCommand">startCommand()</a>
     <span>
                                 &nbsp;: <abbr title="array{0: \Symfony\Component\Console\Style\SymfonyStyle, 1: float}">SymfonyStyle, 1: float}</abbr>    </span>
@@ -491,7 +600,7 @@ such as actions, batch size, description, and help text.</p>
     <section class="phpdocumentor-constants">
         <h3 class="phpdocumentor-elements__header" id="constants">
             Constants
-            <a href="classes/oihana-commands-Kernel.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/oihana-commands-ChainedCommand.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article class="phpdocumentor-element -constant -public ">
@@ -532,7 +641,7 @@ such as actions, batch size, description, and help text.</p>
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/oihana-commands-Kernel.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/oihana-commands-ChainedCommand.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -661,28 +770,29 @@ such as actions, batch size, description, and help text.</p>
 >
     <h4 class="phpdocumentor-element__name" id="property_commandOptions">
         $commandOptions
-        <a href="classes/oihana-commands-traits-CommandTrait.html#property_commandOptions" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/oihana-commands-ChainedCommand.html#property_commandOptions" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/CommandTrait.php"><a href="files/src-oihana-commands-traits-commandtrait.html"><abbr title="src/oihana/commands/traits/CommandTrait.php">CommandTrait.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/ChainedCommand.php"><a href="files/src-oihana-commands-chainedcommand.html"><abbr title="src/oihana/commands/ChainedCommand.php">ChainedCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">0</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The global command options.</p>
-
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__type"><a href="classes/oihana-commands-options-CommandOptions.html"><abbr title="\oihana\commands\options\CommandOptions">CommandOptions</abbr></a>|null</span>
     <span class="phpdocumentor-signature__name">$commandOptions</span>
-     = <span class="phpdocumentor-signature__default-value">null</span></code>
+    </code>
 
-    
+        <section class="phpdocumentor-description"><p>Global command options, automatically initialized.</p>
+</section>
+
     
     
 
@@ -808,12 +918,132 @@ such as actions, batch size, description, and help text.</p>
     
 
 </article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_after">
+        $after
+        <a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#property_after" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/ChainedCommandsTrait.php"><a href="files/src-oihana-commands-traits-chainedcommandstrait.html"><abbr title="src/oihana/commands/traits/ChainedCommandsTrait.php">ChainedCommandsTrait.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">59</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">array&lt;int, array{name: string, args: array}&gt;</span>
+    <span class="phpdocumentor-signature__name">$after</span>
+     = <span class="phpdocumentor-signature__default-value">[]</span></code>
+
+    
+        <section class="phpdocumentor-description"><p>Commands to run after the main command.</p>
+</section>
+
+    
+
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_before">
+        $before
+        <a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#property_before" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/ChainedCommandsTrait.php"><a href="files/src-oihana-commands-traits-chainedcommandstrait.html"><abbr title="src/oihana/commands/traits/ChainedCommandsTrait.php">ChainedCommandsTrait.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">64</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">array&lt;int, array{name: string, args: array}&gt;</span>
+    <span class="phpdocumentor-signature__name">$before</span>
+     = <span class="phpdocumentor-signature__default-value">[]</span></code>
+
+    
+        <section class="phpdocumentor-description"><p>Commands to run before the main command.</p>
+</section>
+
+    
+
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_run">
+        $run
+        <a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#property_run" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/ChainedCommandsTrait.php"><a href="files/src-oihana-commands-traits-chainedcommandstrait.html"><abbr title="src/oihana/commands/traits/ChainedCommandsTrait.php">ChainedCommandsTrait.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">69</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">array&lt;int, array{name: string, args: array}&gt;</span>
+    <span class="phpdocumentor-signature__name">$run</span>
+     = <span class="phpdocumentor-signature__default-value">[]</span></code>
+
+    
+        <section class="phpdocumentor-description"><p>Commands to run.</p>
+</section>
+
+    
+
+    
+
+    
+
+</article>
             </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/oihana-commands-Kernel.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/oihana-commands-ChainedCommand.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -824,17 +1054,17 @@ such as actions, batch size, description, and help text.</p>
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/oihana-commands-Kernel.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/oihana-commands-ChainedCommand.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/Kernel.php"><a href="files/src-oihana-commands-kernel.html"><abbr title="src/oihana/commands/Kernel.php">Kernel.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/ChainedCommand.php"><a href="files/src-oihana-commands-chainedcommand.html"><abbr title="src/oihana/commands/ChainedCommand.php">ChainedCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">89</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Kernel constructor.</p>
+        <p class="phpdocumentor-summary">ChainedCommand constructor.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -843,7 +1073,8 @@ such as actions, batch size, description, and help text.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>Initializes the command with the given name and injects the DI container and parameters.</p>
+        <section class="phpdocumentor-description"><p>Initializes the command with a name, dependency injection container, and optional parameters.
+Calls <code class="prettyprint">initializeChain()</code> from <code class="prettyprint">ChainedCommandsTrait</code> to setup before/after/run commands.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -853,7 +1084,7 @@ such as actions, batch size, description, and help text.</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The command name, or null to be set in configure().</p>
+                    <section class="phpdocumentor-description"><p>The command name, or null to be set in <code class="prettyprint">configure()</code>.</p>
 </section>
 
             </dd>
@@ -871,7 +1102,7 @@ such as actions, batch size, description, and help text.</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Initialization parameters for the command.</p>
+                    <section class="phpdocumentor-description"><p>Initialization parameters, may include <code class="prettyprint">before</code>, <code class="prettyprint">after</code>, or <code class="prettyprint">run</code> arrays.</p>
 </section>
 
             </dd>
@@ -880,7 +1111,7 @@ such as actions, batch size, description, and help text.</p>
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="classes/oihana-commands-Kernel.html#method___construct#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/oihana-commands-ChainedCommand.html#method___construct#tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
@@ -890,7 +1121,9 @@ such as actions, batch size, description, and help text.</p>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\DI\DependencyException">DependencyException</abbr></span>
                                                             
-                                             
+                                                 <section class="phpdocumentor-description"><p>If the DI container fails to inject dependencies.</p>
+</section>
+
                                     </dd>
                             <dt class="phpdocumentor-tag-list__entry">
                     <span class="phpdocumentor-tag__name">throws</span>
@@ -898,7 +1131,9 @@ such as actions, batch size, description, and help text.</p>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\DI\NotFoundException">NotFoundException</abbr></span>
                                                             
-                                             
+                                                 <section class="phpdocumentor-description"><p>If a dependency is missing in the container.</p>
+</section>
+
                                     </dd>
                             <dt class="phpdocumentor-tag-list__entry">
                     <span class="phpdocumentor-tag__name">throws</span>
@@ -906,7 +1141,9 @@ such as actions, batch size, description, and help text.</p>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\Psr\Container\ContainerExceptionInterface">ContainerExceptionInterface</abbr></span>
                                                             
-                                             
+                                                 <section class="phpdocumentor-description"><p>If the container encounters a generic error.</p>
+</section>
+
                                     </dd>
                             <dt class="phpdocumentor-tag-list__entry">
                     <span class="phpdocumentor-tag__name">throws</span>
@@ -914,13 +1151,86 @@ such as actions, batch size, description, and help text.</p>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\Psr\Container\NotFoundExceptionInterface">NotFoundExceptionInterface</abbr></span>
                                                             
-                                             
+                                                 <section class="phpdocumentor-description"><p>If a container entry cannot be found.</p>
+</section>
+
                                     </dd>
                                             </dl>
 
     
 
     
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_after">
+        after()
+        <a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_after" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/ChainedCommandsTrait.php"><a href="files/src-oihana-commands-traits-chainedcommandstrait.html"><abbr title="src/oihana/commands/traits/ChainedCommandsTrait.php">ChainedCommandsTrait.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">75</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Executes all after-commands.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">after</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Input\InputInterface">InputInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$output</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$input</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$output</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_after#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\Symfony\Component\Console\Exception\ExceptionInterface">ExceptionInterface</abbr></span>
+                                                            
+                                             
+                                    </dd>
+                        </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1040,6 +1350,77 @@ This should trigger the SMS alerts and wake you up.</p>
     
 
     
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_before">
+        before()
+        <a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_before" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/ChainedCommandsTrait.php"><a href="files/src-oihana-commands-traits-chainedcommandstrait.html"><abbr title="src/oihana/commands/traits/ChainedCommandsTrait.php">ChainedCommandsTrait.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">88</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Executes all before-commands.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">before</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Input\InputInterface">InputInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$output</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$input</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$output</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_before#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\Symfony\Component\Console\Exception\ExceptionInterface">ExceptionInterface</abbr></span>
+                                                            
+                                             
+                                    </dd>
+                        </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1958,6 +2339,55 @@ $this-&gt;system('ls', '-la', new CommandOptions([ 'sudo' =&gt; true, 'user' =&g
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_initializeAfter">
+        initializeAfter()
+        <a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_initializeAfter" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/ChainedCommandsTrait.php"><a href="files/src-oihana-commands-traits-chainedcommandstrait.html"><abbr title="src/oihana/commands/traits/ChainedCommandsTrait.php">ChainedCommandsTrait.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">102</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Initialize the list of commands to run after the main command.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">initializeAfter</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$init</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">$this</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$init</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">$this</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_initializeBatchSize">
         initializeBatchSize()
         <a href="classes/oihana-commands-Kernel.html#method_initializeBatchSize" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2004,6 +2434,104 @@ $this-&gt;system('ls', '-la', new CommandOptions([ 'sudo' =&gt; true, 'user' =&g
                 <section class="phpdocumentor-description"><p>Returns the instance for method chaining.</p>
 </section>
 
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_initializeBefore">
+        initializeBefore()
+        <a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_initializeBefore" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/ChainedCommandsTrait.php"><a href="files/src-oihana-commands-traits-chainedcommandstrait.html"><abbr title="src/oihana/commands/traits/ChainedCommandsTrait.php">ChainedCommandsTrait.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">113</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Initialize the list of commands to run before the main command.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">initializeBefore</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$init</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">$this</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$init</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">$this</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_initializeChain">
+        initializeChain()
+        <a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_initializeChain" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/ChainedCommandsTrait.php"><a href="files/src-oihana-commands-traits-chainedcommandstrait.html"><abbr title="src/oihana/commands/traits/ChainedCommandsTrait.php">ChainedCommandsTrait.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">124</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Initialize the list of commands to run after and before the main command.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">initializeChain</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$init</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">$this</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$init</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">$this</span>
             </section>
 
 </article>
@@ -2265,6 +2793,55 @@ it will be set for the command.</p>
                 <section class="phpdocumentor-description"><p>The current trait instance (for method chaining).</p>
 </section>
 
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_initializeRun">
+        initializeRun()
+        <a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_initializeRun" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/ChainedCommandsTrait.php"><a href="files/src-oihana-commands-traits-chainedcommandstrait.html"><abbr title="src/oihana/commands/traits/ChainedCommandsTrait.php">ChainedCommandsTrait.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">137</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Initialize the list of commands to run.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">initializeRun</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$init</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">$this</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$init</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">$this</span>
             </section>
 
 </article>
@@ -2674,7 +3251,7 @@ if ( $result-&gt;status === 0 )
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/UITrait.php"><a href="files/src-oihana-commands-traits-uitrait.html"><abbr title="src/oihana/commands/traits/UITrait.php">UITrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">131</span>
+    <span class="phpdocumentor-element-found-in__line">134</span>
 
     </aside>
 
@@ -2924,6 +3501,99 @@ $this-&gt;system('rm -rf /tmp/sandbox', verbose:true, dryRun: true); // dry-run,
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_trigger">
+        trigger()
+        <a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_trigger" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/ChainedCommandsTrait.php"><a href="files/src-oihana-commands-traits-chainedcommandstrait.html"><abbr title="src/oihana/commands/traits/ChainedCommandsTrait.php">ChainedCommandsTrait.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">246</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Executes the full chain of commands: before, main run, and after.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">trigger</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Input\InputInterface">InputInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$output</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>This method should be used instead of calling <code class="prettyprint">run()</code> directly, because
+<code class="prettyprint">run()</code> is reserved by Symfony Console commands. <code class="prettyprint">trigger()</code> ensures that
+the following sequence is executed in order:</p>
+<ol>
+<li>All &quot;before&quot; commands/callables</li>
+<li>All &quot;run&quot; commands/callables</li>
+<li>All &quot;after&quot; commands/callables</li>
+</ol>
+<p>If any command or callable in the chain returns a non-success exit code,
+the execution stops immediately and that code is returned.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$input</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The input instance of the main command.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$output</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The output instance of the main command.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_trigger#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\Symfony\Component\Console\Exception\ExceptionInterface">ExceptionInterface</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>If any command throws an exception.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Exit code of the chain: <code class="prettyprint">ExitCode::SUCCESS</code> if all commands
+executed successfully, otherwise the first non-success code.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_warning">
         warning()
         <a href="classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_warning" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2972,6 +3642,157 @@ that are not necessarily wrong.</p>
     
 
     
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_configure">
+        configure()
+        <a href="classes/oihana-commands-ChainedCommand.html#method_configure" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/ChainedCommand.php"><a href="files/src-oihana-commands-chainedcommand.html"><abbr title="src/oihana/commands/ChainedCommand.php">ChainedCommand.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">105</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Configures the command options.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">configure</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Adds a <code class="prettyprint">--clear</code> option to allow clearing the console before command execution.</p>
+</section>
+
+    
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_execute">
+        execute()
+        <a href="classes/oihana-commands-ChainedCommand.html#method_execute" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/ChainedCommand.php"><a href="files/src-oihana-commands-chainedcommand.html"><abbr title="src/oihana/commands/ChainedCommand.php">ChainedCommand.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">156</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Executes the current command.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">execute</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Input\InputInterface">InputInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$output</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>This method handles the full lifecycle of a chained command:</p>
+<ol>
+<li>Optionally clears the console if the <code class="prettyprint">--clear</code> option is provided.</li>
+<li>Executes all &quot;before&quot; hooks defined in <code class="prettyprint">$this-&gt;before</code>.</li>
+<li>Executes all &quot;run&quot; hooks defined in <code class="prettyprint">$this-&gt;run</code>.</li>
+<li>Executes all &quot;after&quot; hooks defined in <code class="prettyprint">$this-&gt;after</code>.</li>
+<li>Returns the final exit status.</li>
+</ol>
+<p>Execution sequence diagram:</p>
+<pre class="prettyprint"><code class="prettyprint">┌───────────────┐
+│  clear console│ &lt;- optional
+└─────┬─────────┘
+      │
+      ▼
+┌───────────────┐
+│    before     │ &lt;- $this-&gt;before hooks
+└─────┬─────────┘
+      │
+      ▼
+┌───────────────┐
+│     run       │ &lt;- $this-&gt;run hooks
+└─────┬─────────┘
+      │
+      ▼
+┌───────────────┐
+│     after     │ &lt;- $this-&gt;after hooks
+└───────────────┘
+</code></pre>
+<p>Example usage:</p>
+<pre class="prettyprint"><code class="language-php">$status = $command-&gt;execute($input, $output);
+// Will run all before hooks, then run hooks, then after hooks in order
+</code></pre>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$input</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Symfony input instance.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$output</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Symfony output instance.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/oihana-commands-ChainedCommand.html#method_execute#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\Symfony\Component\Console\Exception\ExceptionInterface">ExceptionInterface</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>If a command in the chain fails.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Exit code (0 = success, any other value = failure).</p>
+</section>
+
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -3247,6 +4068,119 @@ description, help, IDs, inflectors, and JSON options.</p>
             -protected
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_runCommands">
+        runCommands()
+        <a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_runCommands" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/ChainedCommandsTrait.php"><a href="files/src-oihana-commands-traits-chainedcommandstrait.html"><abbr title="src/oihana/commands/traits/ChainedCommandsTrait.php">ChainedCommandsTrait.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">177</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Runs an array of chained commands or callables.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">runCommands</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;int, array{name: string, args: array}|callable&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$commands</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Input\InputInterface">InputInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$output</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>This method iterates over a list of commands or callables and executes each in order.
+It supports two types of entries in the <code class="prettyprint">$commands</code> array:</p>
+<ol>
+<li>
+<p><strong>Symfony command arrays</strong>:</p>
+<pre class="prettyprint"><code class="language-php">[
+    'name' =&gt; 'app:my-command', // The name of the Symfony command
+    'args' =&gt; ['--option' =&gt; 'value'] // Optional array of arguments/options
+]
+</code></pre>
+</li>
+<li>
+<p><strong>PHP callables</strong>:</p>
+<pre class="prettyprint"><code class="language-php">fn(InputInterface $input, OutputInterface $output, object $command): int|null =&gt; { ... }
+</code></pre>
+<ul>
+<li>The callable receives the current <code class="prettyprint">$input</code>, <code class="prettyprint">$output</code>, and the command instance (<code class="prettyprint">$this</code>).</li>
+<li>It can optionally return an integer exit code (0 = success, any other value = failure).</li>
+</ul>
+</li>
+</ol>
+<p>If any command or callable returns a non-success exit code, the chain is immediately stopped
+and that code is returned.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$commands</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;int, array{name: string, args: array}|callable&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>List of commands or callables to execute.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$input</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The input instance of the main command.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$output</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The output instance of the main command.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_runCommands#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\Symfony\Component\Console\Exception\ExceptionInterface">ExceptionInterface</abbr></span>
+                                                            
+                                             
+                                    </dd>
+                                            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Returns <code class="prettyprint">ExitCode::SUCCESS</code> if all commands executed successfully,
+otherwise returns the first non-success exit code encountered.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_startCommand">
         startCommand()
         <a href="classes/oihana-commands-traits-LifecycleTrait.html#method_startCommand" class="headerlink"><i class="fas fa-link"></i></a>
@@ -3332,7 +4266,7 @@ and the current UNIX timestamp.</p>
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/oihana/commands/Kernel.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/oihana/commands/ChainedCommand.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -3433,9 +4367,9 @@ and the current UNIX timestamp.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                        <li><a href="classes/oihana-commands-Kernel.html#toc-constants">Constants</a></li>
-                                                            <li><a href="classes/oihana-commands-Kernel.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/oihana-commands-Kernel.html#toc-methods">Methods</a></li>
+                                        <li><a href="classes/oihana-commands-ChainedCommand.html#toc-constants">Constants</a></li>
+                                                            <li><a href="classes/oihana-commands-ChainedCommand.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/oihana-commands-ChainedCommand.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
                             <li class="phpdocumentor-on-this-page-section__title">Constants</li>
@@ -3451,19 +4385,24 @@ and the current UNIX timestamp.</p>
                                                     <li class=""><a href="classes/oihana-commands-Kernel.html#property_action">$action</a></li>
                                                     <li class=""><a href="classes/oihana-commands-Kernel.html#property_actions">$actions</a></li>
                                                     <li class=""><a href="classes/oihana-commands-Kernel.html#property_batchSize">$batchSize</a></li>
-                                                    <li class=""><a href="classes/oihana-commands-traits-CommandTrait.html#property_commandOptions">$commandOptions</a></li>
+                                                    <li class=""><a href="classes/oihana-commands-ChainedCommand.html#property_commandOptions">$commandOptions</a></li>
                                                     <li class=""><a href="classes/oihana-commands-traits-ConsoleLoggerTrait.html#property_console">$console</a></li>
                                                     <li class=""><a href="classes/oihana-commands-traits-InflectorTrait.html#property_inflector">$inflector</a></li>
                                                     <li class=""><a href="classes/oihana-commands-traits-HelperTrait.html#property_questionHelper">$questionHelper</a></li>
+                                                    <li class=""><a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#property_after">$after</a></li>
+                                                    <li class=""><a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#property_before">$before</a></li>
+                                                    <li class=""><a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#property_run">$run</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/oihana-commands-Kernel.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-ChainedCommand.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_after">after()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_alert">alert()</a></li>
                                             <li class=""><a href="classes/oihana-commands-Kernel.html#method_assertActions">assertActions()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_before">before()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-UITrait.html#method_createProgressBar">createProgressBar()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-UITrait.html#method_createProgressBarFromIO">createProgressBarFromIO()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_critical">critical()</a></li>
@@ -3476,21 +4415,29 @@ and the current UNIX timestamp.</p>
                                             <li class=""><a href="classes/oihana-commands-traits-HelperTrait.html#method_getQuestionHelper">getQuestionHelper()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_info">info()</a></li>
                                             <li class=""><a href="classes/oihana-commands-Kernel.html#method_initializeActions">initializeActions()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_initializeAfter">initializeAfter()</a></li>
                                             <li class=""><a href="classes/oihana-commands-Kernel.html#method_initializeBatchSize">initializeBatchSize()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_initializeBefore">initializeBefore()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_initializeChain">initializeChain()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_initializeConsoleLogger">initializeConsoleLogger()</a></li>
                                             <li class=""><a href="classes/oihana-commands-Kernel.html#method_initializeDescription">initializeDescription()</a></li>
                                             <li class=""><a href="classes/oihana-commands-Kernel.html#method_initializeHelp">initializeHelp()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-UITrait.html#method_initializeProgressBar">initializeProgressBar()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_initializeRun">initializeRun()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_log">log()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-FileTrait.html#method_makeFile">makeFile()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_notice">notice()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-CommandTrait.html#method_proc">proc()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-UITrait.html#method_progressBarIterator">progressBarIterator()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-CommandTrait.html#method_system">system()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_trigger">trigger()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_warning">warning()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-ChainedCommand.html#method_configure">configure()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-ChainedCommand.html#method_execute">execute()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-CommandTrait.html#method_initializeCommandOptions">initializeCommandOptions()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-InflectorTrait.html#method_initializeInflector">initializeInflector()</a></li>
                                             <li class=""><a href="classes/oihana-commands-Kernel.html#method_initializeKernel">initializeKernel()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-traits-ChainedCommandsTrait.html#method_runCommands">runCommands()</a></li>
                                             <li class=""><a href="classes/oihana-commands-traits-LifecycleTrait.html#method_startCommand">startCommand()</a></li>
                                     </ul>
             </li>
@@ -3511,7 +4458,7 @@ and the current UNIX timestamp.</p>
     </section>
 </section>
         </div>
-        <a href="classes/oihana-commands-Kernel.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/oihana-commands-ChainedCommand.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

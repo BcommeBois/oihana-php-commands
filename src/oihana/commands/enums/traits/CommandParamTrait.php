@@ -102,6 +102,11 @@ trait CommandParamTrait
     public const string NAME = 'name' ;
 
     /**
+     * The 'run' parameter.
+     */
+    public const string RUN = 'run' ;
+
+    /**
      * The 'server' parameter.
      */
     public const string SERVER = 'server' ;
