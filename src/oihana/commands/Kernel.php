@@ -67,7 +67,6 @@ class Kernel extends Command implements LoggerInterface
     use CommandTrait ,
         ConfigTrait ,
         ContainerTrait ,
-        ConfigTrait ,
         ConsoleLoggerTrait ,
         DateTrait , // TODO keep it ?
         FileTrait ,
@@ -215,11 +214,13 @@ class Kernel extends Command implements LoggerInterface
             ->initializeActions        ( $init )
             ->initializeBatchSize      ( $init )
             ->initializeCommandOptions ( $init )
-            ->initConfig               ( $init , $container )
+            ->initializeConfig         ( $init , $container )
             ->initializeDescription    ( $init )
             ->initializeHelp           ( $init )
             ->initializeID             ( $init , $container )
             ->initializeInflector      ( $init , $container )
-            ->initializeJsonOptions    ( $init ) ;
+            ->initializeJsonOptions    ( $init )
+            ->initializeLogger         ( $init , $container , false )
+            ;
     }
 }
