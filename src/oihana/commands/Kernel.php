@@ -220,7 +220,7 @@ class Kernel extends Command implements LoggerInterface
             ->initializeID             ( $init , $container )
             ->initializeInflector      ( $init , $container )
             ->initializeJsonOptions    ( $init )
-            ->initializeLogger         ( $init , $container , false )
+            // ->initializeLogger         ( $init , $container , false )
             ;
     }
 }
