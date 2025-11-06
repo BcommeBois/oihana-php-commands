@@ -15,17 +15,19 @@ use Symfony\Component\Console\Input\InputOption;
  */
 class CommandOption extends Option
 {
-    public const string CLEAR       = 'clear'      ;
-    public const string CONFIG      = 'config'     ;
-    public const string DIR         = 'dir'        ;
-    public const string DECRYPT     = 'decrypt'    ;
-    public const string ENCRYPT     = 'encrypt'    ;
-    public const string PASS_PHRASE = 'passphrase' ;
-    public const string QUIET       = 'quiet'      ;
-    public const string SILENT      = 'silent'     ;
-    public const string SUDO        = 'sudo'       ;
-    public const string OWNER       = 'owner'      ;
-    public const string VERSION     = 'version'    ;
+    public const string CLEAR          = 'clear'      ;
+    public const string CONFIG         = 'config'     ;
+    public const string DIR            = 'dir'        ;
+    public const string DECRYPT        = 'decrypt'    ;
+    public const string ENCRYPT        = 'encrypt'    ;
+    public const string FORCE          = 'force'      ;
+    public const string FORCE_SHORTCUT = 'f'          ;
+    public const string PASS_PHRASE    = 'passphrase' ;
+    public const string QUIET          = 'quiet'      ;
+    public const string SILENT         = 'silent'     ;
+    public const string SUDO           = 'sudo'       ;
+    public const string OWNER          = 'owner'      ;
+    public const string VERSION        = 'version'    ;
 
     /**
      * Configures the 'clear' option of the current command.
@@ -51,6 +53,38 @@ class CommandOption extends Option
             $command->addOption
             (
                 name        : self::CLEAR ,
+                shortcut    : $shortcut ,
+                mode        : InputOption::VALUE_NONE ,
+                description : $description
+            ) ;
+        }
+        return $command ;
+    }
+
+    /**
+     * Configures the 'force' option of the current command.
+     *
+     * @param Command     $command     The command reference to configure.
+     * @param bool        $hasForce    Indicates if the force option is configured.
+     * @param string|null $shortcut    The optional shortcut of the command.
+     * @param string      $description The description of the option.
+     *
+     * @return Command
+     */
+    public static function configureForce
+    (
+        Command $command ,
+        bool    $hasForce    = true ,
+        ?string  $shortcut   = null ,
+        string  $description = 'Force the command.'
+    )
+    : Command
+    {
+        if( $hasForce )
+        {
+            $command->addOption
+            (
+                name        : self::FORCE ,
                 shortcut    : $shortcut ,
                 mode        : InputOption::VALUE_NONE ,
                 description : $description
