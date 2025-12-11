@@ -20,6 +20,7 @@ class CommandOption extends Option
     public const string DIR            = 'dir'        ;
     public const string DECRYPT        = 'decrypt'    ;
     public const string ENCRYPT        = 'encrypt'    ;
+    public const string ENV            = 'env'        ;
     public const string FORCE          = 'force'      ;
     public const string FORCE_SHORTCUT = 'f'          ;
     public const string PASS_PHRASE    = 'passphrase' ;
@@ -55,6 +56,38 @@ class CommandOption extends Option
                 name        : self::CLEAR ,
                 shortcut    : $shortcut ,
                 mode        : InputOption::VALUE_NONE ,
+                description : $description
+            ) ;
+        }
+        return $command ;
+    }
+
+    /**
+     * Configures the 'env' option of the current command.
+     *
+     * @param Command     $command     The command reference to configure.
+     * @param bool        $hasEnv      Indicates if the 'env' option is configured.
+     * @param string|null $shortcut    The optional shortcut of the command.
+     * @param string      $description The description of the option.
+     *
+     * @return Command
+     */
+    public static function configureEnv
+    (
+        Command $command ,
+        bool    $hasEnv     = true ,
+        ?string $shortcut   = null ,
+        string  $description = 'Set the environment option of the command.'
+    )
+    : Command
+    {
+        if( $hasEnv )
+        {
+            $command->addOption
+            (
+                name        : self::ENV ,
+                shortcut    : $shortcut ,
+                mode        : InputOption::VALUE_OPTIONAL ,
                 description : $description
             ) ;
         }
