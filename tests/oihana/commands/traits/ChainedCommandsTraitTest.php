@@ -48,9 +48,8 @@ final class ChainedCommandsTraitTest extends TestCase
     {
         $this->command = new DummyCommand('dummy');
         $this->output  = new BufferedOutput();
-        $this->input   = $this->createMock(InputInterface::class);
+        $this->input   = $this->createStub(InputInterface::class);
     }
-
 
     /**
      * @throws ReflectionException
@@ -112,8 +111,8 @@ final class ChainedCommandsTraitTest extends TestCase
 
     public function testSymfonyCommandExecution(): void
     {
-        $app = $this->createMock(Application::class);
-        $symfonyCommand = $this->createMock(Command::class);
+        $app            = $this->createStub(Application::class);
+        $symfonyCommand = $this->createStub(Command::class);
 
         $symfonyCommand->method('run')->willReturn(ExitCode::SUCCESS);
         $app->method('find')->willReturn($symfonyCommand);
@@ -129,8 +128,8 @@ final class ChainedCommandsTraitTest extends TestCase
 
     public function testSymfonyCommandExecutionFailureStopsChain(): void
     {
-        $app = $this->createMock(Application::class);
-        $symfonyCommand = $this->createMock(Command::class);
+        $app = $this->createStub(Application::class);
+        $symfonyCommand = $this->createStub(Command::class);
 
         $symfonyCommand->method('run')->willReturn(ExitCode::FAILURE);
         $app->method('find')->willReturn($symfonyCommand);

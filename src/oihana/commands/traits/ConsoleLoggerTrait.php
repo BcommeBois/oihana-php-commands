@@ -2,12 +2,54 @@
 
 namespace oihana\commands\traits;
 
-use Stringable;
+use oihana\logging\CompositeLogger;
+use oihana\logging\LoggerTrait;
+
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Logger\ConsoleLogger;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Traits to initialize and use the PSR-3 compliant console logger in the commands.
+ * Provides convenient integration of a PSR-3 compliant console logger
+ * (Symfony ConsoleLogger) into any command or service using {@see LoggerTrait}.
+ *
+ * This trait transparently upgrades the internal logger to a
+ * {@see CompositeLogger} when needed, allowing you to register multiple loggers
+ * at once (file loggers, console logger, debug logger, etc.).
+ *
+ * Key features:
+ * - Automatic management of a {@see CompositeLogger} wrapper.
+ * - Seamless creation and replacement of the Symfony {@see ConsoleLogger}.
+ * - Ability to dynamically add, remove, or clear loggers at runtime.
+ * - Full interoperability with PSR-3 loggers already initialized via {@see LoggerTrait}.
+ *
+ * Typical usage:
+ * ```php
+ * class MyCommand extends Command
+ * {
+ *     use ConsoleLoggerTrait;
+ *
+ *     protected function execute(InputInterface $input, OutputInterface $output)
+ *     {
+ *         // Initialize console logger (verbosity mapping optional)
+ *         $this->initializeConsoleLogger($output);
+ *
+ *         // Log through all registered loggers
+ *         $this->info("Starting command");
+ *
+ *         // Add a file logger dynamically
+ *         $this->addLogger(new FileLogger('/var/log/app.log'));
+ *
+ *         return Command::SUCCESS;
+ *     }
+ * }
+ * ```
+ *
+ * Notes:
+ * - When a console logger is initialized, it is automatically added to the composite.
+ * - When replaced or cleared, the previous console logger is properly removed.
+ * - If a logger is already set via {@see LoggerTrait::initializeLogger()}, it is
+ *   preserved and wrapped into a composite transparently.
  *
  * @package oihana\commands\traits
  * @author  Marc Alcaraz (ekameleon)
@@ -15,6 +57,8 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 trait ConsoleLoggerTrait
 {
+    use LoggerTrait ;
+
     /**
      * The console logger reference.
      * @var ?ConsoleLogger
@@ -22,47 +66,40 @@ trait ConsoleLoggerTrait
     public ?ConsoleLogger $console ;
 
     /**
-     * Action must be taken immediately.
+     * Adds a logger to the composite.
      *
-     * Example: Entire website down, database unavailable, etc.
-     * This should trigger the SMS alerts and wake you up.
+     * @param LoggerInterface $logger The logger instance to add
+     *
+     * @return static Returns the current instance for method chaining
      */
-    public function alert( string|Stringable $message, array $context = []): void
+    public function addLogger( LoggerInterface $logger ) :static
     {
-        $this->console?->alert( $message , $context );
+        $this->compositeLogger()->addLogger( $logger ) ;
+        return $this ;
     }
 
     /**
-     * Critical conditions.
-     * Example: Application component unavailable, unexpected exception.
+     * Removes all registered loggers.
+     *
+     * @return static Returns the current instance for method chaining
      */
-    public function critical( string|Stringable $message, array $context = []):void
+    public function clearLogger(): static
     {
-        $this->console?->critical( $message , $context );
+        $this->compositeLogger()->clear();
+        $this->console = null;
+        return $this;
     }
 
     /**
-     * Detailed debug information.
+     * Checks if a logger is registered in the composite.
+     *
+     * @param LoggerInterface $logger The logger instance to check
+     *
+     * @return bool True if the logger is registered, false otherwise
      */
-    public function debug( string|Stringable $message, array $context = []):void
+    public function hasLogger( LoggerInterface $logger ): bool
     {
-        $this->console?->critical( $message , $context );
-    }
-
-    /**
-     * System is unusable.
-     */
-    public function emergency( string|Stringable $message, array $context = [] ): void
-    {
-        $this->console?->emergency( $message , $context );
-    }
-
-    /**
-     * Runtime errors that do not require immediate action but should typically be logged and monitored.
-     */
-    public function error( string|Stringable $message, array $context = []):void
-    {
-        $this->console?->error( $message , $context );
+        return $this->logger instanceof CompositeLogger && $this->logger->hasLogger( $logger ) ;
     }
 
     /**
@@ -72,47 +109,66 @@ trait ConsoleLoggerTrait
      * @param array $formatLevelMap
      * @return static
      */
-    public function initializeConsoleLogger( ?OutputInterface $output = null , array $verbosityLevelMap = [] , array $formatLevelMap = []  ):static
+    public function initializeConsoleLogger
+    (
+        ?OutputInterface $output            = null ,
+        array            $verbosityLevelMap = [] ,
+        array            $formatLevelMap    = []
+    )
+    :static
     {
+        if( $this->logger instanceof CompositeLogger && isset( $this->console ) )
+        {
+            $this->logger->removeLogger( $this->console ) ;
+        }
+
         $this->console = isset( $output ) ? new ConsoleLogger( $output , $verbosityLevelMap , $formatLevelMap ) : null ;
+
+        if ( $this->console )
+        {
+            $this->compositeLogger()->addLogger( $this->console ) ;
+        }
+
         return $this ;
     }
 
     /**
-     * Normal but significant events.
+     * Removes a logger from the composite by reference.
+     *
+     * @param LoggerInterface $logger The logger instance to remove
+     *
+     * @return static Returns the current instance for method chaining
      */
-    public function notice( string|Stringable $message, array $context = []):void
+    public function removeLogger( LoggerInterface $logger ): static
     {
-        $this->console?->notice( $message , $context );
+        if( $this->logger instanceof CompositeLogger )
+        {
+            $this->logger->removeLogger( $logger ) ;
+        }
+
+        if( $logger === $this->console )
+        {
+            $this->console = null ;
+        }
+
+        return $this ;
     }
 
     /**
-     * Interesting events.
-     * Example: User logs in, SQL logs.
+     * Ensures $this->logger is a CompositeLogger and returns it.
      */
-    public function info( string|Stringable $message, array $context = []):void
+    protected function compositeLogger() :CompositeLogger
     {
-        $this->console?->info( $message , $context );
-    }
+        if ( !$this->logger instanceof CompositeLogger )
+        {
+            $existing     = $this->logger ;
+            $this->logger = new CompositeLogger() ;
 
-    /**
-     * Logs with an arbitrary level.
-     * @param mixed $level
-     * @param string|Stringable $message
-     * @param array $context
-     */
-    public function log( mixed $level, string|Stringable $message, array $context = []):void
-    {
-        $this->console?->log( $level , $message , $context );
-    }
-
-    /**
-     * Exceptional occurrences that are not errors.
-     * Example: Use of deprecated APIs, poor use of an API, undesirable things
-     * that are not necessarily wrong.
-     */
-    public function warning( string|Stringable $message, array $context = []):void
-    {
-        $this->console?->warning( $message , $context );
+            if ( $existing instanceof LoggerInterface )
+            {
+                $this->logger->addLogger( $existing ) ;
+            }
+        }
+        return $this->logger ;
     }
 }

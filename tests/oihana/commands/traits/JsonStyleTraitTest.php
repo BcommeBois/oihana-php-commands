@@ -26,7 +26,7 @@ class JsonStyleTraitTest extends TestCase
     public function testGetJsonIsLazyAndCachesInstance(): void
     {
         $trait  = $this->getTraitMock();
-        $output = $this->createMock(OutputInterface::class);
+        $output = $this->createStub(OutputInterface::class);
 
         $instance1 = $trait->getJson($output);
         $instance2 = $trait->getJson($output);
@@ -37,7 +37,7 @@ class JsonStyleTraitTest extends TestCase
     public function testGetJsonUsesProvidedOutput(): void
     {
         $trait  = $this->getTraitMock();
-        $output = $this->createMock(OutputInterface::class);
+        $output = $this->createStub(OutputInterface::class);
 
         $jsonStyle = $trait->getJson($output);
 

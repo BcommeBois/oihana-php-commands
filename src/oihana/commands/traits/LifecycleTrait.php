@@ -2,29 +2,39 @@
 
 namespace oihana\commands\traits;
 
+use DateTimeImmutable;
 use oihana\commands\enums\ExitCode;
 use oihana\enums\Char;
 
 use Symfony\Component\Console\Helper\Helper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
- * Provides helper methods to manage the lifecycle of console commands.
+ * Provides lifecycle helper methods for Symfony Console commands.
  *
- * This trait defines utility methods for initializing and finalizing
- * Symfony Console commands with consistent output formatting.
- * It is intended to be used alongside {@see IOTrait} to handle
- * SymfonyStyle input/output operations.
+ * This trait standardizes the initialization and finalization workflow of
+ * console commands by offering a consistent way to:
+ *
+ * - Render a formatted title when a command starts.
+ * - Capture both the UNIX timestamp and the DateTime reference used for
+ *   execution time calculation.
+ * - Display a completion summary when the command ends, including optional
+ *   start/end dates and human-readable duration.
+ *
+ * It is designed to be used alongside {@see IOTrait}, which provides the
+ * `getIO()` method returning a configured {@see SymfonyStyle} instance.
  *
  * ## Responsibilities
- * - Displaying a formatted title when a command starts.
- * - Returning a start timestamp for execution time calculation.
- * - Displaying a completion message with optional execution time.
+ * - Preparing a SymfonyStyle instance consistently across commands.
+ * - Automatically handling start/end timestamps.
+ * - Rendering a user-friendly end-of-execution summary.
  *
  * ## Usage Example
  * ```php
  * use oihana\commands\traits\LifecycleTrait;
+ * use oihana\commands\enums\ExitCode;
  * use Symfony\Component\Console\Command\Command;
  * use Symfony\Component\Console\Input\InputInterface;
  * use Symfony\Component\Console\Output\OutputInterface;
@@ -37,13 +47,19 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  *     protected function execute(InputInterface $input, OutputInterface $output): int
  *     {
- *         // Start the command
- *         [$io, $startTime] = $this->startCommand($input, $output);
+ *         // Start
+ *         [$io, $startTime, $startDate] = $this->startCommand($input, $output);
  *
- *         // ... perform command actions ...
+ *         // ... command logic ...
  *
- *         // End the command
- *         return $this->endCommand($input, $output, ExitCode::SUCCESS, $startTime);
+ *         // End
+ *         return $this->endCommand(
+ *             $input,
+ *             $output,
+ *             ExitCode::SUCCESS,
+ *             $startTime,
+ *             $startDate
+ *         );
  *     }
  * }
  * ```
@@ -57,40 +73,66 @@ trait LifecycleTrait
     use IOTrait ;
 
     /**
-     * Finalizes the command execution.
+     * Finalizes the execution of the command.
      *
-     * Displays a completion section in the console output with an optional
-     * execution time, followed by a short farewell message. Returns the
-     * provided status code.
+     * This method displays an end timestamp (if a start date was provided),
+     * prints a completion message, and optionally shows the total execution
+     * time in a human-readable format. It returns the given exit code so it
+     * can be directly used as the return value of `execute()`.
      *
-     * @param InputInterface  $input     The console input instance.
-     * @param OutputInterface $output    The console output instance.
-     * @param int             $status    The return status code (default: {@see ExitCode::SUCCESS}).
-     * @param float           $timestamp The starting UNIX timestamp for execution time calculation (default: 0).
+     * @param InputInterface      $input      The console input instance.
+     * @param OutputInterface     $output     The console output instance.
+     * @param int                 $status     The status code to return
+     *                                         (defaults to {@see ExitCode::SUCCESS}).
+     * @param float               $timestamp  The UNIX timestamp recorded at the
+     *                                         start of the command (microtime true).
+     * @param ?DateTimeImmutable  $startDate  The optional DateTime reference
+     *                                         used to display the start/end date.
+     * @param string              $format     Date formatting string used when
+     *                                         rendering start/end times (default: `Y-m-d H:i:s`).
      *
-     * @return int The status code to return from the command.
+     * @return int The exit code to return from the command.
      *
      * @example
      * ```php
-     * return $this->endCommand($input, $output, ExitCode::SUCCESS, $startTime);
+     * return $this->endCommand(
+     *     $input,
+     *     $output,
+     *     ExitCode::SUCCESS,
+     *     $startTime,
+     *     $startDate
+     * );
      * ```
      */
     public function endCommand
     (
-        InputInterface  $input,
-        OutputInterface $output ,
-        int             $status    = ExitCode::SUCCESS ,
-        float           $timestamp = 0
+        InputInterface     $input  ,
+        OutputInterface    $output ,
+        int                $status    = ExitCode::SUCCESS ,
+        float              $timestamp = 0 ,
+        ?DateTimeImmutable $startDate = null ,
+        string             $format    = 'Y-m-d H:i:s'
     )
     : int
     {
         $io = $this->getIO( $input , $output ) ;
 
-        $message = $timestamp > 0
-            ?  sprintf("✅  Done in %s" , Helper::formatTime( microtime(true ) - $timestamp ) )
-            : "Done !" ;
+        if ( $startDate )
+        {
+            $end = new DateTimeImmutable();
+            $io->writeln( sprintf('🕒 End: <info>%s</info>', $end->format( $format ) ) ) ;
+        }
 
-        $io->section( $message ) ;
+        $duration = $timestamp > 0 ? microtime(true) - $timestamp : null ;
+        if ( $duration !== null )
+        {
+            $io->section( sprintf("✅  Done in %s", Helper::formatTime( $duration ) ) ) ;
+        }
+        else
+        {
+            $io->section("✅  Done!");
+        }
+
         $io->text( "Thank you and see you soon!" ) ;
         $io->newLine() ;
 
@@ -107,7 +149,7 @@ trait LifecycleTrait
      * @param InputInterface  $input  The console input instance.
      * @param OutputInterface $output The console output instance.
      *
-     * @return array{0: \Symfony\Component\Console\Style\SymfonyStyle, 1: float}
+     * @return array{0: SymfonyStyle, 1: float}
      *               An array containing the SymfonyStyle I/O instance and the current timestamp.
      *
      * @example
@@ -115,9 +157,10 @@ trait LifecycleTrait
      * [$io, $startTime] = $this->startCommand($input, $output);
      * ```
      */
-    protected function startCommand( InputInterface $input, OutputInterface $output ): array
+    protected function startCommand( InputInterface $input , OutputInterface $output ): array
     {
         $timestamp = microtime(true ) ;
+        $startDate = new DateTimeImmutable();
 
         $io = $this->getIO( $input , $output ) ;
 
@@ -132,6 +175,6 @@ trait LifecycleTrait
 
         $io->title( ucfirst( $title ) ) ;
 
-        return [ $io , $timestamp ] ;
+        return [ $io , $timestamp , $startDate ] ;
     }
 }

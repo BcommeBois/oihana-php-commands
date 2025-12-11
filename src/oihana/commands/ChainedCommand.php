@@ -94,7 +94,6 @@ class ChainedCommand extends Kernel
 
     use ChainedCommandsTrait ;
 
-
     /**
      * Configures the command options.
      *
