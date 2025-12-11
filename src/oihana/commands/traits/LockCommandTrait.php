@@ -71,6 +71,7 @@ trait LockCommandTrait
     )
     :bool
     {
+        $env   = $input->hasOption( CommandOption::ENV   ) ? $input->getOption(CommandOption::ENV   ) : $env  ;
         $force = $input->hasOption( CommandOption::FORCE ) ? $input->getOption(CommandOption::FORCE ) : false ;
 
         if ( empty( $name ) )
