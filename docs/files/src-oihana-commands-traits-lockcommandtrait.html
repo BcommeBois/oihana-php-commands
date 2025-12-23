@@ -98,7 +98,7 @@
     </ul>
 
     <article class="phpdocumentor-element -file">
-        <h2 class="phpdocumentor-content__title">domainExists.php</h2>
+        <h2 class="phpdocumentor-content__title">LockCommandTrait.php</h2>
 
         
         
@@ -109,7 +109,7 @@
         
 <h3 id="toc">
     Table of Contents
-    <a href="files/src-oihana-commands-helpers-domainexists.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="files/src-oihana-commands-traits-lockcommandtrait.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -117,132 +117,29 @@
 
 
 
+    <h4 id="toc-traits">
+        Traits
+        <a href="files/src-oihana-commands-traits-lockcommandtrait.html#toc-traits" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -trait"><a href="classes/oihana-commands-traits-LockCommandTrait.html"><abbr title="\oihana\commands\traits\LockCommandTrait">LockCommandTrait</abbr></a></dt><dd>Acquire the command lock to prevent concurrent executions.</dd>    </dl>
 
 
 
 
 
 
-<h4 id="toc-functions">
-    Functions
-    <a href="files/src-oihana-commands-helpers-domainexists.html#toc-functions" class="headerlink"><i class="fas fa-link"></i></a>
-
-</h4>
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a class="" href="namespaces/oihana-commands-helpers.html#function_domainExists">domainExists()</a>
-    <span>
-                                &nbsp;: bool    </span>
-</dt>
-<dd>Checks whether the given domain has valid DNS records (A, AAAA, or CNAME).</dd>
-
-    </dl>
 
 
         
 
-            <section class="phpdocumentor-functions">
-        <h3 class="phpdocumentor-elements__header" id="functions">
-            Functions
-            <a href="files/src-oihana-commands-helpers-domainexists.html#functions" class="headerlink"><i class="fas fa-link"></i></a>
-
-        </h3>
-                    <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_domainExists">
-        domainExists()
-        <a href="namespaces/oihana-commands-helpers.html#function_domainExists" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/helpers/domainExists.php"><a href="files/src-oihana-commands-helpers-domainexists.html"><abbr title="src/oihana/commands/helpers/domainExists.php">domainExists.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">29</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Checks whether the given domain has valid DNS records (A, AAAA, or CNAME).</p>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility"></span>
-                    <span class="phpdocumentor-signature__name">domainExists</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$domain</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
-
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$domain</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The domain to check (e.g. &quot;example.com&quot;).</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="namespaces/oihana-commands-helpers.html#function_domainExists#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">example</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><pre class="prettyprint"><code class="language-php">$domain = 'example.com';
-
-if ( domainExists( $domain ) )
-{
-    echo &quot;$domain exists.\n&quot;;
-}
-else
-{
-   echo &quot;$domain does NOT exist.\n&quot;;
-}
-</code></pre>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Marc Alcaraz (ekameleon)</p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0.0</span>
-                                                                                
-                                             
-                                    </dd>
-                                            </dl>
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">bool</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>True if DNS records exist for the domain, false otherwise.</p>
-</section>
-
-            </section>
-
-</article>
-            </section>
-
+        
         <div class="phpdocumentor-modal" id="source-view">
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/oihana/commands/helpers/domainExists.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/oihana/commands/traits/LockCommandTrait.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -343,17 +240,11 @@ else
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                                                                                                                        <li><a href="files/src-oihana-commands-helpers-domainexists.html#toc-functions">Functions</a></li>
-                                    </ul>
+                                                                                                                            <li><a href="files/src-oihana-commands-traits-lockcommandtrait.html#toc-traits">Traits</a></li>
+                                                                                                </ul>
             </li>
 
             
-                            <li class="phpdocumentor-on-this-page-section__title">Functions</li>
-                <li>
-                    <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="namespaces/oihana-commands-helpers.html#function_domainExists">domainExists()</a></li>
-                                            </ul>
-                </li>
                     </ul>
     </section>
 
@@ -371,7 +262,7 @@ else
     </section>
 </section>
         </div>
-        <a href="files/src-oihana-commands-helpers-domainexists.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="files/src-oihana-commands-traits-lockcommandtrait.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

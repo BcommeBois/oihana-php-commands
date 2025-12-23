@@ -95,21 +95,49 @@
             <div class="phpdocumentor-column -nine phpdocumentor-content">
                                 <section>
                                         <ul class="phpdocumentor-breadcrumbs">
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/oihana.html">oihana</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/oihana-commands.html">commands</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/oihana-commands-traits.html">traits</a></li>
     </ul>
 
-    <article class="phpdocumentor-element -file">
-        <h2 class="phpdocumentor-content__title">domainExists.php</h2>
+    <article class="phpdocumentor-element -trait">
+        <h2 class="phpdocumentor-content__title">
+    LockCommandTrait
+            <span class="phpdocumentor-trait__extends">
+            uses
+                            \Symfony\Component\Console\Command\LockableTrait                    </span>
+    </h2>
 
-        
-        
-        
-        
+        <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/LockCommandTrait.php"><a href="files/src-oihana-commands-traits-lockcommandtrait.html"><abbr title="src/oihana/commands/traits/LockCommandTrait.php">LockCommandTrait.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">47</span>
+
+    </aside>
+
+            <p class="phpdocumentor-summary">Acquire the command lock to prevent concurrent executions.</p>
 
 
-        
+    <section class="phpdocumentor-description"><p>This method ensures that the command cannot be run multiple times concurrently.
+It uses the Symfony LockableTrait to create a process-level lock identified by
+the given name (or by the command name when omitted).</p>
+<p>If the lock is already held by another running process:</p>
+<ul>
+<li>When <code class="prettyprint">$blocking</code> is <code class="prettyprint">true</code>, the call will wait until the lock is released.</li>
+<li>When <code class="prettyprint">$blocking</code> is <code class="prettyprint">false</code>, the call will immediately return <code class="prettyprint">false</code> and
+optionally display a warning message (unless the <code class="prettyprint">--force</code> option is used).</li>
+</ul>
+<p>The <code class="prettyprint">--force</code> option (when available on the command) allows bypassing the lock
+mechanism and forces the command to run even if another instance is active.</p>
+</section>
+
+
+
+    
+    
 <h3 id="toc">
     Table of Contents
-    <a href="files/src-oihana-commands-helpers-domainexists.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/oihana-commands-traits-LockCommandTrait.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -122,60 +150,113 @@
 
 
 
-
-<h4 id="toc-functions">
-    Functions
-    <a href="files/src-oihana-commands-helpers-domainexists.html#toc-functions" class="headerlink"><i class="fas fa-link"></i></a>
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/oihana-commands-traits-LockCommandTrait.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a class="" href="namespaces/oihana-commands-helpers.html#function_domainExists">domainExists()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/oihana-commands-traits-LockCommandTrait.html#method_acquireLock">acquireLock()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
-<dd>Checks whether the given domain has valid DNS records (A, AAAA, or CNAME).</dd>
+<dd>Acquire the command lock to prevent concurrent executions.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/oihana-commands-traits-LockCommandTrait.html#method_unlock">unlock()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Release the previously acquired command lock.</dd>
 
     </dl>
 
 
+
+
         
 
-            <section class="phpdocumentor-functions">
-        <h3 class="phpdocumentor-elements__header" id="functions">
-            Functions
-            <a href="files/src-oihana-commands-helpers-domainexists.html#functions" class="headerlink"><i class="fas fa-link"></i></a>
+        
+
+            <section class="phpdocumentor-methods">
+        <h3 class="phpdocumentor-elements__header" id="methods">
+            Methods
+            <a href="classes/oihana-commands-traits-LockCommandTrait.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
-                    <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_domainExists">
-        domainExists()
-        <a href="namespaces/oihana-commands-helpers.html#function_domainExists" class="headerlink"><i class="fas fa-link"></i></a>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_acquireLock">
+        acquireLock()
+        <a href="classes/oihana-commands-traits-LockCommandTrait.html#method_acquireLock" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/helpers/domainExists.php"><a href="files/src-oihana-commands-helpers-domainexists.html"><abbr title="src/oihana/commands/helpers/domainExists.php">domainExists.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/LockCommandTrait.php"><a href="files/src-oihana-commands-traits-lockcommandtrait.html"><abbr title="src/oihana/commands/traits/LockCommandTrait.php">LockCommandTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">64</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Checks whether the given domain has valid DNS records (A, AAAA, or CNAME).</p>
+        <p class="phpdocumentor-summary">Acquire the command lock to prevent concurrent executions.</p>
 
-    
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility"></span>
-                    <span class="phpdocumentor-signature__name">domainExists</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$domain</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">acquireLock</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Symfony\Component\Console\Input\InputInterface">InputInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$output</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$blocking</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$env</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$domain</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                <span class="phpdocumentor-argument-list__argument__name">$input</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The domain to check (e.g. &quot;example.com&quot;).</p>
+                    <section class="phpdocumentor-description"><p>The input instance of the main command.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$output</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Symfony\Component\Console\Output\OutputInterface">OutputInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The output instance of the main command.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$name</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The optional unique name of the lock action. By default, use the command name.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$blocking</span>
+                : <span class="phpdocumentor-argument-list__argument__type">bool</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">false</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Determinates whether or not the call should block until the release of the lock.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$env</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The optional environment of the command, ex: 'test', 'prod', ... -&gt; add the prefix <code class="prettyprint">env:name</code></p>
 </section>
 
             </dd>
@@ -184,57 +265,66 @@
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="namespaces/oihana-commands-helpers.html#function_domainExists#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/oihana-commands-traits-LockCommandTrait.html#method_acquireLock#tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">example</span>
+                    <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><pre class="prettyprint"><code class="language-php">$domain = 'example.com';
-
-if ( domainExists( $domain ) )
-{
-    echo &quot;$domain exists.\n&quot;;
-}
-else
-{
-   echo &quot;$domain does NOT exist.\n&quot;;
-}
-</code></pre>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">author</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Marc Alcaraz (ekameleon)</p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">since</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                            <span class="phpdocumentor-tag-link">1.0.0</span>
-                                                                                
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\ReflectionException">ReflectionException</abbr></span>
+                                                            
                                              
                                     </dd>
                                             </dl>
 
+        
+    
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">bool</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>True if DNS records exist for the domain, false otherwise.</p>
-</section>
-
             </section>
 
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_unlock">
+        unlock()
+        <a href="classes/oihana-commands-traits-LockCommandTrait.html#method_unlock" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/oihana/commands/traits/LockCommandTrait.php"><a href="files/src-oihana-commands-traits-lockcommandtrait.html"><abbr title="src/oihana/commands/traits/LockCommandTrait.php">LockCommandTrait.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">112</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Release the previously acquired command lock.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">unlock</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>This method must be called when the command has completed its execution
+to free the lock and allow subsequent runs. If the command is not locked,
+calling this method has no effect.</p>
+</section>
+
+    
+    
+
+        
+    
+    
 </article>
             </section>
 
@@ -242,7 +332,7 @@ else
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/oihana/commands/helpers/domainExists.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/oihana/commands/traits/LockCommandTrait.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -335,7 +425,7 @@ else
     </article>
                                 </section>
                 <section class="phpdocumentor-on-this-page__sidebar">
-                            
+                                
     <section class="phpdocumentor-on-this-page__content">
         <strong class="phpdocumentor-on-this-page__title">On this page</strong>
 
@@ -343,17 +433,16 @@ else
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                                                                                                                        <li><a href="files/src-oihana-commands-helpers-domainexists.html#toc-functions">Functions</a></li>
+                                                                                <li><a href="classes/oihana-commands-traits-LockCommandTrait.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
-
-            
-                            <li class="phpdocumentor-on-this-page-section__title">Functions</li>
-                <li>
-                    <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="namespaces/oihana-commands-helpers.html#function_domainExists">domainExists()</a></li>
-                                            </ul>
-                </li>
+                                                <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/oihana-commands-traits-LockCommandTrait.html#method_acquireLock">acquireLock()</a></li>
+                                            <li class=""><a href="classes/oihana-commands-traits-LockCommandTrait.html#method_unlock">unlock()</a></li>
+                                    </ul>
+            </li>
                     </ul>
     </section>
 
@@ -371,7 +460,7 @@ else
     </section>
 </section>
         </div>
-        <a href="files/src-oihana-commands-helpers-domainexists.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/oihana-commands-traits-LockCommandTrait.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

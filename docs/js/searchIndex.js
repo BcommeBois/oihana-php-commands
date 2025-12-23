@@ -126,6 +126,56 @@ Search.appendIndex(
             "summary": "Represents\u0020the\u0020\u0022init\u0022\u0020argument.",
             "url": "classes/oihana-commands-enums-CommandArg.html#constant_INIT"
         },                {
+            "fqsen": "\\oihana\\commands\\enums\\CommandConfig",
+            "name": "CommandConfig",
+            "summary": "Enumeration\u0020of\u0020the\u0020command\u0020config\u0020keys.",
+            "url": "classes/oihana-commands-enums-CommandConfig.html"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\CommandConfig\u003A\u003ACOMMAND",
+            "name": "COMMAND",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-CommandConfig.html#constant_COMMAND"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\CommandConfig\u003A\u003AERRORS",
+            "name": "ERRORS",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-CommandConfig.html#constant_ERRORS"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\CommandConfig\u003A\u003ATIMEZONE",
+            "name": "TIMEZONE",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-CommandConfig.html#constant_TIMEZONE"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\CommandDefinition",
+            "name": "CommandDefinition",
+            "summary": "Enumeration\u0020of\u0020the\u0020command\u0020definitions\u0020keys.",
+            "url": "classes/oihana-commands-enums-CommandDefinition.html"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\CommandDefinition\u003A\u003AAPP_PATH",
+            "name": "APP_PATH",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-CommandDefinition.html#constant_APP_PATH"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\CommandDefinition\u003A\u003ACOMMAND",
+            "name": "COMMAND",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-CommandDefinition.html#constant_COMMAND"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\CommandDefinition\u003A\u003ACOMMANDS",
+            "name": "COMMANDS",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-CommandDefinition.html#constant_COMMANDS"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\CommandDefinition\u003A\u003ACONFIG",
+            "name": "CONFIG",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-CommandDefinition.html#constant_CONFIG"
+        },                {
+            "fqsen": "\\oihana\\commands\\enums\\CommandDefinition\u003A\u003ACONFIG_PATH",
+            "name": "CONFIG_PATH",
+            "summary": "",
+            "url": "classes/oihana-commands-enums-CommandDefinition.html#constant_CONFIG_PATH"
+        },                {
             "fqsen": "\\oihana\\commands\\enums\\CommandHelper",
             "name": "CommandHelper",
             "summary": "The\u0020enumeration\u0020of\u0020the\u0020command\u0027s\u0020helpers.",
@@ -861,6 +911,16 @@ Search.appendIndex(
             "summary": "Configures\u0020the\u0020\u0027clear\u0027\u0020option\u0020of\u0020the\u0020current\u0020command.",
             "url": "classes/oihana-commands-options-CommandOption.html#method_configureClear"
         },                {
+            "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003AconfigureEnv\u0028\u0029",
+            "name": "configureEnv",
+            "summary": "Configures\u0020the\u0020\u0027env\u0027\u0020option\u0020of\u0020the\u0020current\u0020command.",
+            "url": "classes/oihana-commands-options-CommandOption.html#method_configureEnv"
+        },                {
+            "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003AconfigureForce\u0028\u0029",
+            "name": "configureForce",
+            "summary": "Configures\u0020the\u0020\u0027force\u0027\u0020option\u0020of\u0020the\u0020current\u0020command.",
+            "url": "classes/oihana-commands-options-CommandOption.html#method_configureForce"
+        },                {
             "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003ACLEAR",
             "name": "CLEAR",
             "summary": "",
@@ -885,6 +945,21 @@ Search.appendIndex(
             "name": "ENCRYPT",
             "summary": "",
             "url": "classes/oihana-commands-options-CommandOption.html#constant_ENCRYPT"
+        },                {
+            "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003AENV",
+            "name": "ENV",
+            "summary": "",
+            "url": "classes/oihana-commands-options-CommandOption.html#constant_ENV"
+        },                {
+            "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003AFORCE",
+            "name": "FORCE",
+            "summary": "",
+            "url": "classes/oihana-commands-options-CommandOption.html#constant_FORCE"
+        },                {
+            "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003AFORCE_SHORTCUT",
+            "name": "FORCE_SHORTCUT",
+            "summary": "",
+            "url": "classes/oihana-commands-options-CommandOption.html#constant_FORCE_SHORTCUT"
         },                {
             "fqsen": "\\oihana\\commands\\options\\CommandOption\u003A\u003APASS_PHRASE",
             "name": "PASS_PHRASE",
@@ -1388,58 +1463,38 @@ Search.appendIndex(
         },                {
             "fqsen": "\\oihana\\commands\\traits\\ConsoleLoggerTrait",
             "name": "ConsoleLoggerTrait",
-            "summary": "Traits\u0020to\u0020initialize\u0020and\u0020use\u0020the\u0020PSR\u002D3\u0020compliant\u0020console\u0020logger\u0020in\u0020the\u0020commands.",
+            "summary": "Provides\u0020convenient\u0020integration\u0020of\u0020a\u0020PSR\u002D3\u0020compliant\u0020console\u0020logger\n\u0028Symfony\u0020ConsoleLogger\u0029\u0020into\u0020any\u0020command\u0020or\u0020service\u0020using\u0020\u007B\u0040see\u0020LoggerTrait\u007D.",
             "url": "classes/oihana-commands-traits-ConsoleLoggerTrait.html"
         },                {
-            "fqsen": "\\oihana\\commands\\traits\\ConsoleLoggerTrait\u003A\u003Aalert\u0028\u0029",
-            "name": "alert",
-            "summary": "Action\u0020must\u0020be\u0020taken\u0020immediately.",
-            "url": "classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_alert"
+            "fqsen": "\\oihana\\commands\\traits\\ConsoleLoggerTrait\u003A\u003AaddLogger\u0028\u0029",
+            "name": "addLogger",
+            "summary": "Adds\u0020a\u0020logger\u0020to\u0020the\u0020composite.",
+            "url": "classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_addLogger"
         },                {
-            "fqsen": "\\oihana\\commands\\traits\\ConsoleLoggerTrait\u003A\u003Acritical\u0028\u0029",
-            "name": "critical",
-            "summary": "Critical\u0020conditions.",
-            "url": "classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_critical"
+            "fqsen": "\\oihana\\commands\\traits\\ConsoleLoggerTrait\u003A\u003AclearLogger\u0028\u0029",
+            "name": "clearLogger",
+            "summary": "Removes\u0020all\u0020registered\u0020loggers.",
+            "url": "classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_clearLogger"
         },                {
-            "fqsen": "\\oihana\\commands\\traits\\ConsoleLoggerTrait\u003A\u003Adebug\u0028\u0029",
-            "name": "debug",
-            "summary": "Detailed\u0020debug\u0020information.",
-            "url": "classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_debug"
-        },                {
-            "fqsen": "\\oihana\\commands\\traits\\ConsoleLoggerTrait\u003A\u003Aemergency\u0028\u0029",
-            "name": "emergency",
-            "summary": "System\u0020is\u0020unusable.",
-            "url": "classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_emergency"
-        },                {
-            "fqsen": "\\oihana\\commands\\traits\\ConsoleLoggerTrait\u003A\u003Aerror\u0028\u0029",
-            "name": "error",
-            "summary": "Runtime\u0020errors\u0020that\u0020do\u0020not\u0020require\u0020immediate\u0020action\u0020but\u0020should\u0020typically\u0020be\u0020logged\u0020and\u0020monitored.",
-            "url": "classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_error"
+            "fqsen": "\\oihana\\commands\\traits\\ConsoleLoggerTrait\u003A\u003AhasLogger\u0028\u0029",
+            "name": "hasLogger",
+            "summary": "Checks\u0020if\u0020a\u0020logger\u0020is\u0020registered\u0020in\u0020the\u0020composite.",
+            "url": "classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_hasLogger"
         },                {
             "fqsen": "\\oihana\\commands\\traits\\ConsoleLoggerTrait\u003A\u003AinitializeConsoleLogger\u0028\u0029",
             "name": "initializeConsoleLogger",
             "summary": "Initialize\u0020the\u0020internal\u0020console\u0020logger.",
             "url": "classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_initializeConsoleLogger"
         },                {
-            "fqsen": "\\oihana\\commands\\traits\\ConsoleLoggerTrait\u003A\u003Anotice\u0028\u0029",
-            "name": "notice",
-            "summary": "Normal\u0020but\u0020significant\u0020events.",
-            "url": "classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_notice"
+            "fqsen": "\\oihana\\commands\\traits\\ConsoleLoggerTrait\u003A\u003AremoveLogger\u0028\u0029",
+            "name": "removeLogger",
+            "summary": "Removes\u0020a\u0020logger\u0020from\u0020the\u0020composite\u0020by\u0020reference.",
+            "url": "classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_removeLogger"
         },                {
-            "fqsen": "\\oihana\\commands\\traits\\ConsoleLoggerTrait\u003A\u003Ainfo\u0028\u0029",
-            "name": "info",
-            "summary": "Interesting\u0020events.",
-            "url": "classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_info"
-        },                {
-            "fqsen": "\\oihana\\commands\\traits\\ConsoleLoggerTrait\u003A\u003Alog\u0028\u0029",
-            "name": "log",
-            "summary": "Logs\u0020with\u0020an\u0020arbitrary\u0020level.",
-            "url": "classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_log"
-        },                {
-            "fqsen": "\\oihana\\commands\\traits\\ConsoleLoggerTrait\u003A\u003Awarning\u0028\u0029",
-            "name": "warning",
-            "summary": "Exceptional\u0020occurrences\u0020that\u0020are\u0020not\u0020errors.",
-            "url": "classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_warning"
+            "fqsen": "\\oihana\\commands\\traits\\ConsoleLoggerTrait\u003A\u003AcompositeLogger\u0028\u0029",
+            "name": "compositeLogger",
+            "summary": "Ensures\u0020\u0024this\u002D\u003Elogger\u0020is\u0020a\u0020CompositeLogger\u0020and\u0020returns\u0020it.",
+            "url": "classes/oihana-commands-traits-ConsoleLoggerTrait.html#method_compositeLogger"
         },                {
             "fqsen": "\\oihana\\commands\\traits\\ConsoleLoggerTrait\u003A\u003A\u0024console",
             "name": "console",
@@ -1578,18 +1633,33 @@ Search.appendIndex(
         },                {
             "fqsen": "\\oihana\\commands\\traits\\LifecycleTrait",
             "name": "LifecycleTrait",
-            "summary": "Provides\u0020helper\u0020methods\u0020to\u0020manage\u0020the\u0020lifecycle\u0020of\u0020console\u0020commands.",
+            "summary": "Provides\u0020lifecycle\u0020helper\u0020methods\u0020for\u0020Symfony\u0020Console\u0020commands.",
             "url": "classes/oihana-commands-traits-LifecycleTrait.html"
         },                {
             "fqsen": "\\oihana\\commands\\traits\\LifecycleTrait\u003A\u003AendCommand\u0028\u0029",
             "name": "endCommand",
-            "summary": "Finalizes\u0020the\u0020command\u0020execution.",
+            "summary": "Finalizes\u0020the\u0020execution\u0020of\u0020the\u0020command.",
             "url": "classes/oihana-commands-traits-LifecycleTrait.html#method_endCommand"
         },                {
             "fqsen": "\\oihana\\commands\\traits\\LifecycleTrait\u003A\u003AstartCommand\u0028\u0029",
             "name": "startCommand",
             "summary": "Initializes\u0020the\u0020command\u0020execution.",
             "url": "classes/oihana-commands-traits-LifecycleTrait.html#method_startCommand"
+        },                {
+            "fqsen": "\\oihana\\commands\\traits\\LockCommandTrait",
+            "name": "LockCommandTrait",
+            "summary": "Acquire\u0020the\u0020command\u0020lock\u0020to\u0020prevent\u0020concurrent\u0020executions.",
+            "url": "classes/oihana-commands-traits-LockCommandTrait.html"
+        },                {
+            "fqsen": "\\oihana\\commands\\traits\\LockCommandTrait\u003A\u003AacquireLock\u0028\u0029",
+            "name": "acquireLock",
+            "summary": "Acquire\u0020the\u0020command\u0020lock\u0020to\u0020prevent\u0020concurrent\u0020executions.",
+            "url": "classes/oihana-commands-traits-LockCommandTrait.html#method_acquireLock"
+        },                {
+            "fqsen": "\\oihana\\commands\\traits\\LockCommandTrait\u003A\u003Aunlock\u0028\u0029",
+            "name": "unlock",
+            "summary": "Release\u0020the\u0020previously\u0020acquired\u0020command\u0020lock.",
+            "url": "classes/oihana-commands-traits-LockCommandTrait.html#method_unlock"
         },                {
             "fqsen": "\\oihana\\commands\\traits\\PassphraseTrait",
             "name": "PassphraseTrait",

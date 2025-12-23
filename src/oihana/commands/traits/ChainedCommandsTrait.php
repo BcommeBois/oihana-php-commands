@@ -76,7 +76,7 @@ trait ChainedCommandsTrait
     {
         if ( empty( $this->after ) )
         {
-            return ExitCode::SUCCESS;
+            return ExitCode::SUCCESS ;
         }
         return $this->runCommands( $this->after , $input , $output ) ;
     }
@@ -89,7 +89,7 @@ trait ChainedCommandsTrait
     {
         if ( empty( $this->before ) )
         {
-            return ExitCode::SUCCESS;
+            return ExitCode::SUCCESS ;
         }
         return $this->runCommands($this->before, $input , $output ) ;
     }
@@ -178,10 +178,10 @@ trait ChainedCommandsTrait
     {
         if ( empty( $commands ) )
         {
-            return ExitCode::SUCCESS;
+            return ExitCode::SUCCESS ;
         }
 
-        $app = $this->getApplication();
+        $app = null ;
 
         foreach ( $commands as $cmd )
         {
@@ -190,14 +190,18 @@ trait ChainedCommandsTrait
                 $result = $cmd( $input , $output , $this ) ;
                 if ( is_int( $result ) && $result !== ExitCode::SUCCESS )
                 {
-                    return $result;
+                    return $result ;
                 }
                 continue;
             }
 
-            if ( !$app )
+            if ( $app === null )
             {
-                return ExitCode::FAILURE;
+                $app = $this->getApplication();
+                if ( !$app )
+                {
+                    return ExitCode::FAILURE ;
+                }
             }
 
             $name = $cmd[ CommandParam::NAME ] ?? null ;
@@ -209,16 +213,20 @@ trait ChainedCommandsTrait
             }
 
             $command = $app->find( $name );
-            $input = new ArrayInput( array_merge( [ CommandParam::COMMAND => $name ] , $args ) );
 
-            $exitCode = $command->run( $input , $output ) ;
+            $commandInput = new ArrayInput( [ CommandParam::COMMAND => $name , ...$args ] ) ;
+
+            $exitCode = $command->run( $commandInput , $output ) ;
+
+            unset( $command , $commandInput ) ;
+
             if ( $exitCode !== ExitCode::SUCCESS )
             {
                 return $exitCode ; // stop chain if error
             }
         }
 
-        return ExitCode::SUCCESS;
+        return ExitCode::SUCCESS ;
     }
 
     /**
@@ -248,12 +256,13 @@ trait ChainedCommandsTrait
         $status = $this->before($input, $output) ;
         if ( $status !== ExitCode::SUCCESS )
         {
-            return $status;
+            return $status ;
         }
 
-        $exit = $this->runCommands( $this->run , $input , $output ) ;
-        if ($exit !== ExitCode::SUCCESS) {
-            return $exit;
+        $status = $this->runCommands( $this->run , $input , $output ) ;
+        if ( $status !== ExitCode::SUCCESS )
+        {
+            return $status ;
         }
 
         return $this->after( $input , $output ) ;
