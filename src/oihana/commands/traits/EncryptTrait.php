@@ -53,8 +53,15 @@ trait EncryptTrait
      * @param InputInterface $input The console input instance.
      * @return bool True if encryption should be performed, false otherwise.
      */
-    public function shouldEncrypt( InputInterface $input ):bool
+    public function shouldEncrypt( InputInterface $input ) :bool
     {
-        return $input->getOption( CommandOption::ENCRYPT ) || $this->encrypt ;
+        $option = $input->getOption( CommandOption::ENCRYPT ) ;
+
+        if( $option !== null )
+        {
+            return $option ;
+        }
+
+        return $this->encrypt ;
     }
 }
