@@ -20,7 +20,12 @@ class MissingPassphraseException extends Exception
      * @param int $code The code of the error.
      * @param Throwable|null $previous
      */
-    public function __construct( string $message = "The passphrase is required.", int $code = 0 , ?Throwable $previous = null )
+    public function __construct
+    (
+        string     $message  = "The passphrase is required." ,
+        int        $code     = 0 ,
+        ?Throwable $previous = null
+    )
     {
         parent::__construct( $message , $code , $previous ) ;
     }
