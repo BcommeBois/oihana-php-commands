@@ -25,16 +25,16 @@ class ChownOption extends Option
     public const string SUDO           = 'sudo' ;
     public const string VERBOSE        = 'verbose'  ;
 
-    public static function getCommandOption(string $option): string
+    public static function getCommandOption( string $option ): string
     {
         // macOS: BSD chown → short options
         if ( isMac() )
         {
-            return match ($option)
+            return match ( $option )
             {
-                self::RECURSIVE      => 'R' ,
-                self::VERBOSE        => 'v' ,
-                default              => ''  , // GROUP, OWNER, PATH are positional
+                self::RECURSIVE => 'R' ,
+                self::VERBOSE   => 'v' ,
+                default         => ''  , // GROUP, OWNER, PATH are positional
             };
         }
 
