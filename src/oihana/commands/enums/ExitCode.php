@@ -79,7 +79,7 @@ class ExitCode
      * Exit status out of range.
      * Exit status codes above 255 are usually truncated modulo 256.
      */
-    public const int EXIT_STATUS_OUT_OF_RANGE = 255;
+    public const int EXIT_STATUS_OUT_OF_RANGE = 255 ;
 
     // ─────────────────────────────
     // Signals (128 + signal number)
@@ -89,157 +89,157 @@ class ExitCode
     /**
      * Hangup detected on controlling terminal or death of controlling process.
      */
-    public const int SIGHUP = 129;
+    public const int SIGHUP = 129 ;
 
     /**
      * Interrupt from keyboard (Control-C).
      */
-    public const int SIGINT = 130;
+    public const int SIGINT = 130 ;
 
     /**
      * Quit from keyboard (often Control-\).
      */
-    public const int SIGQUIT = 131;
+    public const int SIGQUIT = 131 ;
 
     /**
      * Illegal instruction.
      */
-    public const int SIGILL = 132;
+    public const int SIGILL = 132 ;
 
     /**
      * Trace/breakpoint trap.
      */
-    public const int SIGTRAP = 133;
+    public const int SIGTRAP = 133 ;
 
     /**
      * Abort signal from abort(3).
      */
-    public const int SIGABRT = 134;
+    public const int SIGABRT = 134 ;
 
     /**
      * Bus error (bad memory access).
      */
-    public const int SIGBUS = 135;
+    public const int SIGBUS = 135 ;
 
     /**
      * Floating-point exception.
      */
-    public const int SIGFPE = 136;
+    public const int SIGFPE = 136 ;
 
     /**
      * Kill signal (cannot be caught or ignored).
      */
-    public const int SIGKILL = 137;
+    public const int SIGKILL = 137 ;
 
     /**
      * User-defined signal 1.
      */
-    public const int SIGUSR1 = 138;
+    public const int SIGUSR1 = 138 ;
 
     /**
      * Invalid memory reference (segmentation fault).
      */
-    public const int SIGSEGV = 139;
+    public const int SIGSEGV = 139 ;
 
     /**
      * User-defined signal 2.
      */
-    public const int SIGUSR2 = 140;
+    public const int SIGUSR2 = 140 ;
 
     /**
      * Broken pipe: write to pipe with no readers.
      */
-    public const int SIGPIPE = 141;
+    public const int SIGPIPE = 141 ;
 
     /**
      * Alarm clock (timer signal from alarm(2)).
      */
-    public const int SIGALRM = 142;
+    public const int SIGALRM = 142 ;
 
     /**
      * Termination signal.
      */
-    public const int SIGTERM = 143;
+    public const int SIGTERM = 143 ;
 
     /**
      * Stack fault on coprocessor (unused on most systems).
      */
-    public const int SIGSTKFLT = 144;
+    public const int SIGSTKFLT = 144 ;
 
     /**
      * Child stopped or terminated.
      */
-    public const int SIGCHLD = 145;
+    public const int SIGCHLD = 145 ;
 
     /**
      * Continue if stopped.
      */
-    public const int SIGCONT = 146;
+    public const int SIGCONT = 146 ;
 
     /**
      * Stop process (cannot be caught or ignored).
      */
-    public const int SIGSTOP = 147;
+    public const int SIGSTOP = 147 ;
 
     /**
      * Stop typed at terminal.
      */
-    public const int SIGTSTP = 148;
+    public const int SIGTSTP = 148 ;
 
     /**
      * Terminal input for background process.
      */
-    public const int SIGTTIN = 149;
+    public const int SIGTTIN = 149 ;
 
     /**
      * Terminal output for background process.
      */
-    public const int SIGTTOU = 150;
+    public const int SIGTTOU = 150 ;
 
     /**
      * Urgent condition on socket.
      */
-    public const int SIGURG = 151;
+    public const int SIGURG = 151 ;
 
     /**
      * CPU time limit exceeded.
      */
-    public const int SIGXCPU = 152;
+    public const int SIGXCPU = 152 ;
 
     /**
      * File size limit exceeded.
      */
-    public const int SIGXFSZ = 153;
+    public const int SIGXFSZ = 153 ;
 
     /**
      * Virtual alarm clock.
      */
-    public const int SIGVTALRM = 154;
+    public const int SIGVTALRM = 154 ;
 
     /**
      * Profiling timer expired.
      */
-    public const int SIGPROF = 155;
+    public const int SIGPROF = 155 ;
 
     /**
      * Window resize signal.
      */
-    public const int SIGWINCH = 156;
+    public const int SIGWINCH = 156 ;
 
     /**
      * I/O now possible.
      */
-    public const int SIGIO = 157;
+    public const int SIGIO = 157 ;
 
     /**
      * Power failure (not all systems).
      */
-    public const int SIGPWR = 158;
+    public const int SIGPWR = 158 ;
 
     /**
      * Bad system call (sometimes SIGSYS).
      */
-    public const int SIGSYS = 159;
+    public const int SIGSYS = 159 ;
 
     // ─────────────────────────────
     // Helpers
