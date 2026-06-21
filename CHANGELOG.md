@@ -6,20 +6,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [1.0.4] - 2026-06-21
+
 ### Added
 
-- oihana\commands\exceptions\MissingPassphraseException class
+- `oihana\commands\exceptions\MissingPassphraseException` — thrown when a required passphrase is missing.
 
-- oihana\commands\helpers\comment
-- oihana\commands\helpers\error
-- oihana\commands\helpers\format
-- oihana\commands\helpers\info
-- oihana\commands\helpers\warning
- 
-- oihana\commands\traits\ChainedCommandsTrait
+- `oihana\commands\helpers\format` — wraps a message in Symfony Console color/style tags, with the ready-made shortcuts `comment` (magenta), `error` (red), `info` (cyan) and `warning` (yellow).
 
-- oihana\commands\style\JsonStyle class
-- oihana\commands\style\OutputStyle class
+- `oihana\commands\traits\ChainedCommandsTrait` — run arrays of commands or callables before and after a Symfony Console command (before/after chaining).
+
+- `oihana\commands\styles\OutputStyle` — abstract base wrapping Symfony Console's `OutputInterface`, a unified surface for building custom console output styles.
+- `oihana\commands\styles\JsonStyle` — an `OutputStyle` that renders PHP data structures as syntax-highlighted (colorized) JSON in the console.
 
 ### Changed
 
