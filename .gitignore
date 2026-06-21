@@ -18,10 +18,13 @@ composer-dev.lock
 .twgit_features_subject
 coverage.xml
 /.phpdoc/cache
-/build/parser
+/build/
 /builds/
 /database/
 /vendor/
+
+# phpDocumentor output — built & deployed by CI (GitHub Pages)
+/docs/
 
 #Bun
 *.lock
