@@ -16,11 +16,11 @@ use oihana\commands\traits\HelperTrait;
 use oihana\commands\traits\InflectorTrait;
 use oihana\commands\traits\LifecycleTrait;
 use oihana\commands\traits\UITrait;
-use oihana\date\traits\DateTrait;
 use oihana\enums\Char;
 
 use oihana\traits\ConfigTrait;
 use oihana\traits\ContainerTrait;
+use oihana\traits\DateTrait;
 use oihana\traits\IDTrait;
 use oihana\traits\JsonOptionsTrait;
 use Psr\Container\ContainerExceptionInterface;
@@ -68,7 +68,7 @@ class Kernel extends Command implements LoggerInterface
         ConfigTrait ,
         ContainerTrait ,
         ConsoleLoggerTrait ,
-        DateTrait , // TODO keep it ?
+        DateTrait ,
         FileTrait ,
         HelperTrait ,
         IDTrait ,

@@ -21,6 +21,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - oihana\commands\style\JsonStyle class
 - oihana\commands\style\OutputStyle class
 
+### Changed
+
+- Dependencies: replaced `oihana/php-system` with the focused `oihana/php-logging` and `oihana/php-traits` packages (namespaces `oihana\logging` and `oihana\traits`). Drops the heavy Slim/Twig/Symfony stack that `php-system` pulled in.
+- `Kernel`: the relocated `DateTrait` is now imported from `oihana\traits\DateTrait` instead of `oihana\date\traits\DateTrait` (moved out of `php-system` into `php-traits`). Behaviour unchanged.
+
 ## [1.0.3] - 2025-08-13
 
 ### Added
