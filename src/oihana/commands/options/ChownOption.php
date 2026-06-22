@@ -38,7 +38,10 @@ class ChownOption extends Option
             };
         }
 
-        // Linux: GNU chown → long options
+        // Linux: GNU chown → long options.
+        // The GNU/Linux arm is unreachable on the macOS test host.
+        // @codeCoverageIgnoreStart
         return hyphenate( $option ) ;
+        // @codeCoverageIgnoreEnd
     }
 }

@@ -34,9 +34,12 @@ function silent( ?string &$command, bool $silent = false ) :?string
 {
     if ( $silent && $command !== null && $command !== '')
     {
+        // Platform-dependent redirect; the Windows arm is unreachable on the test host.
+        // @codeCoverageIgnoreStart
         $redirect = strtoupper(substr(PHP_OS_FAMILY, 0, 3)) === 'WIN'
                   ? ' > NUL 2>&1'
                   : ' > /dev/null 2>&1';
+        // @codeCoverageIgnoreEnd
 
         $command .= $redirect ;
     }
