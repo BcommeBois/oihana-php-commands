@@ -91,6 +91,25 @@ trait ChownTrait
         $group = $group ?? $options->group ;
         $owner = $owner ?? $options->owner ;
 
+        // The path must be validated before inspecting ownership: getOwnershipInfos()
+        // requires an existing path and would otherwise throw before this guard.
+        if( empty( $path ) )
+        {
+            $message = 'Missing `path` for chown operation.' ;
+
+            if( $strict )
+            {
+                throw new RuntimeException( $message ) ;
+            }
+
+            if( $verbose )
+            {
+                $this->warning( $message ) ;
+            }
+
+            return ExitCode::SUCCESS ;
+        }
+
         $current = getOwnershipInfos( $path ) ;
 
         $needChown = false;
@@ -125,23 +144,6 @@ trait ChownTrait
             if( $verbose )
             {
                 $this->warning( 'You must provide at least an owner or a group for chown.' ) ;
-            }
-
-            return ExitCode::SUCCESS ;
-        }
-
-        if( empty( $path ) )
-        {
-            $message = 'Missing `path` for chown operation.' ;
-
-            if( $strict )
-            {
-                throw new RuntimeException($message ) ;
-            }
-
-            if( $verbose )
-            {
-                $this->warning( $message ) ;
             }
 
             return ExitCode::SUCCESS ;
