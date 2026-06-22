@@ -107,12 +107,9 @@ final class ChownOptionsTest extends TestCase
 
         if (isMac())
         {
-            // NOTE (frozen behaviour, possible latent bug): on macOS, ChownOption::getCommandOption()
-            // returns '' for 'from'/'reference' (they are not in the BSD match and fall through to the
-            // default empty string). The resulting CLI fragment is therefore just the prefix + separator
-            // + value, i.e. '-="root:root"', with no actual option name. This is almost certainly not a
-            // valid BSD chown invocation, but it is the current behaviour and is captured here as-is.
-            $this->assertSame('-="root:root" -="/etc/passwd"', $result);
+            // BSD chown has no --from / --reference equivalent, so on macOS these
+            // GNU-only options are excluded entirely → empty fragment.
+            $this->assertSame('', $result);
         }
         else
         {

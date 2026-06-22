@@ -118,7 +118,9 @@ class ChownOptions extends Options
         (
             clazz     : ChownOption::class ,
             prefix    : isMac() ? Char::HYPHEN : Char::DOUBLE_HYPHEN ,
-            excludes  : [ ChownOption::GROUP , ChownOption::PATH ,  ChownOption::OWNER , ChownOption::SUDO ] ,
+            excludes  : isMac()
+                      ? [ ChownOption::GROUP , ChownOption::PATH , ChownOption::OWNER , ChownOption::SUDO , ChownOption::FROM , ChownOption::REFERENCE ]
+                      : [ ChownOption::GROUP , ChownOption::PATH , ChownOption::OWNER , ChownOption::SUDO ] ,
             separator : Char::EQUAL
         ) ;
     }
