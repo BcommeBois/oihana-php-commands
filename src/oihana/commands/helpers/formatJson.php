@@ -32,7 +32,7 @@ function formatJson( SymfonyStyle $io, mixed $data , int $indent = 0, bool $isAr
         $objectId = spl_object_id( $data ) ;
         if ( isset( $seen[ $objectId ] ) )
         {
-            $io->writeln('<fg=red>*"</fg=red><fg=comment> [Circular Reference]</fg=comment>');
+            $io->writeln('<fg=red>*"</fg=red><comment> [Circular Reference]</comment>');
             return;
         }
         $seen[ $objectId ] = true ;
@@ -48,10 +48,7 @@ function formatJson( SymfonyStyle $io, mixed $data , int $indent = 0, bool $isAr
             $properties = $reflection->properties( $data ) ;
             foreach ( $properties as $property )
             {
-                /**
-                 * @var ReflectionProperty $property
-                 */
-                $data[ $property->getName() ] = $property->getValue( $data );
+                $array[ $property->getName() ] = $property->getValue( $data );
             }
             $data = $array ;
         }

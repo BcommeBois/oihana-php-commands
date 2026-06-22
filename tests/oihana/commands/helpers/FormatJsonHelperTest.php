@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace tests\oihana\commands\helpers;
 
-use Error;
 use JsonSerializable;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -129,9 +127,8 @@ final class FormatJsonHelperTest extends TestCase
     }
 
     /**
-     * FROZEN BEHAVIOUR: a non-JsonSerializable object with NO properties hits
-     * the buggy `else` branch which builds an (always empty) local `$array`
-     * and assigns it back to `$data`, so the output is an empty object `{}`.
+     * A non-JsonSerializable object with NO properties is converted to an empty
+     * associative array and rendered as an empty object `{}`.
      */
     public function testFormatsNonJsonSerializableEmptyObjectAsEmptyBraces(): void
     {
@@ -144,22 +141,23 @@ final class FormatJsonHelperTest extends TestCase
     }
 
     /**
-     * FROZEN BUG: a non-JsonSerializable object WITH properties triggers a
-     * fatal `Error` because the code writes to `$data[$property->getName()]`
-     * while `$data` is still the object (not an array). This is asserted, not
-     * fixed.
+     * A non-JsonSerializable object is converted to an associative array of its
+     * reflected properties and rendered as a JSON object.
      */
-    public function testNonJsonSerializableObjectWithPropertiesThrowsError(): void
+    public function testFormatsNonJsonSerializableObjectWithProperties(): void
     {
         $object = new class
         {
             public int $a = 1;
+            public string $b = 'x';
         };
 
-        $this->expectException( Error::class );
-        $this->expectExceptionMessage( 'Cannot use object of type' );
+        $result = $this->render( $object );
 
-        $this->render( $object );
+        $this->assertStringContainsString( '"a": ', $result );
+        $this->assertStringContainsString( '1', $result );
+        $this->assertStringContainsString( '"b": ', $result );
+        $this->assertStringContainsString( 'x', $result );
     }
 
     /**
@@ -193,12 +191,12 @@ final class FormatJsonHelperTest extends TestCase
     }
 
     /**
-     * FROZEN BUG: the circular-reference branch is reachable (an object seen
-     * twice), but the message it writes uses the `<fg=comment>` color which is
-     * not a valid Symfony Console color, so Symfony throws when the line is
-     * rendered. The branch (and its writeln) is still exercised for coverage.
+     * The circular-reference branch is reachable when the same object appears
+     * twice: the first occurrence marks it as "seen", the second renders the
+     * `[Circular Reference]` marker (using the valid `comment` style) instead
+     * of recursing.
      */
-    public function testCircularReferenceBranchThrowsOnInvalidColor(): void
+    public function testCircularReferenceBranchRendersMarker(): void
     {
         $object = new class implements JsonSerializable
         {
@@ -210,11 +208,8 @@ final class FormatJsonHelperTest extends TestCase
             }
         };
 
-        // The same object appears twice in the list: the first occurrence marks
-        // it as "seen", the second re-enters the circular branch.
-        $this->expectException( InvalidArgumentException::class );
-        $this->expectExceptionMessage( 'comment' );
+        $result = $this->render( [ $object, $object ] );
 
-        $this->render( [ $object, $object ] );
+        $this->assertStringContainsString( '[Circular Reference]', $result );
     }
 }
