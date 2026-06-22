@@ -79,6 +79,25 @@ class FileTraitTest extends TestCase
         $this->trait->deleteFile('/tmp/testfile.txt', null, false, true);
     }
 
+    public function testDeleteFileThrowsRuntimeExceptionWhenAssertableAndSystemFails()
+    {
+        // A path containing 'fail' makes the fixture's system() mock return FAILURE;
+        // the file is real so assertFile() passes and the post-system guard is reached.
+        $path = tempnam( sys_get_temp_dir() , 'fail_' );
+
+        try
+        {
+            $this->expectException( RuntimeException::class );
+            $this->expectExceptionMessage( 'Failed to delete the file via exec command' );
+
+            $this->trait->deleteFile( $path , null , false , true ); // assertable = true
+        }
+        finally
+        {
+            @unlink( $path );
+        }
+    }
+
     public function testMakeFileThrowsWhenFilePathEmpty()
     {
         $this->expectException( RuntimeException::class ) ;

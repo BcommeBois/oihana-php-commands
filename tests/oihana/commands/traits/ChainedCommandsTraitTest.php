@@ -155,6 +155,30 @@ final class ChainedCommandsTraitTest extends TestCase
         $this->assertSame(ExitCode::FAILURE, $exit);
     }
 
+    public function testRunCommandsReturnsSuccessForEmptyArray(): void
+    {
+        // before()/after() guard emptiness, so the protected runCommands() is reached directly.
+        $input  = $this->input ;
+        $output = $this->output ;
+        $invoke = fn( array $commands ) => $this->runCommands( $commands , $input , $output ) ;
+        $status = $invoke->call( $this->command , [] ) ;
+
+        $this->assertSame( ExitCode::SUCCESS , $status ) ;
+    }
+
+    public function testRunCommandsSkipsCommandSpecsWithoutName(): void
+    {
+        $this->command->setApplicationMock( new Application() ) ;
+        $this->command->initializeBefore(
+        [
+            CommandParam::BEFORE => [ [ CommandParam::ARGS => [] ] ] // no NAME -> skipped
+        ]);
+
+        $status = $this->command->before( $this->input , $this->output ) ;
+
+        $this->assertSame( ExitCode::SUCCESS , $status ) ;
+    }
+
     public function testInitializeRunStoresInRunProperty(): void
     {
         $this->command->initializeRun([

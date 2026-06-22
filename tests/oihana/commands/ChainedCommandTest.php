@@ -17,6 +17,8 @@ use Psr\Container\NotFoundExceptionInterface;
 
 use Symfony\Component\Console\Exception\ExceptionInterface;
 use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Input\InputDefinition;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\BufferedOutput;
 
 final class ChainedCommandTest extends TestCase
@@ -98,6 +100,26 @@ final class ChainedCommandTest extends TestCase
     /**
      * @throws ExceptionInterface
      */
+    /**
+     * @throws ExceptionInterface
+     */
+    public function testExecuteRunsClearLifecycleAndChain(): void
+    {
+        // 'clear' option is defined but left unset, so clearConsole(false) runs (no system('clear')).
+        $definition = new InputDefinition( [ new InputOption( 'clear' , null , InputOption::VALUE_OPTIONAL ) ] ) ;
+        $input      = new ArrayInput( [] , $definition ) ;
+
+        $invoke = fn( $i , $o ) => $this->execute( $i , $o ) ;
+        $status = $invoke->call( $this->command , $input , $this->output ) ;
+
+        $this->assertSame( ExitCode::SUCCESS , $status ) ;
+
+        $contents = $this->output->fetch() ;
+        $this->assertStringContainsString( 'before 1' , $contents ) ; // the chain ran through execute()
+        $this->assertStringContainsString( 'run 1' , $contents ) ;
+        $this->assertStringContainsString( 'after 1' , $contents ) ;
+    }
+
     public function testRunCallableReturningNullCountsAsSuccess(): void
     {
         $this->command->initializeChain([
