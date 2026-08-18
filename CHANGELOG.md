@@ -12,6 +12,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Coverage tooling: the composer `coverage` and `coverage:md` scripts plus `tools/clover-to-markdown.php`, producing a Clover/HTML report and a Markdown summary under `build/coverage/`.
 - `CONTRIBUTING.md` — setup, tests and coverage instructions, matching the other `oihana/php-*` libraries.
 
+### Fixed
+
+- `ChownTrait::chown()` honours `strict: false` on a path that does not exist. Its contract
+  promised a warning and `ExitCode::SUCCESS` when a required value was missing, but only an
+  empty path was ever checked: for a path absent from disk, `getOwnershipInfos()` raised
+  `Path '…' does not exist.` however `strict` was set, so a caller asking for a best-effort
+  chown got an exception instead of the documented no-op. The case matters where it is most
+  natural to ask — chowning a directory a following step is about to create.
+
+  A missing path and a non-existent one are now reported apart. Naming the path in the second
+  message says which of the two happened without reading the caller.
+
 ### Changed
 
 - `.gitignore`: ignore the whole `build/` directory and the generated phpDocumentor `docs/` output; the previously-committed generated `docs/` files are no longer tracked (the Docs workflow rebuilds and deploys them to GitHub Pages).

@@ -2,6 +2,7 @@
 
 namespace oihana\commands\traits;
 
+use oihana\logging\LoggerTrait;
 use RuntimeException;
 
 use oihana\commands\enums\CommandParam;
@@ -36,7 +37,8 @@ use function oihana\files\getOwnershipInfos;
  */
 trait ChownTrait
 {
-    use CommandTrait ;
+    use CommandTrait ,
+        LoggerTrait  ;
 
     /**
      * Key used in configuration arrays to refer to the `chown` section.
@@ -55,9 +57,10 @@ trait ChownTrait
      * The owner and group may be specified directly or inferred from the given
      * {@see ChownOptions} instance or the trait's `$chownOptions` property.
      *
-     * If `strict` is true, a {@see RuntimeException} is thrown when required
-     * values (owner/group or path) are missing. Otherwise, the method returns
-     * `ExitCode::SUCCESS` silently or with a warning if `verbose` is true.
+     * If `strict` is true, a {@see RuntimeException} is thrown when required values are
+     * missing — no owner and no group, no path, or a path that does not exist on disk.
+     * Otherwise, the method returns `ExitCode::SUCCESS` silently or with a warning if
+     * `verbose` is true.
      *
      * @param string|null             $path    Path to apply the ownership change to.
      * @param string|null             $owner   Owner user (e.g., `www-data`). Optional.
@@ -65,7 +68,8 @@ trait ChownTrait
      * @param null|array|ChownOptions $options Optional options instance. If null, uses `$this->chownOptions`.
      * @param bool                    $silent  If true, suppresses system command output.
      * @param bool                    $verbose If true, displays warnings when skipping.
-     * @param bool                    $strict  If true (default), throws on missing values.
+     * @param bool                    $strict  If true (default), throws on missing values and
+     *                                            on a path that does not exist.
      * @param ?bool                   $sudo    Enforce to use sudo if true.
      *
      * @return int `ExitCode::SUCCESS` (0) if the command runs or is skipped successfully.
@@ -91,11 +95,42 @@ trait ChownTrait
         $group = $group ?? $options->group ;
         $owner = $owner ?? $options->owner ;
 
-        // The path must be validated before inspecting ownership: getOwnershipInfos()
-        // requires an existing path and would otherwise throw before this guard.
+        // Both guards sit above getOwnershipInfos(), which requires an existing path and
+        // raises on anything else — so anything not caught here makes `strict` a lie.
+        //
+        // Two of them rather than one, because "no path was configured" and "the configured
+        // path is not on disk" are different failures, and reporting them alike costs the
+        // reader the diagnosis.
+
         if( empty( $path ) )
         {
             $message = 'Missing `path` for chown operation.' ;
+
+            if( $strict )
+            {
+                throw new RuntimeException( $message ) ;
+            }
+
+            if( $verbose )
+            {
+                $this->warning( $message ) ;
+            }
+
+            return ExitCode::SUCCESS ;
+        }
+
+        // The half the empty-path guard left behind. getOwnershipInfos() raises
+        // "Path '…' does not exist." whatever `strict` says, so a caller asking for a
+        // best-effort chown on a directory that is about to be created got an exception
+        // instead of the documented no-op.
+
+        if( !file_exists( $path ) )
+        {
+            $message = sprintf
+            (
+                'Path "%s" does not exist, so its ownership cannot be changed.' ,
+                $path
+            ) ;
 
             if( $strict )
             {
@@ -127,7 +162,7 @@ trait ChownTrait
         {
             if ( $verbose )
             {
-                $this->info("Ownership of '$path' already matches: {$current->owner}:{$current->group}. Skipping chown." ) ;
+                $this->info("Ownership of '$path' already matches: $current->owner:$current->group. Skipping chown." ) ;
             }
             return ExitCode::SUCCESS ;
         }

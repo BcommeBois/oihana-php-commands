@@ -157,6 +157,48 @@ class ChownTraitTest extends TestCase
         $this->assertSame( [] , $this->trait->systemCalls ) ;
     }
 
+    /**
+     * A path that does not exist is a different failure from no path at all, and until now
+     * only the second one honoured `strict`. The first raised from getOwnershipInfos()
+     * whatever the caller asked for — which is what made a best-effort chown on a directory
+     * about to be created abort the command instead.
+     */
+    private function missingPath(): string
+    {
+        return sys_get_temp_dir() . '/chown_test_absent_' . bin2hex( random_bytes( 8 ) ) ;
+    }
+
+    public function testStrictThrowsWhenPathDoesNotExist(): void
+    {
+        $path = $this->missingPath() ;
+
+        $this->expectException( RuntimeException::class ) ;
+        $this->expectExceptionMessage( sprintf( 'Path "%s" does not exist' , $path ) ) ;
+
+        $this->trait->chown( $path , 'www-data' , null ) ;
+    }
+
+    public function testNonStrictNonExistentPathWarnsAndReturnsSuccess(): void
+    {
+        $path = $this->missingPath() ;
+
+        $result = $this->trait->chown( $path , 'www-data' , null , null , false , true , false ) ;
+
+        $this->assertSame( ExitCode::SUCCESS , $result ) ;
+        $this->assertStringContainsString( 'does not exist' , implode( "\n" , $this->trait->warnings ) ) ;
+        $this->assertStringContainsString( $path , implode( "\n" , $this->trait->warnings ) ) ;
+        $this->assertSame( [] , $this->trait->systemCalls ) ;
+    }
+
+    public function testNonStrictNonExistentPathSilentReturnsSuccess(): void
+    {
+        $result = $this->trait->chown( $this->missingPath() , 'www-data' , null , null , false , false , false ) ;
+
+        $this->assertSame( ExitCode::SUCCESS , $result ) ;
+        $this->assertSame( [] , $this->trait->warnings ) ;
+        $this->assertSame( [] , $this->trait->systemCalls ) ;
+    }
+
     public function testRunsChownWithOwnerOnly(): void
     {
         $result = $this->trait->chown( $this->path , 'zzz_nobody' , null ) ;
