@@ -36,6 +36,7 @@ trait EncryptTrait
      * Typically called during command setup with an array of options.
      *
      * @param array $init An associative array of initial options, possibly containing {@see CommandOption::ENCRYPT}.
+     *
      * @return static Returns the current instance for method chaining.
      */
     public function initializeEncrypt( array $init = [] ):static
@@ -45,23 +46,52 @@ trait EncryptTrait
     }
 
     /**
+     * Resolves whether encryption should be applied, from the console input and the caller's own configuration.
+     *
+     * The value is resolved in that order:
+     * 1. The console option {@see CommandOption::ENCRYPT}, when the input defines it and it was given.
+     * 2. The `$configured` value, i.e. what the caller's own configuration declares.
+     * 3. The default {@see $encrypt} flag.
+     *
+     * A configuration declaring nothing - `$configured` is `null` - keeps the inherited default
+     * rather than silently turning encryption off.
+     *
+     * Example:
+     * ```php
+     * // configuration : [ 'backup' => [ 'encrypt' => false ] ]
+     * $encrypt = $this->resolveEncrypt( $input , $this->config[ 'backup' ][ 'encrypt' ] ?? null ) ;
+     * ```
+     *
+     * @param InputInterface $input      The console input instance.
+     * @param bool|null      $configured The value declared by the caller's configuration, or null when it declares none.
+     *
+     * @return bool True if encryption should be performed, false otherwise.
+     */
+    protected function resolveEncrypt( InputInterface $input , ?bool $configured ) :bool
+    {
+        $option = $input->hasOption( CommandOption::ENCRYPT ) ? $input->getOption( CommandOption::ENCRYPT ) : null ;
+
+        if( $option !== null )
+        {
+            return (bool) $option ;
+        }
+
+        return $configured ?? $this->encrypt ;
+    }
+
+    /**
      * Determines whether encryption should be applied for the given input.
      *
      * This checks both the runtime console option {@see CommandOption::ENCRYPT}
-     * and the default {@see $encrypt} flag.
+     * and the default {@see $encrypt} flag. It is the {@see EncryptTrait::resolveEncrypt()}
+     * shortcut for a caller without its own configuration.
      *
      * @param InputInterface $input The console input instance.
+     *
      * @return bool True if encryption should be performed, false otherwise.
      */
     public function shouldEncrypt( InputInterface $input ) :bool
     {
-        $option = $input->getOption( CommandOption::ENCRYPT ) ;
-
-        if( $option !== null )
-        {
-            return $option ;
-        }
-
-        return $this->encrypt ;
+        return $this->resolveEncrypt( $input , null ) ;
     }
 }

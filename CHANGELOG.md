@@ -8,11 +8,22 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ### Added
 
+- `EncryptTrait::resolveEncrypt()` — resolves the encryption flag from the console input **and** the
+  caller's own configuration: the `--encrypt` option wins when it was given, otherwise the value the
+  caller declares (e.g. a `[backup] encrypt` or `[archive] encrypt` setting), otherwise the inherited
+  `$encrypt` default. A configuration declaring nothing (`null`) keeps that default instead of silently
+  turning encryption off.
+
 - Continuous integration: GitHub Actions `ci.yml` (PHPUnit on PHP 8.4) and `docs.yml` (phpDocumentor build + GitHub Pages deploy) workflows.
 - Coverage tooling: the composer `coverage` and `coverage:md` scripts plus `tools/clover-to-markdown.php`, producing a Clover/HTML report and a Markdown summary under `build/coverage/`.
 - `CONTRIBUTING.md` — setup, tests and coverage instructions, matching the other `oihana/php-*` libraries.
 
 ### Fixed
+
+- `EncryptTrait::shouldEncrypt()` no longer throws when the command does not declare the
+  `--encrypt` option. It now delegates to `resolveEncrypt()`, which checks `hasOption()` first
+  — as `PassphraseTrait` already did — and falls back to the `$encrypt` default. The option
+  value is also cast to `bool`, so a string-valued option resolves like every other flag.
 
 - `ChownTrait::chown()` honours `strict: false` on a path that does not exist. Its contract
   promised a warning and `ExitCode::SUCCESS` when a required value was missing, but only an
