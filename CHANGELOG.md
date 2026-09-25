@@ -20,6 +20,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ### Fixed
 
+- `LifecycleTrait::endCommand()` shows the whole closing duration. `Helper::formatTime()` keeps a
+  single unit by default and drops the rest, so a command that ran 1 min 47 s ended on "Done in
+  1 min", one of 59 min 59 s on "Done in 59 min" — right under a progress bar reading "1 min, 47 s".
+  The duration now reads like that progress bar: two units on whole seconds (`1 min, 47 s`, `5 s`),
+  milliseconds only under one second (`400 ms`). The precision is the new
+  `LifecycleTrait::DURATION_PRECISION` constant (`2`).
+
 - `EncryptTrait::shouldEncrypt()` no longer throws when the command does not declare the
   `--encrypt` option. It now delegates to `resolveEncrypt()`, which checks `hasOption()` first
   — as `PassphraseTrait` already did — and falls back to the `$encrypt` default. The option

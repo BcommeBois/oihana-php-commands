@@ -73,12 +73,22 @@ trait LifecycleTrait
     use IOTrait ;
 
     /**
+     * The number of time units the closing duration shows — the precision the Symfony
+     * progress bar uses for its elapsed time: `1 min, 47 s`, never a bare `1 min`.
+     */
+    public const int DURATION_PRECISION = 2 ;
+
+    /**
      * Finalizes the execution of the command.
      *
      * This method displays an end timestamp (if a start date was provided),
      * prints a completion message, and optionally shows the total execution
      * time in a human-readable format. It returns the given exit code so it
      * can be directly used as the return value of `execute()`.
+     *
+     * The duration reads like the elapsed time of the Symfony progress bar:
+     * two units on whole seconds (`1 min, 47 s`, `5 s`), milliseconds only
+     * under one second (`400 ms`).
      *
      * @param InputInterface      $input      The console input instance.
      * @param OutputInterface     $output     The console output instance.
@@ -126,7 +136,11 @@ trait LifecycleTrait
         $duration = $timestamp > 0 ? microtime(true) - $timestamp : null ;
         if ( $duration !== null )
         {
-            $io->section( sprintf("✅  Done in %s", Helper::formatTime( $duration ) ) ) ;
+            $io->section( sprintf
+            (
+                "✅  Done in %s" ,
+                Helper::formatTime( $duration >= 1 ? floor( $duration ) : $duration , static::DURATION_PRECISION )
+            )) ;
         }
         else
         {

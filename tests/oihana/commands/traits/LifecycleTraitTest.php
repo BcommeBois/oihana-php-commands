@@ -141,6 +141,39 @@ class LifecycleTraitTest extends TestCase
         $this->assertStringContainsString( 'Done in' , $fixture->buffer->fetch() ) ;
     }
 
+    public function testEndCommandShowsTwoUnitsOfTheDuration(): void
+    {
+        $fixture = new LifecycleFixture() ;
+        [ $input , $output ] = $this->io() ;
+
+        $fixture->endCommand( $input , $output , ExitCode::SUCCESS , microtime( true ) - 107.4 ) ;
+
+        $this->assertStringContainsString( 'Done in 1 min, 47 s' , $fixture->buffer->fetch() ) ;
+    }
+
+    public function testEndCommandDropsTheMillisecondsAboveOneSecond(): void
+    {
+        $fixture = new LifecycleFixture() ;
+        [ $input , $output ] = $this->io() ;
+
+        $fixture->endCommand( $input , $output , ExitCode::SUCCESS , microtime( true ) - 5.3 ) ;
+
+        $display = $fixture->buffer->fetch() ;
+
+        $this->assertStringContainsString( 'Done in 5 s' , $display ) ;
+        $this->assertStringNotContainsString( 'ms' , $display ) ;
+    }
+
+    public function testEndCommandKeepsTheMillisecondsUnderOneSecond(): void
+    {
+        $fixture = new LifecycleFixture() ;
+        [ $input , $output ] = $this->io() ;
+
+        $fixture->endCommand( $input , $output , ExitCode::SUCCESS , microtime( true ) - 0.4 ) ;
+
+        $this->assertMatchesRegularExpression( '/Done in 4\d\d ms/' , $fixture->buffer->fetch() ) ;
+    }
+
     public function testEndCommandShowsPlainDoneWhenNoTimestamp(): void
     {
         $fixture = new LifecycleFixture() ;
