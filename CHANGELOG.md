@@ -8,6 +8,25 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ### Added
 
+- `runProcess()` — runs a process and reads both of its outputs **at the same time**
+  (`stream_select()`), with an optional time limit. When the limit runs out, the process **and
+  every process it started** get SIGTERM, then SIGKILL after a grace period (`$grace`, 5 s by
+  default); the result says `timedOut`, with the status 124 of coreutils' `timeout`. Standard
+  input is `/dev/null`, so a process that asks a question reads an end of file instead of waiting
+  forever. `$onOutput` receives standard output in chunks, for an output too big to hold in
+  memory. A failing command does not raise; a process that cannot start does, naming its program
+  and never its arguments.
+- `processTable()` — the parent and the state of every process, from `ps -A -o pid= -o ppid= -o
+  stat=` (same output on Linux and macOS), or from text given in that format.
+- `processDescendants()` — the descendants of a process, the deepest first. A table read while
+  processes come and go can hold a loop; the walk still ends.
+- `terminateProcessTree()` — SIGTERM to a process and all its descendants, listed before the
+  first signal, then SIGKILL to those still running after the grace period. A zombie counts as
+  stopped. Through `posix_kill()`, or the `kill` command without the posix extension.
+- `Process::$timedOut` and `Process::$seconds`, with the `TIMED_OUT` and `SECONDS` constants;
+  `toArray()` and `toJson()` include them.
+- `CommandTrait::proc()` takes a time limit, `$timeout` (seconds, `null` for none).
+
 - `EncryptTrait::resolveEncrypt()` — resolves the encryption flag from the console input **and** the
   caller's own configuration: the `--encrypt` option wins when it was given, otherwise the value the
   caller declares (e.g. a `[backup] encrypt` or `[archive] encrypt` setting), otherwise the inherited
@@ -19,6 +38,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - `CONTRIBUTING.md` — setup, tests and coverage instructions, matching the other `oihana/php-*` libraries.
 
 ### Fixed
+
+- `CommandTrait::proc()` no longer blocks on a command with a lot to say on its error output. It
+  read standard output to its end, then the error output: past about 64 KB on the error pipe, the
+  command waited for that pipe to be read, and `proc()` for the end of standard output — both for
+  ever. It now runs through `runProcess()`, which reads both at once.
 
 - `LifecycleTrait::endCommand()` shows the whole closing duration. `Helper::formatTime()` keeps a
   single unit by default and drops the rest, so a command that ran 1 min 47 s ended on "Done in
@@ -43,6 +67,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
   message says which of the two happened without reading the caller.
 
 ### Changed
+
+- `CommandTrait::proc()` gives its command `/dev/null` as standard input (it was an unused pipe),
+  and the message of a command that cannot start names its program only:
+  ``Failed to execute the command `mysql`.`` The full command line could carry a password.
+  `proc()` no longer calls `proc_open()` itself, so a test that replaced `proc_open()` in the
+  `oihana\commands\traits` namespace no longer reaches it.
 
 - `.gitignore`: ignore the whole `build/` directory and the generated phpDocumentor `docs/` output; the previously-committed generated `docs/` files are no longer tracked (the Docs workflow rebuilds and deploys them to GitHub Pages).
 

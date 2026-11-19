@@ -77,6 +77,8 @@ final class ProcessTest extends TestCase
             Process::OUTPUT => 'out',
             Process::ERROR => 'err',
             Process::STATUS => 3,
+            Process::TIMED_OUT => false,
+            Process::SECONDS => null,
         ];
 
         $this->assertSame($expected, $process->toArray());
@@ -106,6 +108,8 @@ final class ProcessTest extends TestCase
             'output' => "line1\nline2",
             'error' => null,
             'status' => 0,
+            'timedOut' => false,
+            'seconds' => null,
         ];
 
         $this->assertJson($json);
@@ -115,5 +119,27 @@ final class ProcessTest extends TestCase
 
         $decoded = json_decode($json, true);
         $this->assertSame($expectedArray, $decoded);
+    }
+
+    public function testTimedOutAndSecondsAreSetFromTheArray()
+    {
+        $process = new Process([
+            Process::STATUS    => 124,
+            Process::TIMED_OUT => true,
+            Process::SECONDS   => 1.5,
+        ]);
+
+        $this->assertTrue($process->timedOut);
+        $this->assertSame(1.5, $process->seconds);
+        $this->assertStringContainsString('"timedOut":true', $process->toJson());
+        $this->assertStringContainsString('"seconds":1.5', $process->toJson());
+    }
+
+    public function testANewProcessHasNotTimedOut()
+    {
+        $process = new Process();
+
+        $this->assertFalse($process->timedOut);
+        $this->assertNull($process->seconds);
     }
 }

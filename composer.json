@@ -51,8 +51,12 @@
             "src/oihana/commands/helpers/info.php" ,
             "src/oihana/commands/helpers/makeCommand.php" ,
             "src/oihana/commands/helpers/notice.php" ,
+            "src/oihana/commands/helpers/processDescendants.php" ,
+            "src/oihana/commands/helpers/processTable.php" ,
+            "src/oihana/commands/helpers/runProcess.php" ,
             "src/oihana/commands/helpers/silent.php" ,
             "src/oihana/commands/helpers/success.php" ,
+            "src/oihana/commands/helpers/terminateProcessTree.php" ,
             "src/oihana/commands/helpers/warning.php"
         ]
     },

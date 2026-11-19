@@ -7,7 +7,8 @@ use oihana\reflect\traits\ConstantsTrait;
 
 /**
  * Represents the result of a process execution, including standard output,
- * error output, and exit status.
+ * error output, and exit status, and, when it was run by {@see helpers\runProcess()},
+ * whether its time limit ran out and how long it ran.
  *
  * Provides convenience methods for converting the result to an array or JSON.
  *
@@ -38,7 +39,9 @@ class Process implements JsonSerializable
      * // {
      * //     "output": "Process completed successfully.",
      * //     "error": null,
-     * //     "status": 0
+     * //     "status": 0,
+     * //     "timedOut": false,
+     * //     "seconds": null
      * // }
      * ```
      */
@@ -69,12 +72,22 @@ class Process implements JsonSerializable
     public const string OUTPUT = 'output' ;
 
     /**
+     * The 'seconds' key.
+     */
+    public const string SECONDS = 'seconds' ;
+
+    /**
      * The 'status' key.
      */
     public const string STATUS = 'status' ;
 
     /**
-     * TThe error output of the command (stderr).
+     * The 'timedOut' key.
+     */
+    public const string TIMED_OUT = 'timedOut' ;
+
+    /**
+     * The error output of the command (stderr).
      * @var string|null
      */
     public ?string $error = null ;
@@ -86,10 +99,22 @@ class Process implements JsonSerializable
     public ?string $output = null  ;
 
     /**
+     * How long the process ran, in seconds, or null when nobody measured it.
+     * @var ?float
+     */
+    public ?float $seconds = null ;
+
+    /**
      * The exit status code (0 for success).
      * @var ?int
      */
     public ?int $status = null  ;
+
+    /**
+     * Whether the process was stopped because its time limit ran out.
+     * @var bool
+     */
+    public bool $timedOut = false ;
 
     /**
      * Returns the JSON-serializable data for the object.
@@ -104,7 +129,8 @@ class Process implements JsonSerializable
     /**
      * Returns the object as an associative array.
      *
-     * @return array<string,mixed> Associative array containing output, error, and status.
+     * @return array<string,mixed> Associative array containing output, error, status,
+     *                             timedOut and seconds.
      *
      * @example
      * ```php
@@ -115,9 +141,11 @@ class Process implements JsonSerializable
      * ]);
      * print_r($process->toArray());
      * // [
-     * //     "output" => "OK",
-     * //     "error"  => null,
-     * //     "status" => 0
+     * //     "output"   => "OK",
+     * //     "error"    => null,
+     * //     "status"   => 0,
+     * //     "timedOut" => false,
+     * //     "seconds"  => null
      * // ]
      * ```
      */
@@ -125,9 +153,11 @@ class Process implements JsonSerializable
     {
         return
         [
-            self::OUTPUT => $this->output ,
-            self::ERROR  => $this->error  ,
-            self::STATUS => $this->status ,
+            self::OUTPUT    => $this->output   ,
+            self::ERROR     => $this->error    ,
+            self::STATUS    => $this->status   ,
+            self::TIMED_OUT => $this->timedOut ,
+            self::SECONDS   => $this->seconds  ,
         ] ;
     }
 

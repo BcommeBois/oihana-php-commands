@@ -11,6 +11,7 @@ use oihana\commands\options\CommandOptions;
 use oihana\commands\Process;
 
 use function oihana\commands\helpers\makeCommand;
+use function oihana\commands\helpers\runProcess;
 use function oihana\commands\helpers\silent;
 
 /**
@@ -105,6 +106,10 @@ trait CommandTrait
      * This method builds a full command from the base command, optional arguments, and optional sudo/user context.
      * It provides full control over the execution environment and captures both standard output and error output separately.
      *
+     * The process runs through {@see runProcess()}: both outputs are read at the same time, so a
+     * command with a lot to say on its error output cannot block, and an optional time limit
+     * stops the command and everything it started.
+     *
      * @param null|array|string   $command   The base shell command to execute (e.g. "wp plugin list").
      * @param null|array|string   $args      Optional arguments to pass to the command. Can be a string or array.
      * @param CommandOptions|null $options   Optional command options, such as sudo or user context.
@@ -113,6 +118,8 @@ trait CommandTrait
      * @param ?string             $post      The post command to append at the end.
      * @param bool                $sudo      If true, the command is automatically prefixed with `sudo` to run with elevated privileges.
      * @param bool                $dryRun    If true, simulates the execution without actually running the command. Always returns 0.
+     * @param ?float              $timeout   The time limit, in seconds; null for none. Once it runs out, the command and its
+     *                                       descendants are stopped, and the result says `timedOut`, with the status 124.
      *
      * @return Process
      *
@@ -137,6 +144,7 @@ trait CommandTrait
         ?string           $post     = null  ,
         bool              $sudo     = false ,
         bool              $dryRun   = false ,
+        ?float            $timeout  = null  ,
     )
     :Process
     {
@@ -159,36 +167,12 @@ trait CommandTrait
             ]) ;
         }
 
-        $descriptor =
-        [
-            0 => [ 'pipe' , 'r' ] , // stdin (unused)
-            1 => [ 'pipe' , 'w' ] , // stdout
-            2 => [ 'pipe' , 'w' ] , // stderr
-        ];
+        $process = runProcess( $fullCommand , $timeout ) ;
 
-        $process = proc_open( $fullCommand , $descriptor , $pipes ) ;
+        $process->output = trim( (string) $process->output ) ;
+        $process->error  = trim( (string) $process->error  ) ;
 
-        if ( !is_resource( $process ) )
-        {
-            throw new RuntimeException( sprintf( "Failed to execute the command `%s`." ,$verbose ? $fullCommand : $command ) );
-        }
-
-        fclose( $pipes[0] ) ; // stdin
-
-        $stdout = stream_get_contents( $pipes[1] ) ;
-        fclose( $pipes[1] );
-
-        $stderr = stream_get_contents( $pipes[2] );
-        fclose( $pipes[2] ) ;
-
-        $exitCode = proc_close($process);
-
-        return new Process
-        ([
-            Process::OUTPUT => trim( (string) $stdout ) ,
-            Process::ERROR  => trim( (string) $stderr ) ,
-            Process::STATUS => $exitCode,
-        ]);
+        return $process ;
     }
 
     /**
