@@ -40,11 +40,6 @@ function terminateProcessTree( int $pid , float $grace = 5.0 ) :array
 
     $signal = function( array $pids , int $signal ) :void
     {
-        if( $pids === [] )
-        {
-            return ;
-        }
-
         if( function_exists( 'posix_kill' ) )
         {
             foreach( $pids as $target )
@@ -71,14 +66,23 @@ function terminateProcessTree( int $pid , float $grace = 5.0 ) :array
         ) ) ;
     } ;
 
+    $wait = function( float $seconds , int $pause ) use ( $running ) :array
+    {
+        $deadline = microtime( true ) + $seconds ;
+
+        while( ( $left = $running() ) !== [] && microtime( true ) < $deadline )
+        {
+            usleep( $pause ) ;
+        }
+
+        return $left ;
+    } ;
+
+    // $targets always holds $pid: neither signal is ever sent to an empty list.
+
     $signal( $targets , 15 ) ; // SIGTERM
 
-    $deadline = microtime( true ) + max( 0.0 , $grace ) ;
-
-    while( ( $left = $running() ) !== [] && microtime( true ) < $deadline )
-    {
-        usleep( 50_000 ) ;
-    }
+    $left = $wait( max( 0.0 , $grace ) , 50_000 ) ;
 
     if( $left === [] )
     {
@@ -89,14 +93,7 @@ function terminateProcessTree( int $pid , float $grace = 5.0 ) :array
 
     // SIGKILL is delivered at once, but the table may still show the process for an instant.
 
-    $deadline = microtime( true ) + 1.0 ;
-
     $targets = $left ;
 
-    while( ( $left = $running() ) !== [] && microtime( true ) < $deadline )
-    {
-        usleep( 20_000 ) ;
-    }
-
-    return $left ;
+    return $wait( 1.0 , 20_000 ) ;
 }
