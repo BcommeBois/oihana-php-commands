@@ -69,6 +69,7 @@ $command = new CronCommand( 'app:cron' , $container ,
 bin/console app:cron list            # the jobs, and what sync would do
 bin/console app:cron sync            # the changes the crontab needs — nothing is written
 bin/console app:cron sync --apply    # copy the crontab, then write the changes
+bin/console app:cron sync --check    # ends on 1 when the crontab is not up to date — nothing is written
 bin/console app:cron disable check   # comment the line out, until the next sync
 ```
 

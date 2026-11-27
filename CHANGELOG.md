@@ -13,6 +13,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
   `CronCommand` makes the crontab of the current user hold them:
   - `list` shows each job, its line in the crontab, and what `sync` would do to it ;
   - `sync` shows the changes the crontab needs and **writes nothing**; `sync --apply` writes them ;
+  - `sync --check` writes nothing either and ends on `1` when the crontab is not up to date, so a
+    script — a deployment, a health check — can tell whether it still matches the declarations ;
   - `enable <name>`, `disable <name>` (un)comment the line of a job, `remove <name>` takes it out —
     until the next `sync`, when the declaration says otherwise, and the command says so.
 

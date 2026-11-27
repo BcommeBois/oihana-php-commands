@@ -185,6 +185,45 @@ class CronCommandTest extends TestCase
         }
     }
 
+    public function testSyncCheckEndsOnOneWhenTheCrontabIsNotUpToDate() :void
+    {
+        $fake   = new FakeCrontabRunner( self::OTHER . "\n" ) ;
+        $tester = $this->tester( $fake ) ;
+
+        $this->assertSame( ExitCode::FAILURE , $tester->execute( [ 'action' => 'sync' , '--check' => true ] ) ) ;
+        $this->assertStringContainsString( 'add check' , $tester->getDisplay() ) ;
+        $this->assertSame( 0 , $fake->writes ) ;
+        $this->assertDirectoryDoesNotExist( $this->backups ) ;
+    }
+
+    public function testSyncCheckEndsOnZeroWhenTheCrontabIsUpToDate() :void
+    {
+        $fake   = new FakeCrontabRunner( self::CHECK . "\n" ) ;
+        $tester = $this->tester( $fake ) ;
+
+        $this->assertSame( ExitCode::SUCCESS , $tester->execute( [ 'action' => 'sync' , '--check' => true ] ) ) ;
+        $this->assertStringContainsString( 'The crontab is up to date' , $tester->getDisplay() ) ;
+    }
+
+    public function testSyncCheckEndsOnOneWhenTheCrontabCannotBeRead() :void
+    {
+        $fake              = new FakeCrontabRunner( self::CHECK . "\n" ) ;
+        $fake->readFailure = [ 'crontab: permission denied' , 1 ] ;
+
+        $this->assertSame( ExitCode::FAILURE , $this->tester( $fake )->execute( [ 'action' => 'sync' , '--check' => true ] ) ) ;
+    }
+
+    public function testCheckWithApplyIsInvalidAndWritesNothing() :void
+    {
+        $fake   = new FakeCrontabRunner( self::OTHER . "\n" ) ;
+        $tester = $this->tester( $fake ) ;
+
+        $this->assertSame( ExitCode::INVALID , $tester->execute( [ 'action' => 'sync' , '--check' => true , '--apply' => true ] ) ) ;
+        $this->assertStringContainsString( 'cannot go together' , $tester->getDisplay() ) ;
+        $this->assertSame( 0 , $fake->writes ) ;
+        $this->assertSame( [] , $fake->calls ) ;
+    }
+
     public function testSyncOfAnUpToDateCrontab() :void
     {
         $fake   = new FakeCrontabRunner( self::CHECK . "\n" ) ;

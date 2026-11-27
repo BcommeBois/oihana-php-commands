@@ -38,6 +38,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  * | `list`               | the jobs, their line in the crontab, and what `sync` would do to each     |
  * | `sync`               | shows the changes the crontab needs; **writes nothing**                   |
  * | `sync --apply`       | copies the crontab (with a backup directory), then writes the changes     |
+ * | `sync --check`       | like `sync`, but ends on `1` when the crontab is not up to date           |
  * | `enable <name>`      | uncomments the line of a job, until the next `sync` if its definition differs |
  * | `disable <name>`     | comments the line of a job out, until the next `sync` if its definition differs |
  * | `remove <name>`      | removes the line of a job; `sync` adds it back while it is still defined  |
@@ -56,6 +57,10 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  *
  * A wrong scope or a wrong job does not stop the console from starting: the command says what
  * is wrong when it runs.
+ *
+ * `sync --check` lets a script tell whether the crontab still matches the declarations — after a
+ * deployment, in a health check: `0` when it does, `1` when it does not, or when the crontab or
+ * the declarations cannot be read. It never writes.
  *
  * @package oihana\commands\cron
  * @author  Marc Alcaraz (ekameleon)
@@ -98,6 +103,11 @@ class CronCommand extends Kernel
      * The option of `sync` that writes the crontab.
      */
     public const string APPLY = 'apply' ;
+
+    /**
+     * The option of `sync` that ends on `1` when the crontab is not up to date.
+     */
+    public const string CHECK = 'check' ;
 
     /**
      * The name of the lock the writing actions share.
@@ -171,6 +181,13 @@ class CronCommand extends Kernel
                 null ,
                 InputOption::VALUE_NONE ,
                 'sync: write the crontab, instead of only showing the changes.'
+            )
+            ->addOption
+            (
+                self::CHECK ,
+                null ,
+                InputOption::VALUE_NONE ,
+                'sync: end on 1 when the crontab is not up to date. Writes nothing.'
             ) ;
     }
 
@@ -180,7 +197,8 @@ class CronCommand extends Kernel
      * @param InputInterface  $input  The input.
      * @param OutputInterface $output The output.
      *
-     * @return int `0` when the action succeeded; `1` when it failed; `2` for a wrong action or a missing name.
+     * @return int `0` when the action succeeded; `1` when it failed, or when `sync --check` finds the crontab
+     *             not up to date; `2` for a wrong action, a missing name, or `--check` with `--apply`.
      *
      * @throws ReflectionException
      */
@@ -206,7 +224,16 @@ class CronCommand extends Kernel
             return ExitCode::INVALID ;
         }
 
-        $writes = $this->action !== CronAction::LIST && ( $this->action !== CronAction::SYNC || $input->getOption( self::APPLY ) ) ;
+        $apply = (bool) $input->getOption( self::APPLY ) ;
+        $check = (bool) $input->getOption( self::CHECK ) ;
+
+        if( $apply && $check )
+        {
+            $io->error( sprintf( 'The options --%s and --%s cannot go together: --%s never writes.' , self::CHECK , self::APPLY , self::CHECK ) ) ;
+            return ExitCode::INVALID ;
+        }
+
+        $writes = $this->action !== CronAction::LIST && ( $this->action !== CronAction::SYNC || $apply ) ;
 
         if( $writes && !$this->acquireLock( $input , $output , self::LOCK ) )
         {
@@ -220,7 +247,7 @@ class CronCommand extends Kernel
 
             $status = match( $this->action )
             {
-                CronAction::SYNC    => $this->sync   ( $io , (bool) $input->getOption( self::APPLY ) ) ,
+                CronAction::SYNC    => $this->sync   ( $io , $apply , $check ) ,
                 CronAction::ENABLE  => $this->toggle ( $io , $name , true  ) ,
                 CronAction::DISABLE => $this->toggle ( $io , $name , false ) ,
                 CronAction::REMOVE  => $this->remove ( $io , $name ) ,
@@ -331,10 +358,11 @@ class CronCommand extends Kernel
      *
      * @param SymfonyStyle $io    The output.
      * @param bool         $apply True to write the crontab.
+     * @param bool         $check True to end on `1` when the crontab is not up to date.
      *
-     * @return int `0`.
+     * @return int `0`; `1` with `$check` when the crontab is not up to date.
      */
-    protected function sync( SymfonyStyle $io , bool $apply ) :int
+    protected function sync( SymfonyStyle $io , bool $apply , bool $check = false ) :int
     {
         $lines = $this->crontab->read() ;
         $plan  = $this->plan( $lines ) ;
@@ -365,7 +393,7 @@ class CronCommand extends Kernel
         if( !$apply )
         {
             $io->note( sprintf( '%d change(s). Nothing was written: run again with --%s to write them.' , count( $plan->changes ) , self::APPLY ) ) ;
-            return ExitCode::SUCCESS ;
+            return $check ? ExitCode::FAILURE : ExitCode::SUCCESS ;
         }
 
         $this->save( $io , $lines , $plan->lines ) ;
