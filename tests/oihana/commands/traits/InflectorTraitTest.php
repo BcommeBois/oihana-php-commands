@@ -44,8 +44,8 @@ class InflectorTraitTest extends TestCase
         $custom = $this->createStub( InflectorInterface::class ) ;
 
         $container = $this->createMock( ContainerInterface::class ) ;
-        $container->method( 'has' )->with( 'my.inflector' )->willReturn( true ) ;
-        $container->method( 'get' )->with( 'my.inflector' )->willReturn( $custom ) ;
+        $container->expects( $this->once() )->method( 'has' )->with( 'my.inflector' )->willReturn( true ) ;
+        $container->expects( $this->once() )->method( 'get' )->with( 'my.inflector' )->willReturn( $custom ) ;
 
         $result = $this->trait->init( [ 'inflector' => 'my.inflector' ] , $container ) ;
 
@@ -90,7 +90,8 @@ class InflectorTraitTest extends TestCase
     public function testStringServiceNotInContainerFallsBackToEnglishInflector(): void
     {
         $container = $this->createMock( ContainerInterface::class ) ;
-        $container->method( 'has' )->with( 'missing.inflector' )->willReturn( false ) ;
+        $container->expects( $this->once() )->method( 'has' )->with( 'missing.inflector' )->willReturn( false ) ;
+        $container->expects( $this->never() )->method( 'get' ) ;
 
         $this->trait->init( [ 'inflector' => 'missing.inflector' ] , $container ) ;
 

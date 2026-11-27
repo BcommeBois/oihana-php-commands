@@ -68,6 +68,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ### Changed
 
+- **The tests run on PHPUnit 13** (`^13`, was `^12`). `phpunit.xml` speaks the 13.4 schema:
+  `recordTestRunHistory="false"` replaces `cacheResult="false"`, and `resolveDependencies="true"`
+  replaces `executionOrder="depends,defects"`, removed in PHPUnit 14. The container mocks of
+  `InflectorTraitTest` declare how often they are called, as PHPUnit 14 will require.
+
 - `CommandTrait::proc()` gives its command `/dev/null` as standard input (it was an unused pipe),
   and the message of a command that cannot start names its program only:
   ``Failed to execute the command `mysql`.`` The full command line could carry a password.
