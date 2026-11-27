@@ -28,6 +28,7 @@ composer require oihana/php-commands
 - Control caches: clear and manage systems like Memcached and Redis.
 - Handle SSL certificates: automate issuance and renewal with Let’s Encrypt/Certbot.
 - Configure NGINX: generate modular server configs and reload services.
+- Schedule jobs: keep a crontab in line with the jobs an application declares.
 
 ### Under the hood
 
@@ -37,6 +38,41 @@ composer require oihana/php-commands
 - An extensible architecture to add your own tasks, workflows, and plugins.
 
 Ideal for DevOps automation, hosting management, CI/CD pipelines, and local or production environment setup.
+
+## ⏰ Scheduled jobs
+
+`CronCommand` keeps the crontab of the current user in line with the jobs an application declares.
+It owns only the lines that end with its marker, `# oihana-cron:<scope>:<name>`: everything else in
+the crontab stays as it is.
+
+```php
+use oihana\commands\cron\CronCommand;
+use oihana\commands\enums\CronParam;
+
+$command = new CronCommand( 'app:cron' , $container ,
+[
+    CronParam::SCOPE   => 'myapp-staging' ,
+    CronParam::BACKUPS => '/srv/app/var/crontab' ,
+    CronParam::JOBS    =>
+    [
+        [
+            'name'     => 'check' ,
+            'schedule' => '0 6 * * 1-6' ,
+            'command'  => '/usr/bin/php /srv/app/bin/console.php app:check' ,
+            'log'      => '/srv/app/logs/cron/check.log' ,
+        ] ,
+    ] ,
+]) ;
+```
+
+```
+bin/console app:cron list            # the jobs, and what sync would do
+bin/console app:cron sync            # the changes the crontab needs — nothing is written
+bin/console app:cron sync --apply    # copy the crontab, then write the changes
+bin/console app:cron disable check   # comment the line out, until the next sync
+```
+
+Cron starts its jobs with a minimal environment: write commands with absolute paths.
 
 ## 🔌 Plugins
 

@@ -8,6 +8,38 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ### Added
 
+- **Keep a crontab in line with the jobs an application declares** (`oihana\commands\cron`).
+  An application declares its jobs — a name, a schedule, a command, enabled or not, a log — and
+  `CronCommand` makes the crontab of the current user hold them:
+  - `list` shows each job, its line in the crontab, and what `sync` would do to it ;
+  - `sync` shows the changes the crontab needs and **writes nothing**; `sync --apply` writes them ;
+  - `enable <name>`, `disable <name>` (un)comment the line of a job, `remove <name>` takes it out —
+    until the next `sync`, when the declaration says otherwise, and the command says so.
+
+  A managed line ends with a marker, `# oihana-cron:<scope>:<name>`. **A line without a marker, or
+  with the marker of another scope, is never touched**: comments, `PATH=` and the other tools keep
+  their lines, in their place; two instances of an application on one machine (`myapp-production`,
+  `myapp-staging`) share the crontab of their user without seeing each other's lines. A new job
+  goes after the last line of its scope; a disabled job keeps its line, commented out.
+
+  Before each write the crontab is copied into a dated file of a backup directory (mode `0600`,
+  the 10 most recent kept). The writing actions share one lock, whatever the scope. A wrong
+  declaration does not stop the console from starting: the command says what is wrong when it runs.
+
+  The pieces:
+  - `CronJob` — a job, checked when built: an identifier for a name, a schedule `CronSchedule`
+    accepts, a command on one line without an unescaped `%` (cron turns it into a new line), an
+    absolute log path ;
+  - `CronSchedule::isValid()` — five fields or a macro (`@daily`…), with ranges, lists, steps, and
+    month and day names; a step on a single value (`5/10`) and a backwards range (`5-1`) are
+    refused, since cron daemons read them differently ;
+  - `CronLine` — the marker, the scope and name a line belongs to, and its state ;
+  - `CrontabPlan` — what a crontab must become, and the changes (`CronChange`): added, updated,
+    enabled, disabled, removed ;
+  - `Crontab` — reads (`crontab -l`; no crontab is an empty one, any other failure raises), writes
+    (a temporary file given to `crontab`, always removed) and copies the crontab ;
+  - `CronAction` and `CronParam` — the actions and the initialization keys of `CronCommand`.
+
 - `runProcess()` — runs a process and reads both of its outputs **at the same time**
   (`stream_select()`), with an optional time limit. When the limit runs out, the process **and
   every process it started** get SIGTERM, then SIGKILL after a grace period (`$grace`, 5 s by
