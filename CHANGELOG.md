@@ -8,6 +8,23 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ### Added
 
+- **Send a heartbeat to a monitoring tool** (`oihana\commands\heartbeat`). A machine where nothing
+  runs any more — stopped, its scheduler down, its crontab emptied — fails at nothing and stays
+  silent; a tool on another machine (Uptime Kuma, Healthchecks…) waits for a call on a push address
+  and alerts when the calls stop. `HeartbeatCommand <signal>` makes that call: its signals are
+  names → push addresses, called as they are, through the PSR-18 client and the PSR-17 request
+  factory it is given. No address: nothing is done.
+
+  The call watches the tool the other way round: when the tool does not answer — a timeout, a
+  refused connection, a status out of 2xx, or a JSON body whose `ok` is `false` (how Uptime Kuma
+  refuses a push) —, the command ends on `1`, so the job that runs it can alert: once when the
+  failure starts, then once every `alertEvery` seconds (3600 by default) at most; the passes in
+  between end on `0`. `HeartbeatState` remembers the failure in a small JSON file per signal of a
+  state directory; without one, every failed pass alerts. A signal that is not a name, or a missing
+  client or factory, ends on `2`. **A push address is never printed**: only its scheme, host and
+  port; in an error message the address and its last segment — the token — become `***`.
+  `HeartbeatParam` holds the initialization keys. New dependencies: `psr/http-client` and
+  `psr/http-factory` (interfaces only).
 - **Keep a crontab in line with the jobs an application declares** (`oihana\commands\cron`).
   An application declares its jobs — a name, a schedule, a command, enabled or not, a log — and
   `CronCommand` makes the crontab of the current user hold them:

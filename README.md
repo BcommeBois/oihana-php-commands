@@ -29,6 +29,7 @@ composer require oihana/php-commands
 - Handle SSL certificates: automate issuance and renewal with Let’s Encrypt/Certbot.
 - Configure NGINX: generate modular server configs and reload services.
 - Schedule jobs: keep a crontab in line with the jobs an application declares.
+- Send heartbeats: tell a monitoring tool the machine is alive, and warn when the tool does not answer.
 
 ### Under the hood
 
@@ -74,6 +75,52 @@ bin/console app:cron disable check   # comment the line out, until the next sync
 ```
 
 Cron starts its jobs with a minimal environment: write commands with absolute paths.
+
+## 💓 Heartbeat
+
+A job that fails can send an alert; a machine where **nothing runs any more** — stopped, its
+scheduler down, its crontab emptied — fails at nothing and stays silent. A monitoring tool on
+another machine (Uptime Kuma, Healthchecks…) closes the gap: it gives a **push address** and waits
+for a call every few minutes; when the calls stop, it alerts.
+
+`HeartbeatCommand` makes that call. Its signals are names → push addresses, called **as they
+are**; the HTTP client and the request factory are yours (PSR-18, PSR-17):
+
+```php
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\HttpFactory;
+
+use oihana\commands\enums\HeartbeatParam;
+use oihana\commands\heartbeat\HeartbeatCommand;
+
+$command = new HeartbeatCommand( 'app:heartbeat' , $container ,
+[
+    HeartbeatParam::SIGNALS         => [ 'cron' => 'https://monitor.example.com/api/push/AbCdEf1234?status=up' ] ,
+    HeartbeatParam::CLIENT          => new Client([ 'timeout' => 10 ]) ,
+    HeartbeatParam::REQUEST_FACTORY => new HttpFactory() ,
+    HeartbeatParam::STATE_DIR       => '/srv/app/var/heartbeat' ,
+    HeartbeatParam::ALERT_EVERY     => 3600 ,
+]) ;
+```
+
+```
+*/5 * * * * /usr/bin/php /srv/app/bin/console.php app:heartbeat cron || /srv/app/bin/alert.sh
+```
+
+The call watches the tool the other way round too. When the tool does not answer — a timeout, a
+refused connection, a status out of 2xx, or a JSON body whose `ok` is `false` —, the command ends
+on **`1`**, so the job can alert: **once** when the failure starts, then once every `alertEvery`
+seconds at most; the passes in between end on `0`. The failure is remembered in a small file per
+signal of `stateDir` (`HeartbeatState`).
+
+| Exit | When                                                                            |
+| :--- | :------------------------------------------------------------------------------ |
+| `0`  | the tool took the signal; or the signal has no address; or no alert is due yet  |
+| `1`  | the tool does not answer and an alert is due                                    |
+| `2`  | the signal is not a name, or no HTTP client or request factory was given        |
+
+🔒 A push address is a secret: the command only prints its scheme, host and port, and replaces the
+address and its last segment (the token) by `***` in an error message.
 
 ## 🔌 Plugins
 
