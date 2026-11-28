@@ -100,6 +100,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
   A missing path and a non-existent one are now reported apart. Naming the path in the second
   message says which of the two happened without reading the caller.
 
+- `ChownOptionsTest` takes the quoting of an option value from `formatOptionValue()` instead of
+  holding it as a literal. `Options::getOptions()` (oihana/php-files) used to write a string with
+  `json_encode()` — `--from="root:root"` — and now writes it with `escapeShellArgument()` —
+  `--from='root:root'`. The test expected the double-quoted form, so it failed on the GNU branch
+  (the Linux CI) while staying green on macOS, where `--from` and `--reference` are excluded from
+  the fragment. The expected text now goes through the same helper as the option string, so the
+  quoting of the library is no longer written down twice.
+
 ### Changed
 
 - **The tests run on PHPUnit 13** (`^13`, was `^12`). `phpunit.xml` speaks the 13.4 schema:

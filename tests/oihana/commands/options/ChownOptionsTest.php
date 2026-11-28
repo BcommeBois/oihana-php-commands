@@ -8,6 +8,7 @@ use oihana\commands\options\ChownOptions;
 use PHPUnit\Framework\TestCase;
 
 use function oihana\files\isMac;
+use function oihana\options\formatOptionValue;
 
 final class ChownOptionsTest extends TestCase
 {
@@ -113,9 +114,10 @@ final class ChownOptionsTest extends TestCase
         }
         else
         {
-            // GNU chown: long options are hyphenated as expected.
-            $this->assertStringContainsString('--from="root:root"', $result);
-            $this->assertStringContainsString('--reference="/etc/passwd"', $result);
+            // GNU chown: long options are hyphenated and their values quoted by
+            // formatOptionValue(), as Options::getOptions() writes them.
+            $this->assertStringContainsString('--from=' . formatOptionValue('root:root'), $result);
+            $this->assertStringContainsString('--reference=' . formatOptionValue('/etc/passwd'), $result);
         }
     }
 }
